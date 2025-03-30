@@ -1,20 +1,19 @@
 #include <SimpleMC.h>
-#include <Payoff.h>
 #include <cmath>
 #include <random>
 
 double SimpleMonteCarlo(const VanillaOption& theOption,
     double Spot,
-    double Vol,
-    double r,
+    const Parameters& Vol,
+    const Parameters& r,
     unsigned long NumberOfPaths)
 {
     double Expiry = theOption.GetExpiry();
-    double variance = Vol * Vol * Expiry;
+    double variance = Vol.IntegralSquare(0, Expiry);
     double rootVariance = std::sqrt(variance);
     double itoCorrection = -0.5 * variance;
 
-    double movedSpot = Spot * std::exp(r*Expiry + itoCorrection);
+    double movedSpot = Spot * std::exp(r.Integral(0,Expiry) + itoCorrection);
     double thisSpot = 0;
     double runningSum = 0;
 
@@ -31,6 +30,6 @@ double SimpleMonteCarlo(const VanillaOption& theOption,
     }
 
     double mean = runningSum/NumberOfPaths;
-    mean *= std::exp(-r*Expiry);
+    mean *= std::exp(-r.Integral(0, Expiry));
     return mean;
 }
