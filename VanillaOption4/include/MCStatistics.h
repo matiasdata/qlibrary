@@ -24,4 +24,16 @@ private:
     unsigned long count;
 };
 
+class MCStatisticsVariance : public MCStatistics {
+public:
+    MCStatisticsVariance();
+    virtual void addSample(double sample);
+    virtual std::map<std::string,std::vector<double>> getResults() const;
+    virtual MCStatistics* clone() const;
+private:
+    double sum;
+    unsigned long count;
+    double sum2;
+};
+
 #include <MCStatistics.tpp>
