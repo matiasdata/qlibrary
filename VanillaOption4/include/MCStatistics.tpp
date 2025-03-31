@@ -7,10 +7,11 @@ void MCStatisticsMean::addSample(double sample) {
     count++;
 }
 
-std::vector<std::vector<double>> MCStatisticsMean::getResults() const {
-    std::vector<std::vector<double>> results(1); // create a 2D vector with 1 row
-    results[0].resize(1); // create a 1D vector with 1 column
-    results[0][0] = (count > 0) ? sum / count : 0.0; // calculate mean
+std::map<std::string,std::vector<double>> MCStatisticsMean::getResults() const {
+    std::map<std::string,std::vector<double>> results; // create a dictionary to store results
+    results["mean"]; // create a key "mean" in the dictionary
+    results["mean"].resize(1); // create a 1D vector with 1 column
+    results["mean"][0] = (count > 0) ? sum / count : 0.0; // calculate mean
     return results;
 }
 

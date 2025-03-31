@@ -23,7 +23,7 @@ int main()
     parametersPiecewise Vol2({0.0, 0.5, 1.0}, {0.4, 0.3, 0.2});
     parametersConstant r{0.05};
     parametersPiecewise r2({0.0, 0.5, 1.0}, {0.05, 0.04, 0.03});
-    // std::cout << "Realized Variance: " << Vol2.IntegralSquare(0,1) << std::endl;
+    std::cout << "Realized Variance: " << Vol2.IntegralSquare(0,1) << std::endl;
     double Expiry = 1;
     unsigned long NumberOfPaths = 1000000;
     VanillaOption callOption(callPayoff,Expiry);
@@ -33,9 +33,9 @@ int main()
     SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call);
     SimpleMonteCarlo(putOption, Spot, Vol2, r2, NumberOfPaths,gatherer_put);
     SimpleMonteCarlo(doubleDigitalOption, Spot, Vol2, r2, NumberOfPaths, gatherer_doubleDigital);
-    std::cout << "Monte Carlo price of a call: " << gatherer_call.getResults()[0][0] << std::endl;
-    std::cout << "Monte Carlo price of a put: " << gatherer_put.getResults()[0][0] << std::endl;
-    std::cout << "Monte Carlo price of a double digital: " << gatherer_doubleDigital.getResults()[0][0] << std::endl;
+    std::cout << "Monte Carlo price of a call: " << gatherer_call.getResults()["mean"][0] << std::endl;
+    std::cout << "Monte Carlo price of a put: " << gatherer_put.getResults()["mean"][0] << std::endl;
+    std::cout << "Monte Carlo price of a double digital: " << gatherer_doubleDigital.getResults()["mean"][0] << std::endl;
     return 0;
 }
 
