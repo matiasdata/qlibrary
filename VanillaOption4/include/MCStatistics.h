@@ -37,5 +37,17 @@ private:
     double sum2;
 };
 
+class ConvergenceTable : public MCStatistics {
+public:
+    ConvergenceTable(const Wrapper<MCStatistics>& inner);
+    virtual void addSample(double sample) override;
+    virtual std::map<std::string, std::vector<double>> getResults() const override;
+    virtual MCStatistics* clone() const override;
+private:
+    Wrapper<MCStatistics> inner;
+    std::map<std::string, std::vector<double>> results;
+    unsigned long count;
+    unsigned long stoppingPoint;
+};
 
 #include <MCStatistics.tpp>
