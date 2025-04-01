@@ -47,34 +47,3 @@ MCStatistics* MCStatisticsVariance::clone() const
     return new MCStatisticsVariance(*this);
 }
 
-
-ConvergenceTable::ConvergenceTable(const Wrapper<MCStatistics>& inner_) : inner(inner_), count{0}, StoppingPoint{2} 
-{
-    std::map<std::string,std::vector<double>> results;
-}
-
-void ConvergenceTable::addSample(double sample) 
-{
-    inner->addSample(sample);
-    count++;
-    if (count == StoppingPoint) 
-    {
-        StoppingPoint *= 2; // double the stopping point
-        std::map<std::string,std::vector<double>> thisResult = inner->getResults();
-        for (const auto& data : thisResult) 
-        {
-            results[data.first].push_back(data.second[0]);
-        }
-    }
-}
-
-std::map<std::string,std::vector<double>> ConvergenceTable::getResults() const 
-{
-    return results;
-}
-
-MCStatistics* ConvergenceTable::clone() const 
-{
-    return new ConvergenceTable(*this);
-}
-
