@@ -56,3 +56,5 @@ private:
 };
 
 #include <MCStatistics.tpp>
+
+/* Type T could be double, but could also be multidimensional (e.g. a vector of doubles). */
