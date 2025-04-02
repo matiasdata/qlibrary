@@ -29,17 +29,17 @@ int main()
     VanillaOption callOption(callPayoff,Expiry);
     VanillaOption putOption(putPayoff,Expiry);
     VanillaOption doubleDigitalOption(doubleDigitalPayoff,Expiry);
-    MCStatisticsMean gatherer_call, gatherer_put, gatherer_doubleDigital;
-    ConvergenceTable gatherer_call_cv(gatherer_call);
+    MCStatisticsMean<double> gatherer_call, gatherer_put, gatherer_doubleDigital;
+    ConvergenceTable<double> gatherer_call_cv(gatherer_call);
     SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call);
     SimpleMonteCarlo(putOption, Spot, Vol2, r2, NumberOfPaths,gatherer_put);
     SimpleMonteCarlo(doubleDigitalOption, Spot, Vol2, r2, NumberOfPaths, gatherer_doubleDigital);
-    std::cout << "Monte Carlo price of a call: " << gatherer_call.getResults()["mean"][0] << std::endl;
-    std::cout << "Monte Carlo price of a put: " << gatherer_put.getResults()["mean"][0] << std::endl;
-    std::cout << "Monte Carlo price of a double digital: " << gatherer_doubleDigital.getResults()["mean"][0] << std::endl;
+    std::cout << "Monte Carlo price of a call: " << gatherer_call.getResults()["mean"] << std::endl;
+    std::cout << "Monte Carlo price of a put: " << gatherer_put.getResults()["mean"] << std::endl;
+    std::cout << "Monte Carlo price of a double digital: " << gatherer_doubleDigital.getResults()["mean"] << std::endl;
     // Convergence Table
     SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call_cv);
-    std::map<std::string, std::vector<double>> results = gatherer_call_cv.getResults();
+    std::map<std::string, std::vector<double>> results = gatherer_call_cv.getConvergenceTable();
     // Print results
     std::cout << "Convergence of MC of a call: "<< std::endl;
     for (const auto& entry : results) {

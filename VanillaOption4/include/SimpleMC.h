@@ -9,6 +9,6 @@ void SimpleMonteCarlo(const VanillaOption& theOption,
                         const Parameters& Vol,
                         const Parameters& r,
                         unsigned long NumberOfPaths,
-                        MCStatistics& gatherer);
+                        MCStatistics<double>& gatherer);
 
 #include "SimpleMC.tpp"

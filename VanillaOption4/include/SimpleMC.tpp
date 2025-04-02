@@ -7,7 +7,7 @@ void SimpleMonteCarlo(const VanillaOption& theOption,
     const Parameters& Vol,
     const Parameters& r,
     unsigned long NumberOfPaths,
-    MCStatistics& gatherer)
+    MCStatistics<double>& gatherer)
 {
     double Expiry = theOption.GetExpiry();
     double variance = Vol.IntegralSquare(0, Expiry);
