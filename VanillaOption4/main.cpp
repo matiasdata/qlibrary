@@ -3,6 +3,7 @@
 #include <Vanilla.h>
 #include <Parameters.h>
 #include <MCStatistics.h>
+#include <SharedPtr.h>
 
 int main()
 {
@@ -40,7 +41,7 @@ int main()
     // Convergence Table
     SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call_cv);
     std::map<std::string, std::vector<double>> results = gatherer_call_cv.getConvergenceTable();
-    // Print results
+    // Print the results of the convergence table
     std::cout << "Convergence of MC of a call: "<< std::endl;
     for (const auto& entry : results) {
         std::cout << entry.first << ": ";
@@ -49,7 +50,25 @@ int main()
         }
         std::cout << std::endl;
     }
-    // Print the results of the convergence table
+    // Shared Pointer tests.
+    double x = 5;
+    SharedPtr<double> sharedPtr1(x);
+    SharedPtr<double> sharedPtr2(sharedPtr1); // Copy constructor
+    SharedPtr<double> sharedPtr3; // Default constructor
+    sharedPtr3 = sharedPtr1; // Assignment operator
+    std::cout << "Shared Pointer 1: " << &sharedPtr1 << std::endl;
+    std::cout << "Shared Pointer 2: " << &sharedPtr2 << std::endl;
+    std::cout << "Shared Pointer 3: " << &sharedPtr3 << std::endl;
+    std::cout << "Shared Pointer 1 val: " << *sharedPtr1 << std::endl;
+    std::cout << "Shared Pointer 2 val: " << *sharedPtr2 << std::endl;
+    std::cout << "Shared Pointer 3 val: " << *sharedPtr3 << std::endl;
+    *sharedPtr1 = 10; // Change the value of sharedPtr1
+    std::cout << "Shared Pointer 1 val: " << *sharedPtr1 << std::endl;
+    std::cout << "Shared Pointer 2 val: " << *sharedPtr2 << std::endl;
+    std::cout << "Shared Pointer 3 val: " << *sharedPtr3 << std::endl;
+    std::cout << "Shared Pointer 1 reference count: " << sharedPtr1.getRefCount() << std::endl;
+    std::cout << "Shared Pointer 2 reference count: " << sharedPtr2.getRefCount() << std::endl;
+    std::cout << "Shared Pointer 3 reference count: " << sharedPtr3.getRefCount() << std::endl;
     return 0;
 }
 
