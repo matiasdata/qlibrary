@@ -7,6 +7,7 @@ public:
     SharedPtr(); //default constructor
     SharedPtr(const T& inner_); // constructor with inner object
     SharedPtr(const SharedPtr<T>& other); // copy constructor
+    SharedPtr(T* inner_); // constructor from pointer.
     SharedPtr<T>& operator=(const SharedPtr<T>& other); // assignment operator
     T& operator*(); // dereference operator
     const T& operator*() const; // const dereference operator
@@ -14,11 +15,11 @@ public:
     const T* const operator->() const; // const pointer operator
     unsigned long getRefCount() const { return *refCount; } // get reference count
     ~SharedPtr(); // destructor
+
 private:
     T* inner; // pointer to the inner object
     unsigned long* refCount; // reference count
     void release(); // release the inner object and decrement the reference count
-    void addRef(); // increment the reference count
 };
 
 #include <SharedPtr.tpp>

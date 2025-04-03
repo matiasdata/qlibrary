@@ -1,7 +1,25 @@
 #include <SharedPtr.h>
 
+//default constructor
 template <typename T>
-SharedPtr<T>::SharedPtr() : inner{nullptr},refCount{new unsigned long(0)} {} //default constructor
+SharedPtr<T>::SharedPtr() : inner{nullptr}, refCount{new unsigned long(0)} {} 
+
+// constructor from pointer.
+template<typename T>
+SharedPtr<T>::SharedPtr(T* inner_) : inner{inner_}, refCount{new unsigned long(1)} {} 
+
+// copy constructor
+template<typename T>
+SharedPtr<T>::SharedPtr(const SharedPtr<T>& other)
+{
+    inner = other.inner; // share the inner pointer.
+    refCount = other.refCount;
+    if(other.inner != nullptr) // check if other.inner is null
+    {
+        (*refCount)++; // if the pointer is not null, increment the counter.
+    }
+
+} 
 
 template <typename T>
 SharedPtr<T>::SharedPtr(const T& inner_)
@@ -17,21 +35,6 @@ SharedPtr<T>::SharedPtr(const T& inner_)
     }
 }
 
-template <typename T>
-SharedPtr<T>::SharedPtr(const SharedPtr<T>& other)
-{   
-    if(other.inner != nullptr) // check if the other inner is null
-    {
-        inner = other.inner; // copy the new inner object
-        refCount = other.refCount; // copy the reference count
-        (*refCount)++; // increment the reference count
-    }
-    else
-    {
-        inner = nullptr; // if other is null, set inner to null
-        refCount = 0; // set reference count to 0
-    }
-}
 
 template <typename T>
 SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& other)
@@ -39,18 +42,12 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& other)
     if (this != &other) // self-assignment check
     {
         release(); // Properly release the current resource
-        if (other.inner != nullptr) // check if the other inner is null
+        inner = other.inner; // copy the new inner object
+        refCount = other.refCount; // copy the reference count
+        if (other.inner != nullptr) // check if other.inner is null
         {
-            inner = other.inner; // copy the new inner object
-            refCount = other.refCount; // copy the reference count
             (*refCount)++; // increment the reference count
-        }
-        else
-        {
-            inner = nullptr; // if other is null, set inner to null
-            refCount = 0; // set reference count to 0
-        }
-        
+        }        
     }
     return *this; // return the current object
 }
@@ -92,24 +89,14 @@ SharedPtr<T>::~SharedPtr()
 template <typename T>
 void SharedPtr<T>::release()
 {
-    if (inner != nullptr) // check if inner is not null
+    (*refCount)--;
+    if(*refCount == 0)
     {
-        if (refCount && --(*refCount) == 0) // check if the reference count is 0
+        if(inner != nullptr)
         {
-            delete inner; // delete the inner object
-            delete refCount; // delete the reference count
-            inner = nullptr; // set inner to null
-            refCount = nullptr; // set reference count to null
+            delete inner;
         }
-    }
-}
-
-template <typename T>
-void SharedPtr<T>::addRef()
-{
-    if (inner != nullptr) // check if inner is not null
-    {
-        (*refCount)++; // increment the reference count
+        delete refCount;
     }
 }
 
