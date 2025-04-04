@@ -18,6 +18,7 @@ int main()
     double r = 0.05;
     double Expiry = 1;
     unsigned long NumberOfPaths = 1000000;
+    // Print MC simulation results
     std::cout << "Monte Carlo price of a call: " << SimpleMonteCarlo(callPayoff,Expiry,Spot,Vol,r,NumberOfPaths) << std::endl;
     std::cout << "Monte Carlo price of a put: " << SimpleMonteCarlo(putPayoff,Expiry,Spot,Vol,r,NumberOfPaths) << std::endl;
     return 0;
