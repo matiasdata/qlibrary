@@ -2,10 +2,10 @@
 *.o
 
 # macOS system file
-.DS_Store
+**/.DS_Store
 
 # Compiled executables (like main)
-main
+**/main
 
 # Optional: ignore all executables without extensions (use with caution)
 # [^./]*
