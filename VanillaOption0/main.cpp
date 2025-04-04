@@ -25,6 +25,7 @@ int main()
     VanillaOption callOption(callPayoff,Expiry);
     VanillaOption putOption(putPayoff,Expiry);
     VanillaOption doubleDigitalOption(doubleDigitalPayoff,Expiry);
+    // Print MC simulation results
     std::cout << "Monte Carlo price of a call: " << SimpleMonteCarlo(callOption,Spot,Vol,r,NumberOfPaths) << std::endl;
     std::cout << "Monte Carlo price of a put: " << SimpleMonteCarlo(putOption,Spot,Vol,r,NumberOfPaths) << std::endl;
     std::cout << "Monte Carlo price of a double digital: " << SimpleMonteCarlo(doubleDigitalOption,Spot,Vol,r,NumberOfPaths) << std::endl;

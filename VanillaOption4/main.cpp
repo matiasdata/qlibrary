@@ -35,6 +35,7 @@ int main()
     SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call);
     SimpleMonteCarlo(putOption, Spot, Vol2, r2, NumberOfPaths,gatherer_put);
     SimpleMonteCarlo(doubleDigitalOption, Spot, Vol2, r2, NumberOfPaths, gatherer_doubleDigital);
+    // Print MC simulation results
     std::cout << "Monte Carlo price of a call: " << gatherer_call.getResults()["mean"] << std::endl;
     std::cout << "Monte Carlo price of a put: " << gatherer_put.getResults()["mean"] << std::endl;
     std::cout << "Monte Carlo price of a double digital: " << gatherer_doubleDigital.getResults()["mean"] << std::endl;
