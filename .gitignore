@@ -1,3 +1,15 @@
+# Object files
 *.o
+
+# macOS system file
+.DS_Store
+
+# Compiled executables (like main)
 main
-main
+
+# Optional: ignore all executables without extensions (use with caution)
+# [^./]*
+
+# Optional: build and output folders (common in larger projects)
+build/
+bin/
