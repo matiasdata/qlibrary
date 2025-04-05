@@ -3,7 +3,6 @@
 #include <Vanilla.h>
 #include <Parameters.h>
 #include <MCStatistics.h>
-#include <SharedPtr.h>
 
 int main()
 {
