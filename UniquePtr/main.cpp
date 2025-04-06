@@ -16,12 +16,15 @@ int main()
     std::cout << "uniquePtr2 inner pointer address: " << &*uniquePtr2 << std::endl;
     // move assignment
     uniquePtr1 = std::move(uniquePtr2); 
+    // uniquePtr1 = uniquePtr2 is not allowed.
     std::cout << "uniquePtr1 value: " << *uniquePtr1 << std::endl;
     std::cout << "uniquePtr1 address: " << &uniquePtr1 << std::endl;
     std::cout << "uniquePtr1 inner pointer address: " << &*uniquePtr1 << std::endl;
-    
-
-
+    // If the right-hand side is a temporary (an rvalue) = it is allowed.
+    uniquePtr1 = UniquePtr<int>(new int(3));
+    std::cout << "uniquePtr1 value: " << *uniquePtr1 << std::endl;
+    std::cout << "uniquePtr1 address: " << &uniquePtr1 << std::endl;
+    std::cout << "uniquePtr1 inner pointer address: " << &*uniquePtr1 << std::endl;
 
     return 0;
 }
