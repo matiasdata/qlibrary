@@ -1,9 +1,6 @@
 #pragma once
 #include <valarray>
 
-using MyArray = std::valarray<double>; // creating an alias called MyArray for the type std::valarray<double>.
-// equivalent to old style:
-// typedef std::valarray<double> MyArray;
 
 class MyArray
 {
@@ -57,3 +54,5 @@ inline unsigned long MyArray::size() const {
 /* inline: definition must be visible in the same translation unit (e.g. in the header file in this case).
 To allow short, performance-critical methods (like operator[]) to be expanded directly — potentially making them faster.
 */
+
+#include <MyArray.tpp>
