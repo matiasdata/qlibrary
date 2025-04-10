@@ -22,3 +22,6 @@ void RandomBase::resetDimensionality(unsigned long newDimensionality)
     Dimensionality = newDimensionality;
 }
 
+
+
+RandomMLCG::RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_) : RandomBase(Dimensionality_), InnerGenerator{Seed_}, InitialSeed{Seed_} {};
