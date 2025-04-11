@@ -67,15 +67,14 @@ class RandomMLCG : public RandomBase
 {
     public:
         RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_);
-        inline unsigned long getDimesionality() const;
-        virtual RandomBase* clone() const;
-        virtual void getUniforms(MyArray& variates);
-        virtual void skip(unsigned long numberOfPaths);
-        virtual void setSeed(unsigned long Seed);
-        virtual void reset();
+        virtual RandomBase* clone() const override;
+        virtual void getUniforms(MyArray& variates) override;
+        virtual void skip(unsigned long numberOfPaths) override;
+        virtual void setSeed(std::uint64_t Seed) override;
+        virtual void reset() override;
         
     
     private:
         std::uint64_t InitialSeed;
-        std::uint64_t InnerGenerator;
+        MLCG InnerGenerator;
 };

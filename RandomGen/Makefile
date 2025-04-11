@@ -1,21 +1,15 @@
-# Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I./RandomGen/include -I./MyArray/include
+CXXFLAGS = -std=c++20 -Wall -I./include -I../MyArray/include
 
-# Targets
-TARGET = randomgen
-SRC = RandomGen/main.cpp
-OBJ = $(SRC:.cpp=.o)
+SRC = main.cpp
+OBJ = main.o
+BIN = randomgen
 
-# Build rule
-all: $(TARGET)
+$(BIN): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(BIN) $(OBJ)
 
-$(TARGET): $(OBJ)
-	$(CXX) $(OBJ) -o $(TARGET)
+$(OBJ): $(SRC)
+	$(CXX) $(CXXFLAGS) -c $(SRC) -o $(OBJ)
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Clean build artifacts
 clean:
-	rm -f RandomGen/*.o $(TARGET)
+	rm -f $(OBJ) $(BIN)
