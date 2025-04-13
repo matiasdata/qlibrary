@@ -20,5 +20,6 @@ plt.xlabel("Value")
 plt.ylabel("Density")
 plt.legend()
 plt.grid(True)
+plt.savefig("./gaussians.jpeg")
 
 plt.show()
