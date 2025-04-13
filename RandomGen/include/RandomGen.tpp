@@ -24,22 +24,17 @@ void RandomBase::resetDimensionality(unsigned long newDimensionality)
 
 
 
-RandomMLCG::RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_) : RandomBase(Dimensionality_), InnerGenerator{Seed_}, InitialSeed{Seed_} {};
+RandomMLCG::RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_) : RandomBase(Dimensionality_), InnerGenerator{Seed_}, InitialSeed{Seed_} {}
 
 RandomBase* RandomMLCG::clone() const {
-    return new RandomMLCG(*this);  // Copy constructor gets used
+    return new RandomMLCG(*this);  // clone copy constructor
 }
 
 void RandomMLCG::getUniforms(MyArray& variates) {
-    for (unsigned long i = 0; i < variates.size(); ++i) {
+    
+    for (unsigned long i = 0; i < getDimensionality(); ++i) {
         // Normalize to [0,1) by dividing by modulus
-        variates[i] = static_cast<double>(InnerGenerator.getInteger()) / static_cast<double>(MLCG::default_m);
-    }
-}
-
-void RandomMLCG::skip(unsigned long numberOfPaths) {
-    for (unsigned long i = 0; i < numberOfPaths * getDimesionality(); ++i) {
-        InnerGenerator.getInteger(); // Just advance the generator
+        variates[i] = static_cast<double>(InnerGenerator.getInteger()) * Reciprocal ;
     }
 }
 

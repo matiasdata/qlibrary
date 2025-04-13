@@ -7,13 +7,13 @@ class RandomBase
 {
 public:
     RandomBase(unsigned long Dimensionality_) : Dimensionality{Dimensionality_} {};
-    inline unsigned long getDimesionality() const;
+    inline unsigned long getDimensionality() const;
     virtual RandomBase* clone() const = 0;
     virtual void getUniforms(MyArray& variates) = 0;
-    virtual void skip(unsigned long numberOfPaths) = 0;
     virtual void setSeed(std::uint64_t Seed) = 0;
     virtual void reset() = 0;
-    
+
+    virtual void skip(unsigned long numberOfPaths);
     virtual void getGaussians(MyArray& variates);
     virtual void resetDimensionality(unsigned long newDimensionality);
 
@@ -21,9 +21,16 @@ private:
     unsigned long Dimensionality;
 };
 
-unsigned long RandomBase::getDimesionality() const 
+unsigned long RandomBase::getDimensionality() const 
 {
     return Dimensionality;
+}
+
+void RandomBase::skip(unsigned long numberOfPaths) {
+    MyArray tmp(getDimensionality());
+    for (unsigned long i = 0; i < numberOfPaths; ++i) {
+        getUniforms(tmp); // advance the generator by creating numberOfPaths samples of the required dimensionality.
+    }
 }
 
 /* Note that we define the interface for GetUniforms and GetGaussians via a reference to an array.
@@ -31,7 +38,7 @@ The reason we do this is that we do not wish to waste time copying arrays. Also 
 of dynamic size generally involve dynamic memory allocation, i.e. new, and therefore are quite slow
 to create and to destroy.
 */
-
+/* Dimensionality is supposed to represent the number of random variables to simulate one path. */
 
 class MLCG{
 public:
@@ -66,15 +73,17 @@ private:
 class RandomMLCG : public RandomBase
 {
     public:
-        RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_);
+        RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_ = 0);
         virtual RandomBase* clone() const override;
         virtual void getUniforms(MyArray& variates) override;
-        virtual void skip(unsigned long numberOfPaths) override;
         virtual void setSeed(std::uint64_t Seed) override;
         virtual void reset() override;
         
     
     private:
-        std::uint64_t InitialSeed;
         MLCG InnerGenerator;
+        std::uint64_t InitialSeed;
+        static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m - 1);
 };
+
+#include <RandomGen.tpp>
