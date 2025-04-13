@@ -1,6 +1,5 @@
 #include <RandomGen.h>
 #include <iostream>
-#include <MyArray.h>
 
 int main()
 {
