@@ -1,3 +1,4 @@
+// RandomGen.tpp
 #include <RandomGen.h>
 #include <boost/math/distributions/normal.hpp>
 
@@ -34,7 +35,7 @@ void RandomMLCG::getUniforms(MyArray& variates) {
     
     for (unsigned long i = 0; i < getDimensionality(); ++i) {
         // Normalize to [0,1) by dividing by modulus
-        variates[i] = static_cast<double>(InnerGenerator.getInteger()) * Reciprocal ;
+        variates[i] = static_cast<double>(InnerGenerator.getInteger()) * Reciprocal;
     }
 }
 

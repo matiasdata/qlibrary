@@ -1,5 +1,7 @@
+// main.cpp 
 #include <RandomGen.h>
 #include <iostream>
+#include <fstream>
 
 int main()
 {
@@ -17,5 +19,20 @@ int main()
         rg.getGaussians(arr);
         std::cout << "(" << arr[0] << ", " << arr[1] << ")" << std::endl;
     }
+
+    dim = 1;
+    RandomMLCG rg2(dim);
+    MyArray arr2(dim);
+
+    std::ofstream file("samples.csv");
+    int n_samples = 10000;
+
+    for (int i = 0; i < n_samples; ++i) {
+        rg2.getGaussians(arr2);
+        file << arr2[0] << "\n";
+    }
+
+    file.close();
+    std::cout << "Generated " << n_samples << " Gaussian samples to samples.csv\n";
     return 0;
 }

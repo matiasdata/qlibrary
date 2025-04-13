@@ -1,3 +1,4 @@
+// RandomGen.h
 #pragma once
 
 #include <MyArray.h>
@@ -83,7 +84,7 @@ class RandomMLCG : public RandomBase
     private:
         MLCG InnerGenerator;
         std::uint64_t InitialSeed;
-        static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m - 1);
+        static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m);
 };
 
 #include <RandomGen.tpp>
