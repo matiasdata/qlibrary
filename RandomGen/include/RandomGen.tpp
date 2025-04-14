@@ -1,6 +1,10 @@
 // RandomGen.tpp
 #include <RandomGen.h>
 #include <boost/math/distributions/normal.hpp>
+#include <limits>
+
+constexpr double EPS = std::numeric_limits<double>::epsilon(); // ~2.22e-16
+
 
 double inverseCumulativeNormal(double p) {
     boost::math::normal dist(0.0, 1.0); // standard normal distribution
@@ -9,7 +13,9 @@ double inverseCumulativeNormal(double p) {
 
 void RandomBase::getGaussians(MyArray& variates)
 {
-    getUniforms(variates);
+
+
+    getUniforms(variates); // Supposed to overwrite everything
 
     for(unsigned long i = 0; i < variates.size(); i++)
     {
@@ -35,7 +41,10 @@ void RandomMLCG::getUniforms(MyArray& variates) {
     
     for (unsigned long i = 0; i < getDimensionality(); ++i) {
         // Normalize to [0,1) by dividing by modulus
-        variates[i] = static_cast<double>(InnerGenerator.getInteger()) * Reciprocal;
+        double u = static_cast<double>(InnerGenerator.getInteger() + 1) * Reciprocal;
+        // Clamp
+        u = std::clamp(u, EPS, 1.0 - EPS);
+        variates[i] = u;
     }
 }
 

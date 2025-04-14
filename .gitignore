@@ -13,3 +13,4 @@
 # Optional: build and output folders (common in larger projects)
 build/
 bin/
+RandomGen/samples.csv

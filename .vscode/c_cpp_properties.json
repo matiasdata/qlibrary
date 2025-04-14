@@ -3,7 +3,8 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/UniquePtr/include/**"
+                "${workspaceFolder}/RandomGen/include/**",
+                "${workspaceFolder}/MyArray/include/**"
             ],
             "defines": [],
             "cStandard": "c17",

@@ -84,7 +84,7 @@ class RandomMLCG : public RandomBase
     private:
         MLCG InnerGenerator;
         std::uint64_t InitialSeed;
-        static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m);
+        static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m + 1);
 };
 
 #include <RandomGen.tpp>
