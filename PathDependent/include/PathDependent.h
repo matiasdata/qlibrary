@@ -12,7 +12,7 @@ public:
 class PathDependent
 {
 public:
-    PathDependent(MyArray& LookAtTimes);
+    PathDependent(MyArray& LookAtTimes_);
     const MyArray& GetLookAtTimes() const;
     virtual unsigned long MaxNumberOfCashFlows() const = 0;
     virtual MyArray PossibleCashFlowTimes() const = 0;

@@ -4,7 +4,8 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/RandomGen/include/**",
-                "${workspaceFolder}/MyArray/include/**"
+                "${workspaceFolder}/MyArray/include/**",
+                "${workspaceFolder}/PathDependent/include/**"
             ],
             "defines": [],
             "cStandard": "c17",
