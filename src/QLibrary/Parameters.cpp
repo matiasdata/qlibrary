@@ -1,4 +1,4 @@
-#include <Parameters.h>
+#include <QLibrary/Parameters.h>
 
 // parametersConstant class
 

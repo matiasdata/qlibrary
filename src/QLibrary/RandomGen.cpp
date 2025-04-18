@@ -1,4 +1,4 @@
-// RandomGen.tpp
+// RandomGen.cpp
 #include <QLibrary/RandomGen.h>
 #include <boost/math/distributions/normal.hpp>
 #include <limits>
@@ -27,6 +27,14 @@ void RandomBase::getGaussians(MyArray& variates)
 void RandomBase::resetDimensionality(unsigned long newDimensionality)
 {
     Dimensionality = newDimensionality;
+}
+
+
+void RandomBase::skip(unsigned long numberOfPaths) {
+    MyArray tmp(getDimensionality());
+    for (unsigned long i = 0; i < numberOfPaths; ++i) {
+        getUniforms(tmp); // advance the generator by creating numberOfPaths samples of the required dimensionality.
+    }
 }
 
 

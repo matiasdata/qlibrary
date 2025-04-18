@@ -1,9 +1,22 @@
-INCLUDES = -I../include
-SOURCES = main.cpp
-OBJECTS = $(SOURCES:.cpp=.o)
+# Compiler and flags
+CXX = g++
+CXXFLAGS = -std=c++20 -Wall -I../include -I/opt/homebrew/include
 
-main: $(OBJECTS)
-	g++ -std=c++20 $(OBJECTS) -o main
+# Source files
+SRC = main.cpp $(wildcard ../src/QLibrary/*.cpp)
+OBJ = $(SRC:.cpp=.o)
+BIN = main
 
+# Final binary build
+$(BIN): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(BIN) $(OBJ)
+
+# Compile each source file
 %.o: %.cpp
-	g++ -std=c++20 $(INCLUDES) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Cleanup
+clean:
+	rm -f $(OBJ) $(BIN)
+
+.PHONY: clean

@@ -1,3 +1,4 @@
+// MyArray.h
 #pragma once
 #include <valarray>
 
@@ -54,5 +55,3 @@ inline unsigned long MyArray::size() const {
 /* inline: definition must be visible in the same translation unit (e.g. in the header file in this case).
 To allow short, performance-critical methods (like operator[]) to be expanded directly — potentially making them faster.
 */
-
-#include <QLibrary/MyArray.cpp>

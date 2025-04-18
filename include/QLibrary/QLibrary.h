@@ -1,11 +1,11 @@
-// include/QLibrary/QLibrary.h
+// QLibrary.h
 
 #pragma once
 
-#include "MyArray.h"
-#include "MCStatistics.h"
-#include "Parameters.h"
-#include "RandomGen.h"
-#include "Wrapper.h"
-#include "SharedPtr.h"
-#include "UniquePtr.h"
+#include <QLibrary/MyArray.h>
+#include <QLibrary/MCStatistics.h>
+#include <QLibrary/Parameters.h>
+#include <QLibrary/RandomGen.h>
+#include <QLibrary/Wrapper.h>
+#include <QLibrary/SharedPtr.h>
+#include <QLibrary/UniquePtr.h>

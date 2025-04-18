@@ -1,3 +1,4 @@
+// MyArray.cpp
 #include <QLibrary/MyArray.h>
 #include <algorithm>
 #include <numeric>

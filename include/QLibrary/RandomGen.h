@@ -21,17 +21,11 @@ private:
     unsigned long Dimensionality;
 };
 
-unsigned long RandomBase::getDimensionality() const 
+inline unsigned long RandomBase::getDimensionality() const 
 {
     return Dimensionality;
 }
 
-void RandomBase::skip(unsigned long numberOfPaths) {
-    MyArray tmp(getDimensionality());
-    for (unsigned long i = 0; i < numberOfPaths; ++i) {
-        getUniforms(tmp); // advance the generator by creating numberOfPaths samples of the required dimensionality.
-    }
-}
 
 /* Note that we define the interface for GetUniforms and GetGaussians via a reference to an array.
 The reason we do this is that we do not wish to waste time copying arrays. Also remember that arrays 
@@ -85,5 +79,3 @@ class RandomMLCG : public RandomBase
         std::uint64_t InitialSeed;
         static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m + 1);
 };
-
-#include <QLibrary/RandomGen.cpp>

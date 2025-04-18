@@ -40,5 +40,3 @@ private:
     std::vector<double> Value; // vector of parameter values
 };
 // The parametersPiecewise class is a concrete implementation of the Parameters class that represents a piecewise constant parameter.
-
-#include <QLibrary/Parameters.cpp>
