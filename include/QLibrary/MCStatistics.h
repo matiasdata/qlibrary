@@ -2,7 +2,7 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <Wrapper.h>
+#include <QLibrary/Wrapper.h>
 
 template <typename T>
 class MCStatistics {
@@ -55,6 +55,6 @@ private:
     unsigned long stoppingPoint;
 };
 
-#include <MCStatistics.tpp>
+#include <QLibrary/MCStatistics.tpp>
 
 /* Type T could be double, but could also be multidimensional (e.g. a vector of doubles). */

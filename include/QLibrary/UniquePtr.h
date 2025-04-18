@@ -23,4 +23,4 @@ private:
     void release();
 };
 
-#include <UniquePtr.tpp>
+#include <QLibrary/UniquePtr.tpp>

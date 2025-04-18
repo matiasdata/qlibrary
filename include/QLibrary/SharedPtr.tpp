@@ -1,4 +1,5 @@
-#include <SharedPtr.h>
+// SharedPtr.tpp
+#include <QLibrary/SharedPtr.h>
 
 //default constructor
 template <typename T>

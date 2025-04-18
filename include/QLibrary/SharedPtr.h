@@ -1,3 +1,4 @@
+// SharedPtr.h
 #pragma once
 
 template <typename T>
@@ -22,4 +23,4 @@ private:
     void release(); // release the inner object and decrement the reference count
 };
 
-#include <SharedPtr.tpp>
+#include <QLibrary/SharedPtr.tpp>

@@ -41,4 +41,4 @@ private:
 };
 // The parametersPiecewise class is a concrete implementation of the Parameters class that represents a piecewise constant parameter.
 
-#include <Parameters.tpp>
+#include <QLibrary/Parameters.cpp>

@@ -55,4 +55,4 @@ inline unsigned long MyArray::size() const {
 To allow short, performance-critical methods (like operator[]) to be expanded directly — potentially making them faster.
 */
 
-#include <MyArray.tpp>
+#include <QLibrary/MyArray.cpp>

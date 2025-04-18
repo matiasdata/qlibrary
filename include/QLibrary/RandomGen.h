@@ -1,7 +1,6 @@
 // RandomGen.h
 #pragma once
-
-#include <MyArray.h>
+#include <QLibrary/MyArray.h>
 #include <cstdint>
 
 class RandomBase
@@ -87,4 +86,4 @@ class RandomMLCG : public RandomBase
         static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m + 1);
 };
 
-#include <RandomGen.tpp>
+#include <QLibrary/RandomGen.cpp>

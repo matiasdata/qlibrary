@@ -1,4 +1,4 @@
-#include <UniquePtr.h>
+#include <QLibrary/UniquePtr.h>
 
 
 template<typename T>

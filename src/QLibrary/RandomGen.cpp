@@ -1,5 +1,5 @@
 // RandomGen.tpp
-#include <RandomGen.h>
+#include <QLibrary/RandomGen.h>
 #include <boost/math/distributions/normal.hpp>
 #include <limits>
 

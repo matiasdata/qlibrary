@@ -1,4 +1,4 @@
-#include <MCStatistics.h>
+#include <QLibrary/MCStatistics.h>
 
 template<typename T>
 MCStatisticsMean<T>::MCStatisticsMean() : sum(0.0), count(0) {}
