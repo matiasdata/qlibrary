@@ -27,7 +27,8 @@ int main()
     parametersConstant dParam(d);
     PathDependentAsian theOption(Times, Expiry, ThePayoff);
     MCStatisticsMean<double> gatherer;
-    RandomMLCG gen(NumberOfDates,0);
+    RandomMLCG concreteGen(1, 0);
+    Wrapper<RandomBase> gen(concreteGen);
     ExoticBSEngine theEngine(theOption,rParam,dParam,VolParam,gen,Spot);
     theEngine.DoSimulation(gatherer, NumberOfPaths);
     std::cout << gatherer.getResults()["mean"] << std::endl;

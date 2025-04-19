@@ -1,3 +1,4 @@
+// ExoticEngine.cpp
 #include <QLibrary/ExoticEngine.h>
 #include <cmath>
 
@@ -33,4 +34,5 @@ double ExoticEngine::DoOnePath(const MyArray& SpotValues) const
     {
         Value += TheseCashFlows[i].Amount * Discounts[TheseCashFlows[i].TimeIndex];
     }
+    return Value;
 }

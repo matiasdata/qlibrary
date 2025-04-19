@@ -16,6 +16,7 @@ public:
     virtual void skip(unsigned long numberOfPaths);
     virtual void getGaussians(MyArray& variates);
     virtual void resetDimensionality(unsigned long newDimensionality);
+    virtual ~RandomBase(){};
 
 private:
     unsigned long Dimensionality;
