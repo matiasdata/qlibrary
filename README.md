@@ -1,1 +1,1 @@
-Pricing Library (loosely) following C++ Design Patterns and Derivatives Pricing (Joshi).
+Pricing Library (sometimes loosely) following C++ Design Patterns and Derivatives Pricing (Joshi).
