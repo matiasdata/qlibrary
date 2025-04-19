@@ -1,5 +1,5 @@
 // main.cpp
-#include <QLibrary/QLibrary.h>
+#include <QLibrary/PathDependent.h>
 #include <iostream>
 
 

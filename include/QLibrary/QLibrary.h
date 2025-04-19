@@ -9,3 +9,4 @@
 #include <QLibrary/Wrapper.h>
 #include <QLibrary/SharedPtr.h>
 #include <QLibrary/UniquePtr.h>
+#include <QLibrary/PathDependent.h>

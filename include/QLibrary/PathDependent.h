@@ -1,4 +1,4 @@
-#include <MyArray.h>
+#include <QLibrary/MyArray.h>
 #include <vector>
 
 class CashFlow
