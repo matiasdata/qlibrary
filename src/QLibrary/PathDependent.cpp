@@ -1,5 +1,5 @@
 #include <QLibrary/PathDependent.h>
 
-PathDependent::PathDependent(MyArray& LookAtTimes_) : LookAtTimes{LookAtTimes_} {}
+PathDependent::PathDependent(const MyArray& LookAtTimes_) : LookAtTimes{LookAtTimes_} {}
 
 const MyArray& PathDependent::GetLookAtTimes() const {return LookAtTimes;}
