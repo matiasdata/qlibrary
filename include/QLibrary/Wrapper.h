@@ -7,6 +7,7 @@ class Wrapper
 public:
     Wrapper(); //default constructor
     Wrapper(const T& inner_); // constructor with inner object
+    Wrapper(T* inner_); // constructor with pointer
     Wrapper(const Wrapper<T>& other); // copy constructor
     Wrapper<T>& operator=(const Wrapper<T>& other); // assignment operator
     T& operator*(); // dereference operator

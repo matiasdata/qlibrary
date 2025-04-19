@@ -11,6 +11,9 @@ Wrapper<T>::Wrapper(const T& inner_)
 }
 
 template <typename T>
+Wrapper<T>::Wrapper(T* inner_) : inner(inner_) {}
+
+template <typename T>
 Wrapper<T>::Wrapper(const Wrapper<T>& other)
 {   
     if(other.inner != nullptr) // check if the other inner is null

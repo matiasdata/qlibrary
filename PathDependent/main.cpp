@@ -3,6 +3,7 @@
 #include <QLibrary/ExoticBSEngine.h>
 #include <QLibrary/MCStatistics.h>
 #include <QLibrary/RandomGen.h>
+#include <QLibrary/Wrapper.h>
 #include <iostream>
 
 
@@ -27,8 +28,7 @@ int main()
     parametersConstant dParam(d);
     PathDependentAsian theOption(Times, Expiry, ThePayoff);
     MCStatisticsMean<double> gatherer;
-    RandomMLCG concreteGen(1, 0);
-    Wrapper<RandomBase> gen(concreteGen);
+    Wrapper<RandomBase> gen(new RandomMLCG(1, 0)); 
     ExoticBSEngine theEngine(theOption,rParam,dParam,VolParam,gen,Spot);
     theEngine.DoSimulation(gatherer, NumberOfPaths);
     std::cout << gatherer.getResults()["mean"] << std::endl;
