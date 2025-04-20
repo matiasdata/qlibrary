@@ -11,7 +11,17 @@ Wrapper<T>::Wrapper(const T& inner_)
 }
 
 template <typename T>
-Wrapper<T>::Wrapper(T* inner_) : inner(inner_) {}
+Wrapper<T>::Wrapper(T* inner_)
+{
+    if(inner_ != nullptr)
+    {
+        inner = inner_->clone();
+    }
+    else
+    {
+        inner = nullptr;
+    }
+}
 
 template <typename T>
 Wrapper<T>::Wrapper(const Wrapper<T>& other)
