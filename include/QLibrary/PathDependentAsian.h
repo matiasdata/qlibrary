@@ -10,7 +10,7 @@ public:
     virtual unsigned long MaxNumberOfCashFlows() const override;
     virtual MyArray PossibleCashFlowTimes() const override;
     virtual unsigned long CashFlows(const MyArray& SpotValues, std::vector<CashFlow>& GeneratedCashFlows) const override;
-    virtual ~PathDependentAsian() override {};
+    virtual ~PathDependentAsian() override = default;
     virtual PathDependent* clone() const override;
 private:
     double DeliveryTime;

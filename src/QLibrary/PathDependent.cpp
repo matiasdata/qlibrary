@@ -1,3 +1,4 @@
+// PathDependent.cpp
 #include <QLibrary/PathDependent.h>
 
 PathDependent::PathDependent(const MyArray& LookAtTimes_) : LookAtTimes{LookAtTimes_} {}
