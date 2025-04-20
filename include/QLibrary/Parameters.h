@@ -19,9 +19,9 @@ class parametersConstant : public Parameters
 public:
     parametersConstant(double Constant_);
     virtual Parameters* clone() const override; // override the clone function
-    virtual double Integral(double Time1, double Time2) const; // override the Integral function
-    virtual double IntegralSquare(double Time1, double Time2) const; // override the IntegralSquare function
-    ~parametersConstant(){};
+    virtual double Integral(double Time1, double Time2) const override; // override the Integral function
+    virtual double IntegralSquare(double Time1, double Time2) const override; // override the IntegralSquare function
+    virtual ~parametersConstant() override = default;
 private:
     double Constant; // constant parameter
 };
@@ -33,9 +33,9 @@ class parametersPiecewise : public Parameters
 public:
     parametersPiecewise(const std::vector<double>& Time_, const std::vector<double>& Value_);
     virtual Parameters* clone() const override; // override the clone function
-    virtual double Integral(double Time1, double Time2) const; // override the Integral function
-    virtual double IntegralSquare(double Time1, double Time2) const; // override the IntegralSquare function
-    ~parametersPiecewise(){};
+    virtual double Integral(double Time1, double Time2) const override;// override the Integral function
+    virtual double IntegralSquare(double Time1, double Time2) const override; // override the IntegralSquare function
+    virtual ~parametersPiecewise() override = default;
 private:    
     std::vector<double> Time; // vector of time points
     std::vector<double> Value; // vector of parameter values

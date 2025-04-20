@@ -73,6 +73,7 @@ class RandomMLCG : public RandomBase
         virtual void getUniforms(MyArray& variates) override;
         virtual void setSeed(std::uint64_t Seed) override;
         virtual void reset() override;
+        virtual ~RandomMLCG() override = default;
         
     
     private:

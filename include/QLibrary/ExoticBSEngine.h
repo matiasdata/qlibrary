@@ -13,8 +13,8 @@ public:
                     const Wrapper<RandomBase>& TheGenerator_,
                     double Spot_);
     
-    virtual void GetOnePath(MyArray& SpotValues);
-    virtual ~ExoticBSEngine(){};
+    virtual void GetOnePath(MyArray& SpotValues) override;
+    virtual ~ExoticBSEngine() override = default;
 private:
         Wrapper<RandomBase> TheGenerator;
         MyArray Drifts;

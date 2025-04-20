@@ -19,9 +19,10 @@ template <typename T>
 class MCStatisticsMean : public MCStatistics<T> {
 public:
     MCStatisticsMean();
-    virtual void addSample(T sample);
-    virtual std::map<std::string,T> getResults() const;
-    virtual MCStatistics<T>* clone() const override
+    virtual void addSample(T sample) override;
+    virtual std::map<std::string,T> getResults() const override;
+    virtual MCStatistics<T>* clone() const override;
+    virtual ~MCStatisticsMean() override = default;
 private:
     double sum;
     unsigned long count;
@@ -31,9 +32,10 @@ template<typename T>
 class MCStatisticsVariance : public MCStatistics<T> {
 public:
     MCStatisticsVariance();
-    virtual void addSample(T sample);
-    virtual std::map<std::string,T> getResults() const;
+    virtual void addSample(T sample) override;
+    virtual std::map<std::string,T> getResults() const override;
     virtual MCStatistics<T>* clone() const override;
+    virtual ~MCStatisticsVariance() override = default;
 private:
     double sum;
     unsigned long count;
@@ -44,10 +46,11 @@ template <typename T>
 class ConvergenceTable : public MCStatistics<T> {
 public:
     ConvergenceTable(const Wrapper<MCStatistics<T>>& inner);
-    virtual void addSample(T sample);
-    virtual std::map<std::string, T> getResults() const;
-    virtual std::map<std::string, std::vector<T>> getConvergenceTable() const;
+    virtual void addSample(T sample) override;
+    virtual std::map<std::string, T> getResults() const override;
+    virtual std::map<std::string, std::vector<T>> getConvergenceTable() const override;
     virtual MCStatistics<T>* clone() const override;
+    virtual ~ConvergenceTable() override = default;
 private:
     Wrapper<MCStatistics<T>> inner;
     std::map<std::string, std::vector<T>> results;
