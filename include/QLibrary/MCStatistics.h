@@ -21,7 +21,7 @@ public:
     MCStatisticsMean();
     virtual void addSample(T sample);
     virtual std::map<std::string,T> getResults() const;
-    virtual MCStatistics<T>* clone() const;
+    virtual MCStatistics<T>* clone() const override
 private:
     double sum;
     unsigned long count;
@@ -33,7 +33,7 @@ public:
     MCStatisticsVariance();
     virtual void addSample(T sample);
     virtual std::map<std::string,T> getResults() const;
-    virtual MCStatistics<T>* clone() const;
+    virtual MCStatistics<T>* clone() const override;
 private:
     double sum;
     unsigned long count;
@@ -47,7 +47,7 @@ public:
     virtual void addSample(T sample);
     virtual std::map<std::string, T> getResults() const;
     virtual std::map<std::string, std::vector<T>> getConvergenceTable() const;
-    virtual MCStatistics<T>* clone() const;
+    virtual MCStatistics<T>* clone() const override;
 private:
     Wrapper<MCStatistics<T>> inner;
     std::map<std::string, std::vector<T>> results;

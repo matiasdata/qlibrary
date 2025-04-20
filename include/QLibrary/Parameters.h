@@ -18,7 +18,7 @@ class parametersConstant : public Parameters
 {
 public:
     parametersConstant(double Constant_);
-    virtual Parameters* clone() const; // override the clone function
+    virtual Parameters* clone() const override; // override the clone function
     virtual double Integral(double Time1, double Time2) const; // override the Integral function
     virtual double IntegralSquare(double Time1, double Time2) const; // override the IntegralSquare function
     ~parametersConstant(){};
@@ -32,7 +32,7 @@ class parametersPiecewise : public Parameters
 {
 public:
     parametersPiecewise(const std::vector<double>& Time_, const std::vector<double>& Value_);
-    virtual Parameters* clone() const; // override the clone function
+    virtual Parameters* clone() const override; // override the clone function
     virtual double Integral(double Time1, double Time2) const; // override the Integral function
     virtual double IntegralSquare(double Time1, double Time2) const; // override the IntegralSquare function
     ~parametersPiecewise(){};

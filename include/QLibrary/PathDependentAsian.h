@@ -11,7 +11,7 @@ public:
     virtual MyArray PossibleCashFlowTimes() const;
     virtual unsigned long CashFlows(const MyArray& SpotValues, std::vector<CashFlow>& GeneratedCashFlows) const;
     virtual ~PathDependentAsian(){};
-    virtual PathDependent* clone() const;
+    virtual PathDependent* clone() const override;
 private:
     double DeliveryTime;
     Wrapper<Payoff> ThePayoff;
