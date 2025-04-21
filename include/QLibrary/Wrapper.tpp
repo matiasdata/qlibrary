@@ -85,6 +85,7 @@ Wrapper<T>::~Wrapper()
     if (inner != nullptr) // check if inner is not null
     {
         delete inner; // delete the inner object
+        inner = nullptr;
     }
 }
 // Destructor to clean up the inner object
