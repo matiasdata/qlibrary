@@ -23,6 +23,9 @@ private:
 };
 
 /* 
+ExoticEngine is an abstract simulation (MC) engine that can evaluate a PathDependent option (TheProduct).
+It takes care of simulating the paths, performs the discounting, computes the DCF of each path. 
+
 virtual void GetOnePath(MyArray& SpotValues) = 0: (pure virtual) computes one path of spot values. 
 
 double DoOnePath(const MyArray& SpotValues) const: (not virtual) computes the discounted value of the option for one path of spot values.

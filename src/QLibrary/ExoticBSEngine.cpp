@@ -42,3 +42,15 @@ void ExoticBSEngine::GetOnePath(MyArray& SpotValues)
     }
     return;
 }
+
+/*
+The constructor precomputes all the drifts and standard deviations needed to compute pats.
+It also computes the NumberOfTimes from TheProduct, sets the RNG to be of the appropriate dimensionality, and resizes the variates. 
+It also computes the LogSpot, as it will be used repeatedly to compute SpotValues paths. 
+
+virtual void GetOnePath(MyArray& SpotValues) override: 
+Computes a SpotValues path
+        1) Generate Gaussians and stores these in the Variates. 
+        2) computes the logSpot at each date by using the precomputed drifts, standard deviations and gaussian variates. 
+        3) Takes the exponential to compute each Spot value. 
+*/
