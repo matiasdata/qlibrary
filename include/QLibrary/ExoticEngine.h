@@ -11,13 +11,23 @@ class ExoticEngine
 {
 public:
     ExoticEngine(const Wrapper<PathDependent>& TheProduct_, const Wrapper<Parameters>& r_);
-    virtual void GetOnePath(MyArray& SpotValues) = 0;
+    virtual void GetOnePath(MyArray& SpotValues) = 0; 
     void DoSimulation(MCStatistics<double>& TheGatherer, unsigned long NumberOfPaths);
     virtual ~ExoticEngine(){};
-    double DoOnePath(const MyArray& SpotValues) const;
+    double DoOnePath(const MyArray& SpotValues) const; 
 private:
     Wrapper<PathDependent> TheProduct;
     Wrapper<Parameters> r;
     MyArray Discounts;
     mutable std::vector<CashFlow> TheseCashFlows;
 };
+
+/* 
+virtual void GetOnePath(MyArray& SpotValues) = 0: (pure virtual) computes one path of spot values. 
+
+double DoOnePath(const MyArray& SpotValues) const: (not virtual) computes the discounted value of the option for one path of spot values.
+
+void DoSimulation(MCStatistics<double>& TheGatherer, unsigned long NumberOfPaths):  performs a simulation of a number of paths.
+
+Notice: mutable makes possible to modify TheseCashFlows even in const methods (like DoOnePath) while everything else has to remain the same.
+*/

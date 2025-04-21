@@ -64,6 +64,7 @@ void UniquePtr<T>::release()
     if (inner != nullptr)
     {
         delete inner;
+        inner = nullptr;
     }
 }
 

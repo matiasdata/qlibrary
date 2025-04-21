@@ -21,7 +21,7 @@ int main()
     MyArray Times(NumberOfDates);
     for(unsigned long i = 0; i < NumberOfDates; i++)
     {
-        Times[i] = (i+1.0)*Expiry/NumberOfDates;
+        Times[i] = (i+1.0)*Expiry/NumberOfDates; // set the times for sampling the Spot.
     }
     parametersConstant VolParam(Vol);
     parametersConstant rParam(r);

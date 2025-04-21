@@ -96,8 +96,10 @@ void SharedPtr<T>::release()
         if(inner != nullptr)
         {
             delete inner;
+            inner = nullptr;
         }
         delete refCount;
+        refCount = nullptr;
     }
 }
 
