@@ -17,3 +17,9 @@ private:
     Wrapper<Payoff> ThePayoff;
     unsigned long NumberOfTimes;
 };
+
+/*
+An asian option has its LookAtTimes as all PathDependent options, but also has a DeliveryTime (only time when there is a CashFlow),
+it also has a Payoff that specifies the final payoff function applied to the average of spots.
+For example a PayoffCall would then return max(mean(S_{t_1},...,S_{t_n}) - K,0).
+*/

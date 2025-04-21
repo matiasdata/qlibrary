@@ -37,8 +37,5 @@ virtual MyArray PossibleCashFlowTimes() const = 0: (virtual) returns the possibl
 
 virtual unsigned long CashFlows(const MyArray& SpotValues, std::vector<CashFlow>& GeneratedCashFlows) const = 0:
     Computes the CashFlows of the options using the SpotValues given and stores these in the GeneratedCashFlows.
-
-
-
-
+    Returns the size (length) of the CashFlows.
 */
