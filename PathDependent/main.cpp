@@ -5,7 +5,7 @@
 #include <QLibrary/RandomGen.h>
 #include <QLibrary/Wrapper.h>
 #include <iostream>
-
+#include <chrono>
 
 int main()
 {
@@ -30,7 +30,11 @@ int main()
     MCStatisticsMean<double> gatherer;
     RandomMLCG gen(1UL,0);
     ExoticBSEngine theEngine(theOption,rParam,dParam,VolParam,gen,Spot);
+    auto start = std::chrono::high_resolution_clock::now();
     theEngine.DoSimulation(gatherer, NumberOfPaths);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end-start;
+    std::cout << "Elapsed time: " << diff.count() << " seconds\n";
     std::cout << gatherer.getResults()["mean"] << std::endl;
     return 0;
 }
