@@ -14,4 +14,5 @@ public:
     virtual PathDependent* clone() const override;
 private:
     Wrapper<Payoff> ThePayoff;
+    unsigned long NumberOfTimes;
 };
