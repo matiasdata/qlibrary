@@ -1,18 +1,20 @@
-// PathDependentDiscreteKnockout.h
+// PathDependentBarrier.h
 #include <QLibrary/PathDependent.h>
 #include <QLibrary/Payoff.h>
 #include <QLibrary/Wrapper.h>
 
-class PathDependentDiscreteKnockout : public PathDependent
+class PathDependentBarrier : public PathDependent
 {
 public:
-    PathDependentDiscreteKnockout(const MyArray& LookAtTimes_, const Wrapper<Payoff>& ThePayoff_);
+    PathDependentBarrier(const MyArray& LookAtTimes_, const Wrapper<Payoff>& ThePayoff_, double Barrier_, double Rebate_);
     virtual unsigned long MaxNumberOfCashFlows() const override;
     virtual MyArray PossibleCashFlowTimes() const override;
     virtual unsigned long CashFlows(const MyArray& SpotValues, std::vector<CashFlow>& GeneratedCashFlows) const override;
-    virtual ~PathDependentDiscreteKnockout() override = default;
+    virtual ~PathDependentBarrier() override = default;
     virtual PathDependent* clone() const override;
 private:
     Wrapper<Payoff> ThePayoff;
     unsigned long NumberOfTimes;
+    double Barrier;
+    double Rebate;
 };

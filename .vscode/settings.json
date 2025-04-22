@@ -73,6 +73,8 @@
         "iomanip": "cpp",
         "stack": "cpp",
         "strstream": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "execution": "cpp",
+        "queue": "cpp"
     }
 }
