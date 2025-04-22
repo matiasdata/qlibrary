@@ -4,6 +4,7 @@
 #include <Parameters.h>
 #include <MCStatistics.h>
 #include <RandomGen.h>
+#include <chrono>
 
 int main()
 {
@@ -33,7 +34,11 @@ int main()
     MCStatisticsMean<double> gatherer_call, gatherer_put, gatherer_doubleDigital;
     ConvergenceTable<double> gatherer_call_cv(gatherer_call);
     RandomMLCG rg(1,0);
+    auto start = std::chrono::high_resolution_clock::now();
     SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call,rg);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end-start;
+    std::cout << "Elapsed time: " << diff.count() << " seconds\n";
     SimpleMonteCarlo(putOption, Spot, Vol2, r2, NumberOfPaths,gatherer_put,rg);
     SimpleMonteCarlo(doubleDigitalOption, Spot, Vol2, r2, NumberOfPaths, gatherer_doubleDigital,rg);
     // Print MC simulation results
