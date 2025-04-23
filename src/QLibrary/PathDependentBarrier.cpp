@@ -42,4 +42,9 @@ unsigned long PathDependentBarrier::CashFlows(const MyArray& SpotValues, std::ve
     }
     return 1UL;
 }
+
+PathDependent* PathDependentBarrier::clone() const 
+{
+    return new PathDependentBarrier(*this);
+}
                                                                                                                    
