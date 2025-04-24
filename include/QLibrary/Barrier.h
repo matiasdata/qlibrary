@@ -22,3 +22,13 @@ private:
     double level;
     double rebate;
 };
+
+class UpInBarrier : public Barrier {
+    public:
+        UpInBarrier(double level_, double rebate_);
+        virtual std::optional<CashFlow> evaluate(const MyArray& SpotValues, const Wrapper<Payoff>& payoff) const override;
+        virtual Barrier* clone() const override;
+    private:
+        double level;
+        double rebate;
+    };
