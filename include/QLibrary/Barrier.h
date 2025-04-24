@@ -1,25 +1,24 @@
+// Barrier.h
 #pragma once
 #include <QLibrary/MyArray.h>
+#include <QLibrary/PathDependent.h>
 #include <optional>
 
 class Barrier
 {
 public:
     Barrier(){};
-    std::optional<unsigned long> operator()(const MyArray& SpotValues) const;
-    virtual bool checkOnce(double Spot) const = 0;
+    virtual std::optional<CashFlow> evaluate(const MyArray& SpotValues, const Wrapper<Payoff>& ThePayoff) const = 0;
     virtual Barrier* clone() const = 0;
-    virtual ~Barrier(){};
-private:
+    virtual ~Barrier() = default;
 };
 
-class UpOutBarrier : Barrier
-{
+class UpOutBarrier : public Barrier {
 public:
-    UpOutBarrier(double Barrier_);
-    virtual bool checkOnce(double Spot) const override;
+    UpOutBarrier(double level_, double rebate_);
+    virtual std::optional<CashFlow> evaluate(const MyArray& SpotValues, const Wrapper<Payoff>& payoff) const override;
     virtual Barrier* clone() const override;
-    virtual ~UpOutBarrier() override = default;
 private:
-    double Barrier;
+    double level;
+    double rebate;
 };
