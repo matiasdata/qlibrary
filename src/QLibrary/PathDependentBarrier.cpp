@@ -27,20 +27,13 @@ MyArray PathDependentBarrier::PossibleCashFlowTimes() const
 
 unsigned long PathDependentBarrier::CashFlows(const MyArray& SpotValues, std::vector<CashFlow>& GeneratedCashFlows) const
 {
-    std::optional<unsigned long> touch_barrier = (*TheBarrier)(SpotValues);
-    if (touch_barrier.has_value())
+    std::optional<CashFlow> cf = TheBarrier->evaluate(SpotValues, ThePayoff);
+    if (cf.has_value())
     {
-        unsigned long TouchIndex = touch_barrier.value();
-        GeneratedCashFlows[0].TimeIndex = TouchIndex;
-        GeneratedCashFlows[0].Amount = Rebate;
-    } 
-    else
-    {
-        unsigned long lastIndex = GetLookAtTimes().size()-1;
-        GeneratedCashFlows[0].TimeIndex = lastIndex;
-        GeneratedCashFlows[0].Amount = (*ThePayoff)(SpotValues[lastIndex]);
+        GeneratedCashFlows[0] = cf.value();
+        return 1UL;
     }
-    return 1UL;
+    return 0UL; // No cashflow (e.g. knock-in barrier never triggered)
 }
 
 PathDependent* PathDependentBarrier::clone() const 
