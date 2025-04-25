@@ -4,14 +4,12 @@
 
 PathDependentBarrier::PathDependentBarrier(const MyArray& LookAtTimes_,
                                             const Wrapper<Payoff>& ThePayoff_, 
-                                            const Wrapper<Barrier>& TheBarrier_,
-                                            double Rebate_)
+                                            const Wrapper<Barrier>& TheBarrier_)
                                             :
                                             PathDependent(LookAtTimes_),
-                                            ThePayoff(ThePayoff_),
-                                            NumberOfTimes(LookAtTimes_.size()), 
-                                            TheBarrier(TheBarrier_),
-                                            Rebate(Rebate_) {}
+                                            ThePayoff(ThePayoff_), 
+                                            TheBarrier(TheBarrier_), 
+                                            NumberOfTimes(LookAtTimes_.size()) {}
                                                             
 unsigned long PathDependentBarrier::MaxNumberOfCashFlows() const
 {

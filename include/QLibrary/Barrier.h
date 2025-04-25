@@ -2,6 +2,8 @@
 #pragma once
 #include <QLibrary/MyArray.h>
 #include <QLibrary/PathDependent.h>
+#include <QLibrary/Payoff.h>
+#include <QLibrary/Wrapper.h>
 #include <optional>
 
 class Barrier

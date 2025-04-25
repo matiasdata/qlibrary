@@ -1,7 +1,6 @@
 // Barrier.cpp
 #include <QLibrary/Barrier.h>
-#include <QLibrary/Payoff.h>
-#include <QLibrary/Wrapper.h>
+
 
 
 // UpOutBarrier class implementation

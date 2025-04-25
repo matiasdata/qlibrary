@@ -7,7 +7,7 @@
 class PathDependentBarrier : public PathDependent
 {
 public:
-    PathDependentBarrier(const MyArray& LookAtTimes_, const Wrapper<Payoff>& ThePayoff_, const Wrapper<Barrier>& TheBarrier_, double Rebate_);
+    PathDependentBarrier(const MyArray& LookAtTimes_, const Wrapper<Payoff>& ThePayoff_, const Wrapper<Barrier>& TheBarrier_);
     virtual unsigned long MaxNumberOfCashFlows() const override;
     virtual MyArray PossibleCashFlowTimes() const override;
     virtual unsigned long CashFlows(const MyArray& SpotValues, std::vector<CashFlow>& GeneratedCashFlows) const override;
@@ -17,5 +17,4 @@ private:
     Wrapper<Payoff> ThePayoff;
     Wrapper<Barrier> TheBarrier;
     unsigned long NumberOfTimes;
-    double Rebate;
 };
