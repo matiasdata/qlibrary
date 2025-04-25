@@ -1,5 +1,4 @@
 // main.cpp
-#include <QLibrary/PathDependentAsian.h>
 #include <QLibrary/PathDependentBarrier.h>
 #include <QLibrary/ExoticBSEngine.h>
 #include <QLibrary/MCStatistics.h>
@@ -28,16 +27,15 @@ int main()
     parametersConstant VolParam(Vol);
     parametersConstant rParam(r);
     parametersConstant dParam(d);
-    //PathDependentAsian theOption(Times, Expiry, ThePayoff);
     PathDependentBarrier TheOption(Times,ThePayoff,TheBarrier);
     MCStatisticsMean<double> gatherer;
     RandomMLCG gen(1UL,0);
     ExoticBSEngine theEngine(TheOption,rParam,dParam,VolParam,gen,Spot);
-    //auto start = std::chrono::high_resolution_clock::now();
+    // auto start = std::chrono::high_resolution_clock::now();
     theEngine.DoSimulation(gatherer, NumberOfPaths);
-    //auto end = std::chrono::high_resolution_clock::now();
-    //std::chrono::duration<double> diff = end-start;
-    //std::cout << "Elapsed time: " << diff.count() << " seconds\n";
+    // auto end = std::chrono::high_resolution_clock::now();
+    // std::chrono::duration<double> diff = end-start;
+    // std::cout << "Elapsed time: " << diff.count() << " seconds\n";
     std::cout << gatherer.getResults()["mean"] << std::endl;
     return 0;
 }
