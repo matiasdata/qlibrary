@@ -29,7 +29,7 @@ Barrier* UpOutBarrier::clone() const
 
 
 // UpInBarrier class implementation (with rebate at the end)
-UpOutBarrier::UpOutBarrier(double level_, double rebate_) : level(level_), rebate(rebate_) {};
+UpInBarrier::UpInBarrier(double level_, double rebate_) : level(level_), rebate(rebate_) {};
 
 
 
