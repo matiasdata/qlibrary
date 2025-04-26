@@ -4,37 +4,40 @@
 #include <string>
 #include <QLibrary/Wrapper.h>
 
-template <typename T>
+
 class MCStatistics {
 public:
     MCStatistics(){};
-    virtual void addSample(T sample) = 0;
-    virtual std::map<std::string,T> getResults() const = 0;
-    virtual MCStatistics<T>* clone() const = 0;
+    virtual void addSample(double sample) = 0;
+    virtual std::map<std::string,double> getResults() const = 0;
+    virtual MCStatistics* clone() const = 0;
+    virtual void reset() = 0;
     virtual ~MCStatistics(){};
 private:
 };
 
-template <typename T>
-class MCStatisticsMean : public MCStatistics<T> {
+
+class MCStatisticsMean : public MCStatistics {
 public:
     MCStatisticsMean();
-    virtual void addSample(T sample) override;
-    virtual std::map<std::string,T> getResults() const override;
-    virtual MCStatistics<T>* clone() const override;
+    virtual void addSample(double sample) override;
+    virtual std::map<std::string,double> getResults() const override;
+    virtual MCStatistics* clone() const override;
+    virtual void reset() override;
     virtual ~MCStatisticsMean() override = default;
 private:
     double sum;
     unsigned long count;
 };
 
-template<typename T>
-class MCStatisticsVariance : public MCStatistics<T> {
+
+class MCStatisticsVariance : public MCStatistics {
 public:
     MCStatisticsVariance();
-    virtual void addSample(T sample) override;
-    virtual std::map<std::string,T> getResults() const override;
-    virtual MCStatistics<T>* clone() const override;
+    virtual void addSample(double sample) override;
+    virtual std::map<std::string,double> getResults() const override;
+    virtual MCStatistics* clone() const override;
+    virtual void reset() override;
     virtual ~MCStatisticsVariance() override = default;
 private:
     double sum;
@@ -42,22 +45,21 @@ private:
     double sum2;
 };
 
-template <typename T>
-class ConvergenceTable : public MCStatistics<T> {
+class ConvergenceTable : public MCStatistics {
 public:
-    ConvergenceTable(const Wrapper<MCStatistics<T>>& inner);
-    virtual void addSample(T sample) override;
-    virtual std::map<std::string, T> getResults() const override;
-    virtual std::map<std::string, std::vector<T>> getConvergenceTable() const override;
-    virtual MCStatistics<T>* clone() const override;
+    ConvergenceTable(const Wrapper<MCStatistics>& inner);
+    virtual void addSample(double sample) override;
+    virtual std::map<std::string, double> getResults() const override;
+    virtual std::map<std::string, std::vector<double>> getConvergenceTable() const;
+    virtual MCStatistics* clone() const override;
+    virtual void reset() override;
     virtual ~ConvergenceTable() override = default;
 private:
-    Wrapper<MCStatistics<T>> inner;
-    std::map<std::string, std::vector<T>> results;
+    Wrapper<MCStatistics> inner;
+    std::map<std::string, std::vector<double>> results;
     unsigned long count;
     unsigned long stoppingPoint;
 };
 
-#include <QLibrary/MCStatistics.tpp>
 
-/* Type T could be double, but could also be multidimensional (e.g. a vector of doubles). */
+/* Type double could be double, but could also be multidimensional (e.g. a vector of doubles). */

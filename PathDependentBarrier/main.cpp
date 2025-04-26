@@ -18,7 +18,8 @@ int main()
     unsigned long NumberOfPaths = 1000000;
     unsigned long NumberOfDates = 12;
     PayoffCall ThePayoff(Strike);
-    UpOutBarrier TheBarrier(120.0,5.0);
+    UpOutBarrier TheUpOutBarrier(120.0,5.0);
+    
     MyArray Times(NumberOfDates);
     for(unsigned long i = 0; i < NumberOfDates; i++)
     {
@@ -27,15 +28,23 @@ int main()
     parametersConstant VolParam(Vol);
     parametersConstant rParam(r);
     parametersConstant dParam(d);
-    PathDependentBarrier TheOption(Times,ThePayoff,TheBarrier);
-    MCStatisticsMean<double> gatherer;
+    PathDependentBarrier TheUpOutBarrierOption(Times,ThePayoff,TheUpOutBarrier);
+    MCStatisticsMean gatherer;
     RandomMLCG gen(1UL,0);
-    ExoticBSEngine theEngine(TheOption,rParam,dParam,VolParam,gen,Spot);
+    ExoticBSEngine theEngine(TheUpOutBarrierOption,rParam,dParam,VolParam,gen,Spot);
     // auto start = std::chrono::high_resolution_clock::now();
     theEngine.DoSimulation(gatherer, NumberOfPaths);
     // auto end = std::chrono::high_resolution_clock::now();
     // std::chrono::duration<double> diff = end-start;
     // std::cout << "Elapsed time: " << diff.count() << " seconds\n";
+    std::cout << gatherer.getResults()["mean"] << std::endl;
+
+    UpInBarrier TheUpInBarrier(120.0,0.0);
+    PathDependentBarrier TheUpInBarrierOption(Times,ThePayoff,TheUpInBarrier);
+    gatherer.reset();
+    gen.reset();
+    ExoticBSEngine theEngine2(TheUpInBarrierOption,rParam,dParam,VolParam,gen,Spot);
+    theEngine2.DoSimulation(gatherer, NumberOfPaths);
     std::cout << gatherer.getResults()["mean"] << std::endl;
     return 0;
 }

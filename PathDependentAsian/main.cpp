@@ -27,7 +27,7 @@ int main()
     parametersConstant rParam(r);
     parametersConstant dParam(d);
     PathDependentAsian theOption(Times, Expiry, ThePayoff);
-    MCStatisticsMean<double> gatherer;
+    MCStatisticsMean gatherer;
     RandomMLCG gen(1UL,0);
     ExoticBSEngine theEngine(theOption,rParam,dParam,VolParam,gen,Spot);
     //auto start = std::chrono::high_resolution_clock::now();

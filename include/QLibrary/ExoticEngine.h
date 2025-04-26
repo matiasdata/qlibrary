@@ -12,7 +12,7 @@ class ExoticEngine
 public:
     ExoticEngine(const Wrapper<PathDependent>& TheProduct_, const Wrapper<Parameters>& r_);
     virtual void GetOnePath(MyArray& SpotValues) = 0; 
-    void DoSimulation(MCStatistics<double>& TheGatherer, unsigned long NumberOfPaths);
+    void DoSimulation(MCStatistics& TheGatherer, unsigned long NumberOfPaths);
     virtual ~ExoticEngine(){};
     double DoOnePath(const MyArray& SpotValues) const; 
 private:

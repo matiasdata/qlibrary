@@ -12,7 +12,7 @@ ExoticEngine::ExoticEngine(const Wrapper<PathDependent>& TheProduct_, const Wrap
     TheseCashFlows.resize(TheProduct->MaxNumberOfCashFlows());
 }
 
-void ExoticEngine::DoSimulation(MCStatistics<double>& TheGatherer, unsigned long NumberOfPaths)
+void ExoticEngine::DoSimulation(MCStatistics& TheGatherer, unsigned long NumberOfPaths)
 {
     MyArray SpotValues(TheProduct->GetLookAtTimes().size());
     TheseCashFlows.resize(TheProduct->MaxNumberOfCashFlows());
