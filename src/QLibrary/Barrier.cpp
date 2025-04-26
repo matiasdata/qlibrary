@@ -4,9 +4,6 @@
 
 
 // UpOutBarrier class implementation
-UpOutBarrier::UpOutBarrier(double level_, double rebate_) : level(level_), rebate(rebate_) {};
-
-
 
 std::optional<CashFlow> UpOutBarrier::evaluate(const MyArray& SpotValues,const Wrapper<Payoff>& ThePayoff) const
 {
@@ -28,9 +25,6 @@ Barrier* UpOutBarrier::clone() const
 
 
 // UpInBarrier class implementation (with rebate at the end)
-UpInBarrier::UpInBarrier(double level_, double rebate_) : level(level_), rebate(rebate_) {};
-
-
 
 std::optional<CashFlow> UpInBarrier::evaluate(const MyArray& SpotValues,const Wrapper<Payoff>& ThePayoff) const
 {

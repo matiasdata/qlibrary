@@ -17,7 +17,7 @@ public:
 
 class UpOutBarrier : public Barrier {
 public:
-    UpOutBarrier(double level_, double rebate_);
+    UpOutBarrier(double level_, double rebate_) : level(level_), rebate(rebate_) {};
     virtual std::optional<CashFlow> evaluate(const MyArray& SpotValues, const Wrapper<Payoff>& payoff) const override;
     virtual Barrier* clone() const override;
 private:
@@ -27,7 +27,7 @@ private:
 
 class UpInBarrier : public Barrier {
     public:
-        UpInBarrier(double level_, double rebate_);
+        UpInBarrier(double level_, double rebate_): level(level_), rebate(rebate_) {};
         virtual std::optional<CashFlow> evaluate(const MyArray& SpotValues, const Wrapper<Payoff>& payoff) const override;
         virtual Barrier* clone() const override;
     private:
