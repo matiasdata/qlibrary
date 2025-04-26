@@ -61,5 +61,3 @@ private:
     unsigned long stoppingPoint;
 };
 
-
-/* Type double could be double, but could also be multidimensional (e.g. a vector of doubles). */

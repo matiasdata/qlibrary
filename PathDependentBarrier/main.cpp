@@ -3,7 +3,6 @@
 #include <QLibrary/ExoticBSEngine.h>
 #include <QLibrary/MCStatistics.h>
 #include <QLibrary/RandomGen.h>
-#include <QLibrary/Wrapper.h>
 #include <iostream>
 //#include <chrono>
 
@@ -43,8 +42,8 @@ int main()
     PathDependentBarrier TheUpInBarrierOption(Times,ThePayoff,TheUpInBarrier);
     gatherer.reset();
     gen.reset();
-    ExoticBSEngine theEngine2(TheUpInBarrierOption,rParam,dParam,VolParam,gen,Spot);
-    theEngine2.DoSimulation(gatherer, NumberOfPaths);
+    theEngine = ExoticBSEngine(TheUpInBarrierOption,rParam,dParam,VolParam,gen,Spot);
+    theEngine.DoSimulation(gatherer, NumberOfPaths);
     std::cout << gatherer.getResults()["mean"] << std::endl;
     return 0;
 }
