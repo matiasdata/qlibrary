@@ -1,6 +1,6 @@
 #pragma once
-#include <Wrapper.h>
-#include <Payoff.h>
+#include <QLibrary/Wrapper.h>
+#include <QLibrary/Payoff.h>
 
 
 class VanillaOption
@@ -16,8 +16,6 @@ private:
     
 };
 
-
-#include "Vanilla.tpp"
 
 /* Super simple VanillaOption class, no need to write copy constructors, assigment operators or destructors
 as these are taken care by the PayoffBridge. 

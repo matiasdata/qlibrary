@@ -1,6 +1,5 @@
-#include <SimpleMC.h>
+#include <QLibrary/SimpleMC.h>
 #include <cmath>
-#include <random>
 
 
 void SimpleMonteCarlo(const VanillaOption& theOption,
@@ -8,7 +7,7 @@ void SimpleMonteCarlo(const VanillaOption& theOption,
     const Parameters& Vol,
     const Parameters& r,
     unsigned long NumberOfPaths,
-    MCStatistics<double>& gatherer,
+    MCStatistics& gatherer,
     RandomBase& rg)
 {
     double Expiry = theOption.GetExpiry();
@@ -20,9 +19,6 @@ void SimpleMonteCarlo(const VanillaOption& theOption,
     double thisSpot = 0;
     double discounting = std::exp(-r.Integral(0, Expiry));
 
-    // std::random_device rd{};
-    // std::mt19937 gen{rd()};
-    // std::normal_distribution d{0.0, 1.0};
     MyArray arr(1);
 
     for(unsigned long i = 0; i < NumberOfPaths; i++)

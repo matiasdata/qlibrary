@@ -1,4 +1,4 @@
-#include <Vanilla.h>
+#include <QLibrary/Vanilla.h>
 
 VanillaOption::VanillaOption(const Wrapper<Payoff>& ThePayoff_, double Expiry_) : Expiry{Expiry_}, ThePayoff{ThePayoff_} {}
 
