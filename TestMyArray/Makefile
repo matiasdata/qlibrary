@@ -1,9 +1,9 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I../include -I/opt/homebrew/include
+CXXFLAGS = -std=c++20 -Wall -I../include
 
 # Source files
-SRC = main.cpp $(wildcard ../src/QLibrary/*.cpp)
+SRC = main.cpp ../src/QLibrary/MyArray.cpp
 OBJ = $(SRC:.cpp=.o)
 BIN = main
 

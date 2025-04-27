@@ -1,10 +1,10 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I../include -I/opt/homebrew/include
+CXXFLAGS = -std=c++20 -Wall -I../include
 
 # Source files
-SRC = main.cpp $(wildcard ../src/QLibrary/*.cpp)
-OBJ = $(SRC:.cpp=.o)
+SRC = main.cpp
+OBJ = main.o
 BIN = main
 
 # Final binary build

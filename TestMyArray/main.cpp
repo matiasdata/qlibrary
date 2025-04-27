@@ -1,3 +1,4 @@
+// TestMyArray/main.cpp
 #include <QLibrary/MyArray.h>
 #include <iostream>
 

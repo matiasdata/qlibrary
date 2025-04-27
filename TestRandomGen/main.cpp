@@ -1,5 +1,6 @@
 // main.cpp 
 #include <QLibrary/RandomGen.h>
+#include <QLibrary/MyArray.h>
 #include <iostream>
 #include <fstream>
 
