@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SharedPtr.h>
+#include <QLibrary/SharedPtr.h>
 int main()
 {
     // Shared Pointer tests.
