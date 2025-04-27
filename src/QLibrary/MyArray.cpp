@@ -2,6 +2,7 @@
 #include <QLibrary/MyArray.h>
 #include <algorithm>
 #include <numeric>
+#include <stdexcept>
 
 MyArray::MyArray(unsigned long size) : Size{size}, Capacity{size}
 {
@@ -78,7 +79,7 @@ MyArray& MyArray::operator+=(const MyArray& other)
 {
     if(Size != other.Size)
     {
-        throw("Error, operator+= requires two arrays of the same size.");
+        throw std::invalid_argument("Error, operator+= requires two arrays of the same size.");
     }
     for(unsigned long i = 0; i < Size; i++)
     {
@@ -100,7 +101,7 @@ MyArray& MyArray::operator-=(const MyArray& other)
 {
     if(Size != other.Size)
     {
-        throw("Error, operator-= requires two arrays of the same size.");
+        throw std::invalid_argument("Error, operator-= requires two arrays of the same size.");
     }
     for(unsigned long i = 0; i < Size; i++)
     {
@@ -122,7 +123,7 @@ MyArray& MyArray::operator*=(const MyArray& other)
 {
     if(Size != other.Size)
     {
-        throw("Error, operator*= requires two arrays of the same size.");
+        throw std::invalid_argument("Error, operator*= requires two arrays of the same size.");
     }
     for(unsigned long i = 0; i < Size; i++)
     {
@@ -144,13 +145,13 @@ MyArray& MyArray::operator/=(const MyArray& other)
 {
     if(Size != other.Size)
     {
-        throw("Error, operator*= requires two arrays of the same size.");
+        throw std::invalid_argument("Error, operator*= requires two arrays of the same size.");
     }
     for(unsigned long i = 0; i < Size; i++)
     {
         if(other[i] == 0)
         {
-            throw("Error, division by zero.");
+            throw std::runtime_error("Error, division by zero.");
         }
         ValuesPtr[i] /= other[i];
     }
@@ -161,7 +162,7 @@ MyArray& MyArray::operator/=(const double& val)
 {
     if(val == 0)
     {
-        throw("Error, division by zero.");
+        throw std::runtime_error("Error, division by zero.");
     }
 
     for(unsigned long i = 0; i < Size; i++)
@@ -197,7 +198,7 @@ double MyArray::min() const
 {
     if(Size == 0)
     {
-        throw("Error, cannot compute min of an empty array.");
+        throw std::out_of_range("Error, cannot compute min of an empty array.");
     }
     double* tmp = ValuesPtr;
     double* endTmp = EndPtr;
@@ -209,10 +210,17 @@ double MyArray::max() const
 {
     if(Size == 0)
     {
-        throw("Error, cannot compute max of an empty array.");
+        throw std::out_of_range("Error, cannot compute max of an empty array.");
     }
     double* tmp = ValuesPtr;
     double* endTmp = EndPtr;
 
     return *std::max_element(tmp,endTmp);
+}
+
+MyArray MyArray::apply(double f(double)) const
+{
+    MyArray result(size());
+    std::transform(ValuesPtr, EndPtr,result.ValuesPtr,f);
+    return result;
 }
