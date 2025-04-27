@@ -1,4 +1,4 @@
-#include <MyArray.h>
+#include <QLibrary/MyArray.h>
 #include <iostream>
 
 void PrintMyArray(const MyArray& arr)
