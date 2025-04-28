@@ -1,3 +1,4 @@
+// SimpleMC.cpp
 #include <QLibrary/SimpleMC.h>
 #include <cmath>
 

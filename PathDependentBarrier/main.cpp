@@ -78,10 +78,9 @@ int main()
     QLibrary::MCStatisticsMean gathererVanilla;
     gen.reset();
     QLibrary::VanillaOption callOption(ThePayoff,Expiry);
-    SimpleMonteCarlo(callOption,Spot,VolParam,rParam,NumberOfPaths,gathererVanilla,gen);
+    QLibrary::SimpleMonteCarlo(callOption,Spot,VolParam,rParam,NumberOfPaths,gathererVanilla,gen);
     double VanillaCallPrice = gathererVanilla.getResults()["mean"];
     std::cout << "MC Vanilla call Price: " << VanillaCallPrice << std::endl;
-
 
     return 0;
 }

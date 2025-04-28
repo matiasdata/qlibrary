@@ -28,18 +28,18 @@ int main()
     QLibrary::ConvergenceTable gatherer_call_cv(gatherer_call);
     QLibrary::RandomMLCG rg(1,0);
     //auto start = std::chrono::high_resolution_clock::now();
-    SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call,rg);
+    QLibrary::SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call,rg);
     //auto end = std::chrono::high_resolution_clock::now();
     //std::chrono::duration<double> diff = end-start;
     //std::cout << "Elapsed time: " << diff.count() << " seconds\n";
-    SimpleMonteCarlo(putOption, Spot, Vol2, r2, NumberOfPaths,gatherer_put,rg);
-    SimpleMonteCarlo(doubleDigitalOption, Spot, Vol2, r2, NumberOfPaths, gatherer_doubleDigital,rg);
+    QLibrary::SimpleMonteCarlo(putOption, Spot, Vol2, r2, NumberOfPaths,gatherer_put,rg);
+    QLibrary::SimpleMonteCarlo(doubleDigitalOption, Spot, Vol2, r2, NumberOfPaths, gatherer_doubleDigital,rg);
     // Print MC simulation results
     std::cout << "Monte Carlo price of a call: " << gatherer_call.getResults()["mean"] << std::endl;
     std::cout << "Monte Carlo price of a put: " << gatherer_put.getResults()["mean"] << std::endl;
     std::cout << "Monte Carlo price of a double digital: " << gatherer_doubleDigital.getResults()["mean"] << std::endl;
     // Convergence Table
-    SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call_cv,rg);
+    QLibrary::SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call_cv,rg);
     std::map<std::string, std::vector<double>> results = gatherer_call_cv.getConvergenceTable();
     // Print the results of the convergence table
     std::cout << "Convergence of MC of a call: "<< std::endl;

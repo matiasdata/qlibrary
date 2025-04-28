@@ -1,3 +1,4 @@
+// SimpleMC.h
 #pragma once
 #include <QLibrary/Payoff.h>
 #include <QLibrary/Vanilla.h>
