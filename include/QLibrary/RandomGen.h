@@ -3,6 +3,7 @@
 #include <QLibrary/MyArray.h>
 #include <cstdint>
 
+namespace QLibrary{
 class RandomBase
 {
 public:
@@ -81,3 +82,5 @@ class RandomMLCG : public RandomBase
         std::uint64_t InitialSeed;
         static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m + 1);
 };
+
+}

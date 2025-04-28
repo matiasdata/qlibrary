@@ -1,6 +1,8 @@
 // Wrapper.tpp
 #include <QLibrary/Wrapper.h>
 
+namespace QLibrary{
+
 template <typename T>
 Wrapper<T>::Wrapper() : inner{nullptr} {} //default constructor
 
@@ -89,3 +91,5 @@ Wrapper<T>::~Wrapper()
     }
 }
 // Destructor to clean up the inner object
+
+}

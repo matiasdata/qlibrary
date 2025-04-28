@@ -1,7 +1,7 @@
 // Barrier.cpp
 #include <QLibrary/Barrier.h>
 
-
+namespace QLibrary{
 
 // UpOutBarrier class implementation
 
@@ -43,3 +43,5 @@ Barrier* UpInBarrier::clone() const
 {
     return new UpInBarrier(*this);
 } 
+
+}

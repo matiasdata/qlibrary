@@ -2,6 +2,8 @@
 #include <QLibrary/MyArray.h>
 #include <vector>
 
+namespace QLibrary{
+
 class CashFlow
 {
 public:    
@@ -23,6 +25,7 @@ public:
 private:
     MyArray LookAtTimes;
 };
+}
 
 /*
 PathDependent is a virtual base class for PathDependent Exotic (but European) options.

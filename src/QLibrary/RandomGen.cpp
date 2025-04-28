@@ -3,6 +3,8 @@
 #include <boost/math/distributions/normal.hpp>
 #include <limits>
 
+namespace QLibrary{
+
 constexpr double EPS = std::numeric_limits<double>::epsilon(); // ~2.22e-16
 
 
@@ -63,4 +65,6 @@ void RandomMLCG::setSeed(std::uint64_t Seed) {
 
 void RandomMLCG::reset() {
     InnerGenerator.resetSeed(InitialSeed);
+}
+
 }

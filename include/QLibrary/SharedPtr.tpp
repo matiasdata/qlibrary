@@ -1,6 +1,7 @@
 // SharedPtr.tpp
 #include <QLibrary/SharedPtr.h>
 
+namespace QLibrary{
 //default constructor
 template <typename T>
 SharedPtr<T>::SharedPtr() : inner{nullptr}, refCount{new unsigned long(0)} {} 
@@ -103,3 +104,4 @@ void SharedPtr<T>::release()
     }
 }
 
+} // namespace QLibrary

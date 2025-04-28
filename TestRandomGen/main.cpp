@@ -4,16 +4,17 @@
 #include <iostream>
 #include <fstream>
 
+
 int main()
 {
-    MLCG gen;
+    QLibrary::MLCG gen;
     for(int i = 0; i < 10; i++)
     {
         std::cout << gen.getInteger() << std::endl;
     }
     int dim = 2;
-    RandomMLCG rg(dim);
-    MyArray arr(dim);
+    QLibrary::RandomMLCG rg(dim);
+    QLibrary::MyArray arr(dim);
     std::cout << "Generating 10 2-dimensional multivariate gaussians: " << std::endl;
     for(int i = 0; i < 10; i++)
     {
@@ -22,8 +23,8 @@ int main()
     }
 
     dim = 1;
-    RandomMLCG rg2(dim);
-    MyArray arr2(dim);
+    QLibrary::RandomMLCG rg2(dim);
+    QLibrary::MyArray arr2(dim);
 
     std::ofstream file("samples.csv");
     int n_samples = 1000000;

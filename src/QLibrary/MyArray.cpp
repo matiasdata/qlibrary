@@ -4,6 +4,8 @@
 #include <numeric>
 #include <stdexcept>
 
+namespace QLibrary{
+
 MyArray::MyArray(unsigned long size) : Size{size}, Capacity{size}
 {
     if(Size > 0)
@@ -223,4 +225,6 @@ MyArray MyArray::apply(double f(double)) const
     MyArray result(size());
     std::transform(ValuesPtr, EndPtr,result.ValuesPtr,f);
     return result;
+}
+
 }

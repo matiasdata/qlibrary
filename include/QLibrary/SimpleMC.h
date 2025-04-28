@@ -5,6 +5,8 @@
 #include <QLibrary/MCStatistics.h>
 #include <QLibrary/RandomGen.h>
 
+namespace QLibrary{
+
 void SimpleMonteCarlo(const VanillaOption& theOption,
                         double Spot,
                         const Parameters& Vol,
@@ -12,3 +14,5 @@ void SimpleMonteCarlo(const VanillaOption& theOption,
                         unsigned long NumberOfPaths,
                         MCStatistics& gatherer,
                         RandomBase& rg);
+
+}

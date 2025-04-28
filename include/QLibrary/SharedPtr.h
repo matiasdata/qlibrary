@@ -1,6 +1,8 @@
 // SharedPtr.h
 #pragma once
 
+namespace QLibrary{
+
 template <typename T>
 class SharedPtr
 {
@@ -23,4 +25,7 @@ private:
     void release(); // release the inner object and decrement the reference count
 };
 
+} // namespace QLibrary
+
 #include <QLibrary/SharedPtr.tpp>
+

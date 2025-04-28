@@ -1,6 +1,7 @@
 #include <QLibrary/SimpleMC.h>
 #include <cmath>
 
+namespace QLibrary{
 
 void SimpleMonteCarlo(const VanillaOption& theOption,
     double Spot,
@@ -30,4 +31,6 @@ void SimpleMonteCarlo(const VanillaOption& theOption,
         gatherer.addSample(thisPayoff * discounting);
     }
     return;
+}
+
 }

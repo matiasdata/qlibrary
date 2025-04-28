@@ -7,6 +7,8 @@
 #include <QLibrary/MCStatistics.h>
 #include <vector>
 
+namespace QLibrary{
+
 class ExoticEngine
 {
 public:
@@ -22,6 +24,7 @@ private:
     mutable std::vector<CashFlow> TheseCashFlows;
 };
 
+}
 /* 
 ExoticEngine is an abstract simulation (MC) engine that can evaluate a PathDependent option (TheProduct).
 It takes care of simulating the paths, performs the discounting, computes the DCF of each path. 

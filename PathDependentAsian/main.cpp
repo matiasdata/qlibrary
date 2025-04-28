@@ -17,19 +17,19 @@ int main()
     double d = 0.02; // dividend rate
     unsigned long NumberOfPaths = 1000000;
     unsigned long NumberOfDates = 12;
-    PayoffCall ThePayoff(Strike);
-    MyArray Times(NumberOfDates);
+    QLibrary::PayoffCall ThePayoff(Strike);
+    QLibrary::MyArray Times(NumberOfDates);
     for(unsigned long i = 0; i < NumberOfDates; i++)
     {
         Times[i] = (i+1.0)*Expiry/NumberOfDates; // set the times for sampling the Spot.
     }
-    parametersConstant VolParam(Vol);
-    parametersConstant rParam(r);
-    parametersConstant dParam(d);
-    PathDependentAsian theOption(Times, Expiry, ThePayoff);
-    MCStatisticsMean gatherer;
-    RandomMLCG gen(1UL,0);
-    ExoticBSEngine theEngine(theOption,rParam,dParam,VolParam,gen,Spot);
+    QLibrary::parametersConstant VolParam(Vol);
+    QLibrary::parametersConstant rParam(r);
+    QLibrary::parametersConstant dParam(d);
+    QLibrary::PathDependentAsian theOption(Times, Expiry, ThePayoff);
+    QLibrary::MCStatisticsMean gatherer;
+    QLibrary::RandomMLCG gen(1UL,0);
+    QLibrary::ExoticBSEngine theEngine(theOption,rParam,dParam,VolParam,gen,Spot);
     //auto start = std::chrono::high_resolution_clock::now();
     theEngine.DoSimulation(gatherer, NumberOfPaths);
     //auto end = std::chrono::high_resolution_clock::now();

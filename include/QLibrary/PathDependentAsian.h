@@ -3,6 +3,8 @@
 #include <QLibrary/Payoff.h>
 #include <QLibrary/Wrapper.h>
 
+namespace QLibrary{
+
 class PathDependentAsian : public PathDependent
 {
 public:
@@ -17,6 +19,8 @@ private:
     Wrapper<Payoff> ThePayoff;
     unsigned long NumberOfTimes;
 };
+
+}
 
 /*
 An asian option has its LookAtTimes as all PathDependent options, but also has a DeliveryTime (only time when there is a CashFlow),

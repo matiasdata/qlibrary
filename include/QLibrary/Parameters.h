@@ -2,6 +2,8 @@
 #pragma once
 #include <vector>
 
+namespace QLibrary{
+
 class Parameters
 {
 public:
@@ -40,4 +42,6 @@ private:
     std::vector<double> Time; // vector of time points
     std::vector<double> Value; // vector of parameter values
 };
+
+}
 // The parametersPiecewise class is a concrete implementation of the Parameters class that represents a piecewise constant parameter.

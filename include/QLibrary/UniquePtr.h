@@ -1,6 +1,8 @@
 // UniquePtr.h
 #pragma once
 
+namespace QLibrary{
+
 template <typename T>
 class UniquePtr
 {
@@ -22,5 +24,7 @@ private:
     T* inner;
     void release();
 };
+
+}
 
 #include <QLibrary/UniquePtr.tpp>

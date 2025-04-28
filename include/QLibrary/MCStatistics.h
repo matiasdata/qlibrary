@@ -4,6 +4,7 @@
 #include <string>
 #include <QLibrary/Wrapper.h>
 
+namespace QLibrary{
 
 class MCStatistics {
 public:
@@ -61,3 +62,4 @@ private:
     unsigned long stoppingPoint;
 };
 
+}

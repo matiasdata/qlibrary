@@ -3,6 +3,7 @@
 
 /* PayoffCall Implementation
 */
+namespace QLibrary{
 
 PayoffCall::PayoffCall(double Strike_) : Strike{Strike_} {};
 
@@ -38,3 +39,5 @@ double PayoffDoubleDigital::operator()(double Spot) const
 }
 
 Payoff* PayoffDoubleDigital::clone() const { return new PayoffDoubleDigital(*this);}
+
+}

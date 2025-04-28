@@ -2,6 +2,8 @@
 #include <QLibrary/ExoticBSEngine.h>
 #include <cmath>
 
+namespace QLibrary{
+
 ExoticBSEngine::ExoticBSEngine(const Wrapper<PathDependent>& TheProduct_,
         const Wrapper<Parameters>& R_,
         const Wrapper<Parameters>& D_,
@@ -41,6 +43,8 @@ void ExoticBSEngine::GetOnePath(MyArray& SpotValues)
         SpotValues[j] = exp(CurrentLogSpot);
     }
     return;
+}
+
 }
 
 /*

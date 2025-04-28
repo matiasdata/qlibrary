@@ -1,6 +1,7 @@
 // PathDependentBarrier.cpp
 #include <QLibrary/PathDependentBarrier.h>
 
+namespace QLibrary{
 
 PathDependentBarrier::PathDependentBarrier(const MyArray& LookAtTimes_,
                                             const Wrapper<Payoff>& ThePayoff_, 
@@ -39,3 +40,4 @@ PathDependent* PathDependentBarrier::clone() const
     return new PathDependentBarrier(*this);
 }
                                                                                                                    
+}

@@ -8,6 +8,8 @@
 #include <iostream>
 //#include <chrono>
 
+using namespace QLibrary;
+
 int main()
 {
     double Expiry = 1.0;
@@ -15,7 +17,7 @@ int main()
     double Spot = 100.0;
     double Vol = 0.2;
     double r = 0.05;
-    double d = 0.0; // dividend rate
+    double d = 0.02; // dividend rate
     double level = 120.0;
     double rebate = 5.0;
     unsigned long NumberOfPaths = 1000000;
@@ -40,7 +42,7 @@ int main()
     // auto end = std::chrono::high_resolution_clock::now();
     // std::chrono::duration<double> diff = end-start;
     // std::cout << "Elapsed time: " << diff.count() << " seconds\n";
-    std::cout << "MC Up Out Barrier Call price: " << gathererUpOut.getResults()["mean"] << std::endl;
+    std::cout << "MC Up Out Barrier Call Price: " << gathererUpOut.getResults()["mean"] << std::endl;
 
     MCStatisticsMean gathererUpIn;
     UpInBarrier TheUpInBarrier(level,rebate);
@@ -48,11 +50,13 @@ int main()
     gen.reset();
     theEngine = ExoticBSEngine(TheUpInBarrierOption,rParam,dParam,VolParam,gen,Spot);
     theEngine.DoSimulation(gathererUpIn, NumberOfPaths);
-    std::cout << "MC Up In Barrier Call price: " << gathererUpIn.getResults()["mean"] << std::endl;
+    std::cout << "MC Up In Barrier Call Price: " << gathererUpIn.getResults()["mean"] << std::endl;
 
 
     std::cout << "Resetting parameters" << std::endl;
 
+    d = 0.0;
+    dParam = parametersConstant(d); // update dividend rate to zero
     TheUpOutBarrier = UpOutBarrier(level); // update rebate to zero. (default value)
     TheUpOutBarrierOption = PathDependentBarrier(Times,ThePayoff,TheUpOutBarrier);
     TheUpInBarrier = UpInBarrier(level); // update rebate to zero. (default value)
@@ -63,14 +67,14 @@ int main()
     theEngine = ExoticBSEngine(TheUpOutBarrierOption,rParam,dParam,VolParam,gen,Spot);
     theEngine.DoSimulation(gathererUpOut, NumberOfPaths);
     double UpOutBarrierPrice = gathererUpOut.getResults()["mean"];
-    std::cout << "MC Up Out Barrier Call price: " << UpOutBarrierPrice << std::endl;
+    std::cout << "MC Up Out Barrier Call Price: " << UpOutBarrierPrice << std::endl;
 
     gathererUpIn.reset();
     gen.reset();
     theEngine = ExoticBSEngine(TheUpInBarrierOption,rParam,dParam,VolParam,gen,Spot);
     theEngine.DoSimulation(gathererUpIn, NumberOfPaths);
     double UpInBarrierPrice = gathererUpIn.getResults()["mean"];
-    std::cout << "MC Up Out Barrier Call price: " << UpInBarrierPrice << std::endl;
+    std::cout << "MC Up Out Barrier Call Price: " << UpInBarrierPrice << std::endl;
 
     MCStatisticsMean gathererVanilla;
     gen.reset();

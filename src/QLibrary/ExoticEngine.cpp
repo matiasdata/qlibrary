@@ -2,6 +2,8 @@
 #include <QLibrary/ExoticEngine.h>
 #include <cmath>
 
+namespace QLibrary{
+
 ExoticEngine::ExoticEngine(const Wrapper<PathDependent>& TheProduct_, const Wrapper<Parameters>& r_) : TheProduct{TheProduct_}, r{r_}
 {
     Discounts = TheProduct->PossibleCashFlowTimes();
@@ -37,6 +39,7 @@ double ExoticEngine::DoOnePath(const MyArray& SpotValues) const
     return Value;
 }
 
+}
 /* 
 ExoticEngine::ExoticEngine(const Wrapper<PathDependent>& TheProduct_, const Wrapper<Parameters>& r_): Constructor computes the discount factors at all possible times and resizes TheseCashFlows.
 

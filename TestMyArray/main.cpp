@@ -4,6 +4,8 @@
 #include <numeric> // For std::accumulate
 #include <algorithm> // For std::min_element, std::max_element
 
+using namespace QLibrary;
+
 // Function to print MyArray
 void PrintMyArray(const MyArray& arr, const std::string& msg = "") {
     if (!msg.empty()) {

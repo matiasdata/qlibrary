@@ -1,5 +1,6 @@
 #include <QLibrary/UniquePtr.h>
 
+namespace QLibrary{
 
 template<typename T>
 UniquePtr<T>::UniquePtr() : inner{nullptr} {} // default constructor
@@ -68,3 +69,4 @@ void UniquePtr<T>::release()
     }
 }
 
+}

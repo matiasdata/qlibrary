@@ -2,6 +2,7 @@
 #include <QLibrary/ExoticEngine.h>
 #include <QLibrary/RandomGen.h>
 
+namespace QLibrary{
 
 class ExoticBSEngine : public ExoticEngine
 {
@@ -23,6 +24,8 @@ private:
         unsigned long NumberOfTimes;
         MyArray Variates;
 };
+
+}
 
 /*
 ExoticBSEngine is an simulation engine for the Black-Scholes model, which accepts time-dependent deterministic parameters. 

@@ -4,6 +4,8 @@
 #include <QLibrary/Barrier.h>
 #include <QLibrary/Wrapper.h>
 
+namespace QLibrary{
+
 class PathDependentBarrier : public PathDependent
 {
 public:
@@ -18,3 +20,4 @@ private:
     Wrapper<Barrier> TheBarrier;
     unsigned long NumberOfTimes;
 };
+}

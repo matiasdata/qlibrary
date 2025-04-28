@@ -1,6 +1,8 @@
 // PathDependentAsian.cpp
 #include <QLibrary/PathDependentAsian.h>
 
+namespace QLibrary{
+
 PathDependentAsian::PathDependentAsian(const MyArray& LookAtTimes_,
                                         double DeliveryTime_,
                                         const Wrapper<Payoff>& ThePayoff_) 
@@ -36,6 +38,7 @@ PathDependent* PathDependentAsian::clone() const
     return new PathDependentAsian(*this);
 }
 
+}
 /* 
 PathDependentAsian(const MyArray& LookAtTimes_, double DeliveryTime_, const Wrapper<Payoff>& ThePayoff_):
         1) Calls the PathDependent constructor with the LookAtTimes (times at where the spot is sampled).

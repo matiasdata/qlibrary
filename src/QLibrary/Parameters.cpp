@@ -2,6 +2,7 @@
 #include <QLibrary/Parameters.h>
 
 // parametersConstant class
+namespace QLibrary{
 
 parametersConstant::parametersConstant(double Constant_) : Constant{Constant_} {}
 // Constructor for parametersConstant class
@@ -84,4 +85,6 @@ double parametersPiecewise::IntegralSquare(double Time1, double Time2) const
         }
     }
     return result;
+}
+
 }

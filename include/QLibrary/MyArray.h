@@ -2,6 +2,7 @@
 #pragma once
 #include <valarray>
 
+namespace QLibrary{
 
 class MyArray
 {
@@ -51,6 +52,8 @@ inline double& MyArray::operator[](unsigned long i) {
 
 inline unsigned long MyArray::size() const {
     return Size;
+}
+
 }
 /* inline: definition must be visible in the same translation unit (e.g. in the header file in this case).
 To allow short, performance-critical methods (like operator[]) to be expanded directly — potentially making them faster.

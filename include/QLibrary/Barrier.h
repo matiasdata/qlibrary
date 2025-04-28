@@ -6,6 +6,8 @@
 #include <QLibrary/Wrapper.h>
 #include <optional>
 
+namespace QLibrary{
+
 class Barrier
 {
 public:
@@ -34,3 +36,5 @@ class UpInBarrier : public Barrier {
         double level;
         double rebate;
     };
+
+} // namespace QLibrary

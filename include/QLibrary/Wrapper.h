@@ -1,6 +1,8 @@
 // Wrapper.h
 #pragma once
 
+namespace QLibrary{
+    
 template <typename T>
 class Wrapper
 {
@@ -19,4 +21,5 @@ private:
     T* inner; // pointer to the inner object
 };
 
+}
 #include <QLibrary/Wrapper.tpp>

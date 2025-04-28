@@ -2,6 +2,8 @@
 #include <QLibrary/UniquePtr.h>
 #include <iostream>
 
+using namespace QLibrary;
+
 int main()
 {
     int x = 5;

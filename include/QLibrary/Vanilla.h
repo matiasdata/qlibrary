@@ -2,6 +2,7 @@
 #include <QLibrary/Wrapper.h>
 #include <QLibrary/Payoff.h>
 
+namespace QLibrary{
 
 class VanillaOption
 {
@@ -16,6 +17,7 @@ private:
     
 };
 
+}
 
 /* Super simple VanillaOption class, no need to write copy constructors, assigment operators or destructors
 as these are taken care by the PayoffBridge. 

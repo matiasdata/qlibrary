@@ -3,6 +3,8 @@
 
 /* MCStatisticsMean Implementation */
 
+namespace QLibrary{
+
 MCStatisticsMean::MCStatisticsMean() : sum(0.0), count(0) {}
 
 
@@ -126,4 +128,6 @@ void ConvergenceTable::reset()
 {
     inner->reset();
     results.clear();
+}
+
 }

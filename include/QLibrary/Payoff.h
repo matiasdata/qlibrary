@@ -1,5 +1,7 @@
 #pragma once
 
+namespace QLibrary{
+
 class Payoff
 {
 public:
@@ -44,3 +46,5 @@ private:
     double LowerLevel;
     double UpperLevel;
 };
+
+}
