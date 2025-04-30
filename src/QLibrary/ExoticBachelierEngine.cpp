@@ -29,7 +29,7 @@ ExoticBachelierEngine::ExoticBachelierEngine(const Wrapper<PathDependent>& ThePr
         StandardDeviations[j] = sqrt(ThisVariance);
     }
     unsigned long last = NumberOfTimes-1;
-    double Forward = Spot_ * exp(Drifts[last]);
+    Forward = Spot_ * exp(Drifts[last]);
     Variates.resize(NumberOfTimes);
 }
 
