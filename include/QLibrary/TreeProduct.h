@@ -1,0 +1,16 @@
+// TreeProduct.h
+#pragma once
+
+class TreeProduct
+{
+public:
+    TreeProduct(double FinalTime_) : FinalTime(FinalTime_) {};
+    virtual double FinalPayoff(double Spot) const = 0;
+    virtual double PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const = 0;
+    virtual ~TreeProduct(){};
+    virtual TreeProduct* clone() const = 0;
+    double GetFinalTime() const {return FinalTime;};
+private:
+    double FinalTime;
+};
+
