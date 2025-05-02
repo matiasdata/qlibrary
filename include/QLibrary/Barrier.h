@@ -4,6 +4,7 @@
 #include <QLibrary/PathDependent.h>
 #include <QLibrary/Payoff.h>
 #include <QLibrary/Wrapper.h>
+#include <QLibrary/Cloneable.h>
 #include <optional>
 
 namespace QLibrary{
@@ -17,21 +18,19 @@ public:
     virtual ~Barrier() = default;
 };
 
-class UpOutBarrier : public Barrier {
+class UpOutBarrier : public Cloneable<Barrier, UpOutBarrier> {
 public:
     UpOutBarrier(double level_, double rebate_ = 0.0) : level(level_), rebate(rebate_) {};
     virtual std::optional<CashFlow> evaluate(const MyArray& SpotValues, const Wrapper<Payoff>& payoff) const override;
-    virtual Barrier* clone() const override;
 private:
     double level;
     double rebate;
 };
 
-class UpInBarrier : public Barrier {
+class UpInBarrier : public Cloneable<Barrier, UpInBarrier> {
     public:
         UpInBarrier(double level_, double rebate_ = 0.0): level(level_), rebate(rebate_) {};
         virtual std::optional<CashFlow> evaluate(const MyArray& SpotValues, const Wrapper<Payoff>& payoff) const override;
-        virtual Barrier* clone() const override;
     private:
         double level;
         double rebate;

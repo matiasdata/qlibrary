@@ -1,6 +1,8 @@
 // TreeProduct.h
 #pragma once
 
+namespace QLibrary{
+
 class TreeProduct
 {
 public:
@@ -13,4 +15,6 @@ public:
 private:
     double FinalTime;
 };
+
+} // namespace QLibrary
 

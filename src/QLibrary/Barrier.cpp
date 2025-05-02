@@ -18,10 +18,6 @@ std::optional<CashFlow> UpOutBarrier::evaluate(const MyArray& SpotValues,const W
     return CashFlow(last, ThePayoff->operator()(SpotValues[last]));
 }
 
-Barrier* UpOutBarrier::clone() const
-{
-    return new UpOutBarrier(*this);
-} 
 
 
 // UpInBarrier class implementation (with rebate at the end)
@@ -39,9 +35,5 @@ std::optional<CashFlow> UpInBarrier::evaluate(const MyArray& SpotValues,const Wr
     return CashFlow(last, rebate);
 }
 
-Barrier* UpInBarrier::clone() const
-{
-    return new UpInBarrier(*this);
-} 
 
-}
+} // namespace QLibrary
