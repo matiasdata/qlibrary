@@ -4,10 +4,11 @@
 namespace QLibrary{
 
 template <typename Base, typename Derived>
-class Cloneable : public Base
+class Cloneable : public virtual Base
 {
 public:
-    Base* clone() const override {
+    Cloneable() = delete;
+    virtual Base* clone() const override {
         return new Derived(static_cast<const Derived&>(*this));
     }
 };

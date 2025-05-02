@@ -4,8 +4,8 @@
 
 namespace QLibrary{
 
-TreeEuropean::TreeEuropean(double FinalTime_,const Wrapper<Payoff>& ThePayoff_) : TreeProduct(FinalTime_), ThePayoff(ThePayoff_) {};
 
+TreeEuropean::TreeEuropean(double FinalTime_,const Wrapper<Payoff>& ThePayoff_) : TreeProduct(FinalTime_), ThePayoff(ThePayoff_) {};
 
 double TreeEuropean::FinalPayoff(double Spot) const
 {
