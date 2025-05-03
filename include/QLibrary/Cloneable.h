@@ -7,7 +7,7 @@ template <typename Base, typename Derived>
 class Cloneable : public virtual Base
 {
 public:
-    Cloneable() = delete;
+    //Cloneable() = delete;
     virtual Base* clone() const override {
         return new Derived(static_cast<const Derived&>(*this));
     }

@@ -7,12 +7,13 @@
 
 namespace QLibrary{
 
-class TreeAmerican : public virtual TreeProduct, public Cloneable<TreeProduct,TreeAmerican>
+class TreeAmerican : public TreeProduct
 {
 public: 
     TreeAmerican(double FinalTime_,const Wrapper<Payoff>& ThePayoff_);
     virtual double FinalPayoff(double Spot) const override;
     virtual double PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const override;
+    virtual TreeProduct* clone() const override;
     virtual ~TreeAmerican() override = default;
 
 private:

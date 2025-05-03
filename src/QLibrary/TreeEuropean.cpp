@@ -12,10 +12,15 @@ double TreeEuropean::FinalPayoff(double Spot) const
 }
 
 double TreeEuropean::PreFinalValue(double Spot,
-                                     double //Time, 
-                                     double DiscountedFutureValue) const
+                                     double //Time
+                                     , double DiscountedFutureValue) const
 {
     return DiscountedFutureValue;
+}
+
+TreeProduct* TreeEuropean::clone() const
+{
+    return new TreeEuropean(*this);
 }
 
 } // namespace QLibrary

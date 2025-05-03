@@ -1,6 +1,7 @@
 // TreeAmerican.cpp
 
 #include <QLibrary/TreeAmerican.h>
+#include <algorithm>
 
 namespace QLibrary{
 
@@ -12,10 +13,15 @@ double TreeAmerican::FinalPayoff(double Spot) const
 }
 
 double TreeAmerican::PreFinalValue(double Spot, 
-                                    double //Time,
-                                    double DiscountedFutureValue) const
+                                    double //Time
+                                    , double DiscountedFutureValue) const
 {
     return std::max((*ThePayoff)(Spot), DiscountedFutureValue);
+}
+
+TreeProduct* TreeAmerican::clone() const
+{
+    return new TreeAmerican(*this);
 }
 
 } // namespace QLibrary
