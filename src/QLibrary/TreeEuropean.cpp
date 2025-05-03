@@ -11,7 +11,9 @@ double TreeEuropean::FinalPayoff(double Spot) const
     return (*ThePayoff)(Spot);
 }
 
-double TreeEuropean::PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const
+double TreeEuropean::PreFinalValue(double Spot,
+                                     double //Time, 
+                                     double DiscountedFutureValue) const
 {
     return DiscountedFutureValue;
 }
