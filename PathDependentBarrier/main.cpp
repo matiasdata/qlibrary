@@ -1,8 +1,6 @@
 // main.cpp
 #include <QLibrary/PathDependentBarrier.h>
 #include <QLibrary/ExoticBSEngine.h>
-#include <QLibrary/MCStatistics.h>
-#include <QLibrary/RandomGen.h>
 #include <QLibrary/Vanilla.h>
 #include <QLibrary/SimpleMC.h>
 #include <iostream>

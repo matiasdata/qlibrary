@@ -1,9 +1,6 @@
 // main.cpp
 #include <QLibrary/PathDependentAsian.h>
 #include <QLibrary/ExoticBSEngine.h>
-#include <QLibrary/MCStatistics.h>
-#include <QLibrary/RandomGen.h>
-#include <QLibrary/Wrapper.h>
 #include <iostream>
 //#include <chrono>
 
