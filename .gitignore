@@ -1,6 +1,9 @@
 # Object files
 *.o
 
+# Dependency files
+*.d
+
 # macOS system file
 **/.DS_Store
 

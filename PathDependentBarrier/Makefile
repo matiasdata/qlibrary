@@ -1,10 +1,11 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I../include -I/opt/homebrew/include
+CXXFLAGS = -std=c++20 -Wall -I../include -I/opt/homebrew/include -MMD -MP
 
 # Source files
 SRC = main.cpp $(wildcard ../src/QLibrary/*.cpp)
 OBJ = $(SRC:.cpp=.o)
+DEP = $(OBJ:.o=.d)
 BIN = main
 
 # Final binary build
@@ -17,6 +18,9 @@ $(BIN): $(OBJ)
 
 # Cleanup
 clean:
-	rm -f $(OBJ) $(BIN)
+	rm -f $(OBJ) $(DEP) $(BIN)
 
 .PHONY: clean
+
+# Include dependency files if they exist
+-include $(DEP)
