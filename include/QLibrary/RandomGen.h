@@ -70,6 +70,11 @@ class RandomMLCG : public RandomBase
 {
     public:
         RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_ = 0);
+        RandomMLCG(unsigned long Dimensionality_,
+            std::uint64_t Seed_,
+            std::uint64_t m_,
+            std::uint64_t a_,
+            std::uint64_t c_);
         virtual RandomBase* clone() const override;
         virtual void getUniforms(MyArray& variates) override;
         virtual void setSeed(std::uint64_t Seed) override;
@@ -80,7 +85,10 @@ class RandomMLCG : public RandomBase
     private:
         MLCG InnerGenerator;
         std::uint64_t InitialSeed;
-        static constexpr double Reciprocal = 1.0/static_cast<double>(MLCG::default_m + 1);
+        const double Reciprocal;
 };
 
 }
+
+/* A static variable inside a class is a variable that is shared across all instances of the class. For example, the default
+ values for m, a and c of our MLCG are shared across al instances.*/

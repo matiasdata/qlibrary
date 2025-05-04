@@ -12,7 +12,7 @@ int main()
     {
         std::cout << gen.getInteger() << std::endl;
     }
-    int dim = 2;
+    unsigned long dim = 2;
     QLibrary::RandomMLCG rg(dim);
     QLibrary::MyArray arr(dim);
     std::cout << "Generating 10 2-dimensional multivariate gaussians: " << std::endl;

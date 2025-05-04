@@ -41,7 +41,25 @@ void RandomBase::skip(unsigned long numberOfPaths) {
 
 
 
-RandomMLCG::RandomMLCG(unsigned long Dimensionality_, std::uint64_t Seed_) : RandomBase(Dimensionality_), InnerGenerator{Seed_}, InitialSeed{Seed_} {}
+RandomMLCG::RandomMLCG(unsigned long Dimensionality_,
+                        std::uint64_t Seed_) : 
+                        RandomBase(Dimensionality_),
+                        InnerGenerator(Seed_), 
+                        InitialSeed(Seed_),
+                        Reciprocal(1.0 / static_cast<double>(MLCG::default_m + 1)) {}
+
+
+
+
+RandomMLCG::RandomMLCG(unsigned long Dimensionality_,
+                        std::uint64_t Seed_,
+                        std::uint64_t m_,
+                        std::uint64_t a_,
+                        std::uint64_t c_) : 
+                        RandomBase(Dimensionality_),
+                        InnerGenerator{Seed_, m_, a_, c_},
+                        InitialSeed{Seed_},
+                        Reciprocal{1.0 / static_cast<double>(m_ + 1)} {}
 
 RandomBase* RandomMLCG::clone() const {
     return new RandomMLCG(*this);  // clone copy constructor
