@@ -1,5 +1,6 @@
 #include <QLibrary/BinomialTree.h>
 #include <cmath>
+#include <stdexcept>
 
 namespace QLibrary
 {
@@ -45,6 +46,35 @@ void SimpleBinomialTree::BuildTree()
     {
         Discounts[l] = std::exp(-r.Integral((l*Time)/Steps, ((l+1)*Time)/Steps))
     }
+}
+
+double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct)
+{
+    if (!TreeBuilt) BuildTree();
+
+    if (TheProduct.GetFinalTime() != Time)
+    {
+        throw std::invalid_argument("mismatched product in SimpleBinomialTree.");
+    }
+
+    for(long j = -static_cast<long>(Steps), k = 0; j <= static_cast<long>(Steps); j = j+2, k++)
+    {
+        TheTree[Steps][k].second = TheProduct.FinalPayoff(TheTree[Steps][k].first);
+    }
+
+    for(unsigned long i = 1; i <= Steps; i++)
+    {
+        unsigned long index = Steps-i;
+        double ThisTime = (index*Time)/Steps;
+        
+        for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
+        {
+            double Spot = TheTree[index][k].first;
+            double FutureDiscountedValue = 0.5*Discounts[index]*(TheTree[index+1][k].second + TheTree[index+1][k+1].second);
+            TheTree[index][k].second = TheProduct.PreFinalValue(Spot,ThisTime,FutureDiscountedValue);
+        }
+    }
+    return TheTree[0][0].second;
 }
 
 }
