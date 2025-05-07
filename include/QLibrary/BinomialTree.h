@@ -18,7 +18,7 @@ public:
                         unsigned long Steps_,
                         double Time_);   
     double GetThePrice(const TreeProduct& TheProduct);
-
+    ~SimpleBinomialTree(){};
 protected:
         void BuildTree(); // protected can be accessed by inherited classes
 
