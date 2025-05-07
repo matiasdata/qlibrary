@@ -1,10 +1,14 @@
 # Compiler and flags
-CXX = g++
+CXX = g++ -g
 CXXFLAGS = -std=c++20 -Wall -I../include
 
 # Source files
 SRC = main.cpp \
-      ../src/QLibrary/TreeAmerican.cpp \
+      ../src/QLibrary/TreeEuropean.cpp \
+	  ../src/QLibrary/TreeAmerican.cpp \
+	  ../src/QLibrary/BinomialTree.cpp \
+	  ../src/QLibrary/Parameters.cpp \
+	  ../src/QLibrary/MyArray.cpp \
       ../src/QLibrary/Payoff.cpp 
 
 # Object files
