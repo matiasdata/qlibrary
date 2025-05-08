@@ -24,8 +24,8 @@ protected:
 
 private:
     double Spot;
-    const Wrapper<Parameters>& r;
-    const Wrapper<Parameters>& d;
+    const Wrapper<Parameters> r;
+    const Wrapper<Parameters> d;
     double Volatility;
     unsigned long Steps;
     double Time;

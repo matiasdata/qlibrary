@@ -32,15 +32,6 @@ void SimpleBinomialTree::BuildTree()
         TheTree[i].resize(i+1);
         double thisTime = (i*Time)/Steps;
 
-        if (!r.operator->()) {
-            std::cerr << "Error: r is null!" << std::endl;
-            std::abort();
-        }
-        if (!d.operator->()) {
-            std::cerr << "Error: d is null!" << std::endl;
-            std::abort();
-        }
-
         double movedLogSpot = InitialLogSpot + r->Integral(0.0, thisTime) - d->Integral(0.0,thisTime);
         movedLogSpot -= 0.5 * Volatility * Volatility * thisTime;
         double std = Volatility * std::sqrt(Time/Steps);
@@ -55,7 +46,6 @@ void SimpleBinomialTree::BuildTree()
     {
         Discounts[l] = std::exp(-r->Integral((l*Time)/Steps, ((l+1)*Time)/Steps));
     }
-    std::cout << "Tree Built" << std::endl;
 }
 
 double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct)
