@@ -9,7 +9,8 @@ SRC = main.cpp \
 	  ../src/QLibrary/BinomialTree.cpp \
 	  ../src/QLibrary/Parameters.cpp \
 	  ../src/QLibrary/MyArray.cpp \
-      ../src/QLibrary/Payoff.cpp 
+      ../src/QLibrary/Payoff.cpp \
+	  ../src/QLibrary/PayoffForward.cpp
 
 # Object files
 OBJ = $(SRC:.cpp=.o)

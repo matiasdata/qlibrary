@@ -4,8 +4,10 @@
 #include <QLibrary/TreeAmerican.h>
 #include <QLibrary/TreeEuropean.h>
 #include <QLibrary/Payoff.h>
+#include <QLibrary/PayoffForward.h>
 #include <QLibrary/Parameters.h>
 #include <iostream>
+#include <cmath>
 
 int main()
 {
@@ -32,6 +34,15 @@ int main()
 
     std::cout << "European option price: " << euroPrice << std::endl;
     std::cout << "American option price: " << americanPrice << std::endl;
+
+    QLibrary::PayoffForward forwardPayoff(Strike);
+    QLibrary::TreeEuropean forwardOption(Expiry,forwardPayoff);
+
+    double forwardPrice = theTree.GetThePrice(forwardOption);
+    std::cout << "forward price by tree: " << forwardPrice << std::endl;
+
+    double actualForwardPrice = std::exp(-r*Expiry)*(Spot*std::exp((r-d)*Expiry)-Strike);
+    std::cout << "actual forward price: " << actualForwardPrice << std::endl;
 
     return 0;
 }
