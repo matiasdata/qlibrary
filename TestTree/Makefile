@@ -10,7 +10,8 @@ SRC = main.cpp \
 	  ../src/QLibrary/Parameters.cpp \
 	  ../src/QLibrary/MyArray.cpp \
       ../src/QLibrary/Payoff.cpp \
-	  ../src/QLibrary/PayoffForward.cpp
+	  ../src/QLibrary/PayoffForward.cpp \
+	  ../src/QLibrary/BlackScholesFormulas.cpp 
 
 # Object files
 OBJ = $(SRC:.cpp=.o)
