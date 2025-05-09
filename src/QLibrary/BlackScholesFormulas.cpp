@@ -6,7 +6,8 @@ namespace QLibrary
 
 double NormalCDF(double x)
 {
-    return 0.5 * (1.0 + std::erf(x / std::sqrt(2.0)));
+    static const double SQRT2 = std::sqrt(2.0);
+    return 0.5 * (1.0 + std::erf(x / SQRT2));
 }
 
 
