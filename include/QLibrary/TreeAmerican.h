@@ -2,7 +2,6 @@
 #pragma once
 #include <QLibrary/TreeProduct.h>
 #include <QLibrary/Payoff.h>
-#include <QLibrary/Cloneable.h>
 #include <QLibrary/Wrapper.h>
 
 namespace QLibrary{

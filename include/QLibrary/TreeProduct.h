@@ -6,7 +6,6 @@ namespace QLibrary{
 class TreeProduct
 {
 public:
-    TreeProduct() = delete;
     TreeProduct(double FinalTime_) : FinalTime(FinalTime_) {};
     virtual double FinalPayoff(double Spot) const = 0;
     virtual double PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const = 0;
