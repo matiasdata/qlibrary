@@ -18,25 +18,38 @@ int main()
     double r = 0.05;
     double d = 0.02;
     double Vol = 0.2;
-    unsigned long Steps = 20;
+    unsigned long Steps = 1000;
     QLibrary::parametersConstant rParam(r);
     QLibrary::parametersConstant dParam(d);
 
-    QLibrary::PayoffCall ThePayoff(Strike);
+    QLibrary::PayoffCall ThePayoffCall(Strike);
+    QLibrary::PayoffPut ThePayoffPut(Strike);
 
-    QLibrary::TreeEuropean europeanOption(Expiry,ThePayoff);
-    QLibrary::TreeAmerican americanOption(Expiry,ThePayoff);
+    QLibrary::TreeEuropean europeanCallOption(Expiry,ThePayoffCall);
+    QLibrary::TreeAmerican americanCallOption(Expiry,ThePayoffCall);
+    QLibrary::TreeEuropean europeanPutOption(Expiry,ThePayoffPut);
+    QLibrary::TreeAmerican americanPutOption(Expiry,ThePayoffPut);
+    std::cout << "Created European and American options" << std::endl;
+
 
     QLibrary::SimpleBinomialTree theTree(Spot,rParam,dParam,Vol,Steps,Expiry);
     std::cout << "Created Binomial Tree" << std::endl;
-    double euroPrice = theTree.GetThePrice(europeanOption);
-    double americanPrice = theTree.GetThePrice(americanOption);
+    double euroCallPrice = theTree.GetThePrice(europeanCallOption);
+    double americanCallPrice = theTree.GetThePrice(americanCallOption);
+    double euroPutPrice = theTree.GetThePrice(europeanPutOption);
+    double americanPutPrice = theTree.GetThePrice(americanPutOption);
 
-    std::cout << "European option price: " << euroPrice << std::endl;
-    std::cout << "American option price: " << americanPrice << std::endl;
+    std::cout << "European Call option price: " << euroCallPrice << std::endl;
+    std::cout << "American Call option price: " << americanCallPrice << std::endl;
+    
+    std::cout << "European Put option price: " << euroPutPrice << std::endl;
+    std::cout << "American Put option price: " << americanPutPrice << std::endl;
 
-    double bsPrice = QLibrary::BlackScholesCall(Spot,Strike,r,d,Vol,Expiry);
-    std::cout << "Black-Scholes formula price: " << bsPrice << std::endl;
+    double bsCallPrice = QLibrary::BlackScholesCall(Spot,Strike,r,d,Vol,Expiry);
+    double bsPutPrice = QLibrary::BlackScholesPut(Spot,Strike,r,d,Vol,Expiry);
+    std::cout << "Black-Scholes formula Call price: " << bsCallPrice << std::endl;
+    std::cout << "Black-Scholes formula Put price: " << bsPutPrice << std::endl;
+
 
     QLibrary::PayoffForward forwardPayoff(Strike);
     QLibrary::TreeEuropean forwardOption(Expiry,forwardPayoff);
