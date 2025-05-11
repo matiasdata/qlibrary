@@ -21,3 +21,5 @@ private:
 };
 
 } //namespace QLibrary
+
+// Use log-transformed trees if precision near the barrier is critical.
