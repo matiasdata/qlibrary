@@ -9,7 +9,7 @@ namespace QLibrary{
 class TreeBarrier : public TreeProduct
 {
 public: 
-    TreeBarrier(double FinalTime_,const Wrapper<Payoff>& ThePayoff_);
+    TreeBarrier(double FinalTime_,const Wrapper<Payoff>& ThePayoff_, double Level_);
     virtual double FinalPayoff(double Spot) const override;
     virtual double PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const override;
     virtual TreeProduct* clone() const override;
@@ -17,7 +17,7 @@ public:
 
 private:
     Wrapper<Payoff> ThePayoff;
-
+    const double Level;
 };
 
 } //namespace QLibrary

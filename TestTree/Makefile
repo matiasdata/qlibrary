@@ -6,6 +6,7 @@ CXXFLAGS = -std=c++20 -Wall -I../include
 SRC = main.cpp \
       ../src/QLibrary/TreeEuropean.cpp \
 	  ../src/QLibrary/TreeAmerican.cpp \
+	  ../src/QLibrary/TreeBarrier.cpp \
 	  ../src/QLibrary/BinomialTree.cpp \
 	  ../src/QLibrary/Parameters.cpp \
 	  ../src/QLibrary/MyArray.cpp \

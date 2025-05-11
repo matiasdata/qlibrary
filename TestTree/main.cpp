@@ -3,6 +3,7 @@
 #include <QLibrary/BinomialTree.h>
 #include <QLibrary/TreeAmerican.h>
 #include <QLibrary/TreeEuropean.h>
+#include <QLibrary/TreeBarrier.h>
 #include <QLibrary/Payoff.h>
 #include <QLibrary/PayoffForward.h>
 #include <QLibrary/Parameters.h>
@@ -59,6 +60,12 @@ int main()
 
     double actualForwardPrice = std::exp(-r*Expiry)*(Spot*std::exp((r-d)*Expiry)-Strike);
     std::cout << "actual forward price: " << actualForwardPrice << std::endl;
+
+    double barrierLevel = 120.0;
+    QLibrary::TreeBarrier barrierCallOption(Expiry,ThePayoffCall,barrierLevel);
+    std::cout << "Created Barrier option" << std::endl;
+    double barrierCallPrice = theTree.GetThePrice(barrierCallOption);
+    std::cout << "Barrier Call option price: " << barrierCallPrice << std::endl;
 
     return 0;
 }
