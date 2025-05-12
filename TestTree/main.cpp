@@ -62,10 +62,11 @@ int main()
     std::cout << "actual forward price: " << actualForwardPrice << std::endl;
 
     double barrierLevel = 120.0;
-    QLibrary::TreeBarrier barrierCallOption(Expiry,ThePayoffCall,barrierLevel);
-    std::cout << "Created Barrier option" << std::endl;
-    double barrierCallPrice = theTree.GetThePrice(barrierCallOption);
-    std::cout << "Barrier Call option price: " << barrierCallPrice << std::endl;
+    QLibrary::TreeOutBarrier barrierUpOutCallOption(Expiry,ThePayoffCall,barrierLevel,QLibrary::BarrierType::Up);
+    std::cout << "Created Up and Out Barrier option" << std::endl;
+    double barrierUpOutCallPrice = theTree.GetThePrice(barrierUpOutCallOption);
+    std::cout << "Barrier  Up and Out Call option price: " << barrierUpOutCallPrice << std::endl;
+
 
     return 0;
 }

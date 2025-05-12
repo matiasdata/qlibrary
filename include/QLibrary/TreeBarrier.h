@@ -3,21 +3,27 @@
 #include <QLibrary/TreeProduct.h>
 #include <QLibrary/Payoff.h>
 #include <QLibrary/Wrapper.h>
+#include <QLibrary/BinomialTree.h>
 
 namespace QLibrary{
 
-class TreeBarrier : public TreeProduct
+enum class BarrierType {Up, Down};
+
+class TreeOutBarrier : public TreeProduct
 {
 public: 
-    TreeBarrier(double FinalTime_,const Wrapper<Payoff>& ThePayoff_, double Level_);
+    TreeOutBarrier(double FinalTime_,const Wrapper<Payoff>& ThePayoff_, double BarrierLevel_,
+        BarrierType TheBarrierType_ = BarrierType::Up);
     virtual double FinalPayoff(double Spot) const override;
     virtual double PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const override;
     virtual TreeProduct* clone() const override;
-    virtual ~TreeBarrier() override = default;
+    virtual ~TreeOutBarrier() override = default;
 
 private:
     Wrapper<Payoff> ThePayoff;
-    const double Level;
+    const double BarrierLevel;
+    BarrierType TheBarrierType;
+
 };
 
 } //namespace QLibrary

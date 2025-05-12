@@ -1,32 +1,52 @@
 // TreeBarrier.cpp
 
 #include <QLibrary/TreeBarrier.h>
+#include <QLibrary/TreeEuropean.h>
+
 #include <algorithm>
 
 namespace QLibrary{
 
-TreeBarrier::TreeBarrier(double FinalTime_,
-                        const Wrapper<Payoff>& ThePayoff_, double Level_) :
+TreeOutBarrier::TreeOutBarrier(double FinalTime_,
+                        const Wrapper<Payoff>& ThePayoff_, double BarrierLevel_, BarrierType TheBarrierType_) :
                          TreeProduct(FinalTime_), 
                          ThePayoff(ThePayoff_),
-                         Level(Level_)
+                         BarrierLevel(BarrierLevel_),
+                         TheBarrierType(TheBarrierType_)
                          {};
 
-double TreeBarrier::FinalPayoff(double Spot) const
+double TreeOutBarrier::FinalPayoff(double Spot) const
 {
-    return Spot < Level? (*ThePayoff)(Spot) : 0.0;
+    switch(TheBarrierType)
+    {
+        case BarrierType::Up:
+            return Spot < BarrierLevel? (*ThePayoff)(Spot) : 0.0;
+        case BarrierType::Down:
+            return Spot > BarrierLevel? (*ThePayoff)(Spot) : 0.0;
+        default:
+            throw std::invalid_argument("Invalid barrier type");
+    }
 }
 
-double TreeBarrier::PreFinalValue(double Spot, 
+double TreeOutBarrier::PreFinalValue(double Spot, 
                                     double //Time
                                     , double DiscountedFutureValue) const
 {
-    return Spot < Level? DiscountedFutureValue : 0.0;
+    switch(TheBarrierType)
+    {
+        case BarrierType::Up:
+            return Spot < BarrierLevel? DiscountedFutureValue : 0.0;
+        case BarrierType::Down:
+            return Spot > BarrierLevel? DiscountedFutureValue : 0.0;
+        default:
+            throw std::invalid_argument("Invalid barrier type");
+    }
 }
 
-TreeProduct* TreeBarrier::clone() const
+TreeProduct* TreeOutBarrier::clone() const
 {
-    return new TreeBarrier(*this);
+    return new TreeOutBarrier(*this);
 }
+
 
 } // namespace QLibrary
