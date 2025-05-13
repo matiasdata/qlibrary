@@ -18,7 +18,7 @@ public:
     virtual double PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const override;
     virtual TreeProduct* clone() const override;
     virtual ~TreeOutBarrier() override = default;
-    double GetThePriceIn(SimpleBinomialTree& tree);
+    double GetThePriceIn(SimpleBinomialTree& tree); // calculate the price of the barrier In option, not part of the TreeProduct interface.
 
 private:
     Wrapper<Payoff> ThePayoff;
