@@ -66,7 +66,7 @@ int main()
     std::cout << "Created Up and Out Barrier option" << std::endl;
     double barrierUpOutCallPrice = theTree.GetThePrice(barrierUpCallOption);
     std::cout << "Barrier  Up and Out Call option price: " << barrierUpOutCallPrice << std::endl;
-    double barrierUpInCallPrice = barrierUpCallOption.GetThePriceIn(theTree);
+    double barrierUpInCallPrice = barrierUpCallOption.PriceInBarrier(theTree);
     std::cout << "Barrier  Up and In Call option price: " << barrierUpInCallPrice << std::endl;
     return 0;
 }

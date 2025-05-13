@@ -48,7 +48,7 @@ TreeProduct* TreeOutBarrier::clone() const
     return new TreeOutBarrier(*this);
 }
 
-double TreeOutBarrier::GetThePriceIn(SimpleBinomialTree& tree) {
+double TreeOutBarrier::PriceInBarrier(SimpleBinomialTree& tree) {
     TreeEuropean european(GetFinalTime(), ThePayoff);
     //TreeOutBarrier knockOut(GetFinalTime(), ThePayoff, BarrierLevel, TheBarrierType);
     
