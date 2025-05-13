@@ -18,12 +18,12 @@ public:
     virtual double PreFinalValue(double Spot, double Time, double DiscountedFutureValue) const override;
     virtual TreeProduct* clone() const override;
     virtual ~TreeOutBarrier() override = default;
+    double GetThePriceIn(SimpleBinomialTree& tree);
 
 private:
     Wrapper<Payoff> ThePayoff;
     const double BarrierLevel;
     BarrierType TheBarrierType;
-
 };
 
 } //namespace QLibrary

@@ -48,5 +48,14 @@ TreeProduct* TreeOutBarrier::clone() const
     return new TreeOutBarrier(*this);
 }
 
+double TreeOutBarrier::GetThePriceIn(SimpleBinomialTree& tree) {
+    TreeEuropean european(GetFinalTime(), ThePayoff);
+    //TreeOutBarrier knockOut(GetFinalTime(), ThePayoff, BarrierLevel, TheBarrierType);
+    
+    double europeanPrice = tree.GetThePrice(european);
+    double knockOutPrice = tree.GetThePrice(*this);
+    
+    return europeanPrice - knockOutPrice;
+    }
 
 } // namespace QLibrary
