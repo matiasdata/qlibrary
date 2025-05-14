@@ -1,6 +1,7 @@
 // TestTree/main.cpp
 
 #include <QLibrary/BinomialTree.h>
+#include <QLibrary/LightBinomialTree.h>
 #include <QLibrary/TreeAmerican.h>
 #include <QLibrary/TreeEuropean.h>
 #include <QLibrary/TreeBarrier.h>
@@ -68,5 +69,10 @@ int main()
     std::cout << "Barrier  Up and Out Call option price: " << barrierUpOutCallPrice << std::endl;
     double barrierUpInCallPrice = barrierUpCallOption.PriceInBarrier(theTree);
     std::cout << "Barrier  Up and In Call option price: " << barrierUpInCallPrice << std::endl;
+
+    QLibrary::LightBinomialTree theLightTree(Spot,rParam,dParam,Vol,Steps,Expiry);
+    double euroCallPriceLight = theLightTree.GetThePrice(europeanCallOption);
+    std::cout << "European Call option price (Light): " << euroCallPriceLight << std::endl;
+
     return 0;
 }
