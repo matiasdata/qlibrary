@@ -27,7 +27,7 @@ private:
     double Volatility;
     unsigned long Steps;
     double Time;
-    std::vector<std::pair<double,double>> Layer;
+    std::vector<double> Layer;
     MyArray Discounts;
 };
 

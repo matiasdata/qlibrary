@@ -1,5 +1,5 @@
 // LightBinomialTree.cpp
-#include <QLibrary/BinomialTree.h>
+#include <QLibrary/LightBinomialTree.h>
 #include <cmath>
 #include <stdexcept>
 #include <iostream>
@@ -7,7 +7,7 @@
 namespace QLibrary
 {
 
-SimpleBinomialTree::SimpleBinomialTree(double Spot_, 
+LightBinomialTree::LightBinomialTree(double Spot_, 
     const Wrapper<Parameters>& r_, 
     const Wrapper<Parameters>& d_, 
     double Volatility_,
@@ -20,33 +20,14 @@ SimpleBinomialTree::SimpleBinomialTree(double Spot_,
                     Time(Time_),
                     Discounts(Steps) 
 {
-
-    // TreeBuilt = true;
-    // TheTree.resize(Steps+1);
-    // double InitialLogSpot = log(Spot);
-
-    // for(unsigned long i = 0; i <= Steps; i++)
-    // {
-    //     TheTree[i].resize(i+1);
-    //     double thisTime = (i*Time)/Steps;
-
-    //     double movedLogSpot = InitialLogSpot + r->Integral(0.0, thisTime) - d->Integral(0.0,thisTime);
-    //     movedLogSpot -= 0.5 * Volatility * Volatility * thisTime;
-    //     double std = Volatility * std::sqrt(Time/Steps);
-        
-    //     for(long j = -static_cast<long>(i), k = 0; j <= static_cast<long>(i); j = j+2, k++)
-    //     {
-    //         TheTree[i][k].first = std::exp(movedLogSpot + j * std);
-    //     }
-    // }
-
     for(unsigned long l = 0; l < Steps; l++)
     {
         Discounts[l] = std::exp(-r->Integral((l*Time)/Steps, ((l+1)*Time)/Steps));
     }
+    Layer.resize(Steps+1);
 }
 
-double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct)
+double LightBinomialTree::GetThePrice(const TreeProduct& TheProduct)
 {
 
     if (TheProduct.GetFinalTime() != Time)
@@ -54,24 +35,32 @@ double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct)
         throw std::invalid_argument("mismatched product in SimpleBinomialTree.");
     }
 
-    // for(long j = -static_cast<long>(Steps), k = 0; j <= static_cast<long>(Steps); j = j+2, k++)
-    // {
-    //     TheTree[Steps][k].second = TheProduct.FinalPayoff(TheTree[Steps][k].first);
-    // }
+    double InitialLogSpot = log(Spot);
+    double movedLogSpot = InitialLogSpot + r->Integral(0.0, Time) - d->Integral(0.0,Time);
+    movedLogSpot -= 0.5 * Volatility * Volatility * Time;
+    double std = Volatility * std::sqrt(Time/Steps);
 
-    // for(unsigned long i = 1; i <= Steps; i++)
-    // {
-    //     unsigned long index = Steps-i;
-    //     double ThisTime = (index*Time)/Steps;
-        
-    //     for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
-    //     {
-    //         double Spot = TheTree[index][k].first;
-    //         double FutureDiscountedValue = 0.5*Discounts[index]*(TheTree[index+1][k].second + TheTree[index+1][k+1].second);
-    //         TheTree[index][k].second = TheProduct.PreFinalValue(Spot,ThisTime,FutureDiscountedValue);
-    //     }
-    // }
-    // return TheTree[0][0].second;
+    for(long j = -static_cast<long>(Steps), k = 0; j <= static_cast<long>(Steps); j = j+2, k++)
+    {
+        Layer[k] = TheProduct.FinalPayoff(std::exp(movedLogSpot + j * std));
+    }
+
+    for(unsigned long i = 1; i <= Steps; i++)
+    {
+        unsigned long index = Steps-i;
+
+        double ThisTime = (index*Time)/Steps;
+        double movedLogSpot = InitialLogSpot + r->Integral(0.0, ThisTime) - d->Integral(0.0,ThisTime);
+        movedLogSpot -= 0.5 * Volatility * Volatility * ThisTime;
+
+        for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
+        {
+            double Spot = std::exp(movedLogSpot + j * std);
+            double FutureDiscountedValue = 0.5*Discounts[index]*(Layer[k] + Layer[k+1]);
+            Layer[k] = TheProduct.PreFinalValue(Spot,ThisTime,FutureDiscountedValue);
+        }
+    }
+    return Layer[0];
 }
 
 }
