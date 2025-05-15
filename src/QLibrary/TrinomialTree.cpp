@@ -35,11 +35,11 @@ void SimpleTrinomialTree::BuildTree()
         double movedLogSpot = InitialLogSpot + r->Integral(0.0, thisTime) - d->Integral(0.0,thisTime);
         movedLogSpot -= 0.5 * Volatility * Volatility * thisTime;
         double std = Volatility * std::sqrt(Time/Steps); 
-        static const double INVSQRT2 = 1.0/std::sqrt(2.0);
+        static const double SQRT2 = std::sqrt(2.0);
         
-        for(long j = -static_cast<long>(2*i), k = 0; j <= static_cast<long>(2*i); j = j+2, k++)
+        for(long j = -static_cast<long>(i), k = 0; j <= static_cast<long>(i); j++, k++)
         {
-            TheTree[i][k].first = std::exp(movedLogSpot + j * INVSQRT2 * std);
+            TheTree[i][k].first = std::exp(movedLogSpot + j * SQRT2 * std);
         }
     }
 
@@ -58,7 +58,7 @@ double SimpleTrinomialTree::GetThePrice(const TreeProduct& TheProduct)
         throw std::invalid_argument("mismatched product in SimpleTrinomialTree.");
     }
 
-    for(long j = -static_cast<long>(2*Steps), k = 0; j <= static_cast<long>(2*Steps); j = j+2, k++)
+    for(long j = -static_cast<long>(Steps), k = 0; j <= static_cast<long>(Steps); j++, k++)
     {
         TheTree[Steps][k].second = TheProduct.FinalPayoff(TheTree[Steps][k].first);
     }
@@ -68,7 +68,7 @@ double SimpleTrinomialTree::GetThePrice(const TreeProduct& TheProduct)
         unsigned long index = Steps-i;
         double ThisTime = (index*Time)/Steps;
         
-        for(long j = -static_cast<long>(2*index), k = 0; j <= static_cast<long>(2*index); j = j+2, k++)
+        for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j++, k++)
         {
             double Spot = TheTree[index][k].first;
             double FutureDiscountedValue = Discounts[index]*(0.25 * TheTree[index+1][k].second +
