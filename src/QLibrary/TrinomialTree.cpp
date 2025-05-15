@@ -74,6 +74,7 @@ double SimpleTrinomialTree::GetThePrice(const TreeProduct& TheProduct)
             double FutureDiscountedValue = Discounts[index]*(0.25 * TheTree[index+1][k].second +
                                                              0.5 * TheTree[index+1][k+1].second +
                                                             0.25 * TheTree[index+1][k+2].second);
+                                                            
             TheTree[index][k].second = TheProduct.PreFinalValue(Spot,ThisTime,FutureDiscountedValue);
         }
     }
