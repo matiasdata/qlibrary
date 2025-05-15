@@ -55,10 +55,10 @@ double SimpleTrinomialTree::GetThePrice(const TreeProduct& TheProduct)
 
     if (TheProduct.GetFinalTime() != Time)
     {
-        throw std::invalid_argument("mismatched product in SimpleBinomialTree.");
+        throw std::invalid_argument("mismatched product in SimpleTrinomialTree.");
     }
 
-    for(long j = -static_cast<long>(Steps), k = 0; j <= static_cast<long>(Steps); j = j+2, k++)
+    for(long j = -static_cast<long>(2*Steps), k = 0; j <= static_cast<long>(2*Steps); j = j+2, k++)
     {
         TheTree[Steps][k].second = TheProduct.FinalPayoff(TheTree[Steps][k].first);
     }
@@ -68,7 +68,7 @@ double SimpleTrinomialTree::GetThePrice(const TreeProduct& TheProduct)
         unsigned long index = Steps-i;
         double ThisTime = (index*Time)/Steps;
         
-        for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
+        for(long j = -static_cast<long>(2*index), k = 0; j <= static_cast<long>(2*index); j = j+2, k++)
         {
             double Spot = TheTree[index][k].first;
             double FutureDiscountedValue = Discounts[index]*(0.25 * TheTree[index+1][k].second +
