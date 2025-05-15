@@ -2,6 +2,7 @@
 
 #include <QLibrary/BinomialTree.h>
 #include <QLibrary/LightBinomialTree.h>
+#include <QLibrary/TrinomialTree.h>
 #include <QLibrary/TreeAmerican.h>
 #include <QLibrary/TreeEuropean.h>
 #include <QLibrary/TreeBarrier.h>
@@ -73,6 +74,10 @@ int main()
     QLibrary::LightBinomialTree theLightTree(Spot,rParam,dParam,Vol,Steps,Expiry);
     double euroCallPriceLight = theLightTree.GetThePrice(europeanCallOption);
     std::cout << "European Call option price (Light): " << euroCallPriceLight << std::endl;
+
+    QLibrary::SimpleTrinomialTree theTrinomialTree(Spot,rParam,dParam,Vol,Steps,Expiry);
+    double euroCallPriceTrinomial = theTrinomialTree.GetThePrice(europeanCallOption);
+    std::cout << "European Call option price (Trinomial): " << euroCallPriceTrinomial << std::endl;
 
     return 0;
 }

@@ -29,7 +29,7 @@ void SimpleTrinomialTree::BuildTree()
 
     for(unsigned long i = 0; i <= Steps; i++)
     {
-        TheTree[i].resize(i+1);
+        TheTree[i].resize(2*i+1);
         double thisTime = (i*Time)/Steps;
 
         double movedLogSpot = InitialLogSpot + r->Integral(0.0, thisTime) - d->Integral(0.0,thisTime);
@@ -39,7 +39,7 @@ void SimpleTrinomialTree::BuildTree()
         
         for(long j = -static_cast<long>(2*i), k = 0; j <= static_cast<long>(2*i); j = j+2, k++)
         {
-            TheTree[i][k].first = std::exp(movedLogSpot + j * std * INVSQRT2);
+            TheTree[i][k].first = std::exp(movedLogSpot + j * INVSQRT2 * std);
         }
     }
 

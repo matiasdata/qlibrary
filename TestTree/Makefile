@@ -9,6 +9,7 @@ SRC = main.cpp \
 	  ../src/QLibrary/TreeBarrier.cpp \
 	  ../src/QLibrary/BinomialTree.cpp \
 	  ../src/QLibrary/LightBinomialTree.cpp \
+	  ../src/QLibrary/TrinomialTree.cpp \
 	  ../src/QLibrary/Parameters.cpp \
 	  ../src/QLibrary/MyArray.cpp \
       ../src/QLibrary/Payoff.cpp \
