@@ -1,5 +1,7 @@
 // Parameters.cpp
 #include <QLibrary/Parameters.h>
+#include <stdexcept>
+#include <cstddef>
 
 // parametersConstant class
 namespace QLibrary{
@@ -32,7 +34,8 @@ parametersPiecewise::parametersPiecewise(const std::vector<double>& Time_, const
     if (Time_.size() != Value_.size()) {
         throw std::invalid_argument("Time and Value vectors must have the same size."); // check if the size of Time and Value vectors are equal
     }
-    for (size_t i = 0; i < Time_.size() - 1; ++i)
+    size_t end = Time_.size() - 1;
+    for (size_t i = 0; i < end; ++i)
     {
         if (Time_[i] >= Time_[i+1]) {
             throw std::invalid_argument("Time vector must be strictly increasing."); // check if the Time vector is strictly increasing
@@ -57,7 +60,8 @@ double parametersPiecewise::Integral(double Time1, double Time2) const
 {
     double result = 0.0;
     // Iterate over the piecewise intervals
-    for (size_t i = 0; i < Time.size() - 1; ++i)
+    size_t end = Time.size() - 1;
+    for (size_t i = 0; i < end; ++i)
     {
         // Check if the interval overlaps with the integration range [Time1, Time2]
         double t1 = std::max(Time1, Time[i]);      // Start of the integration interval
@@ -74,7 +78,8 @@ double parametersPiecewise::IntegralSquare(double Time1, double Time2) const
 {
     double result = 0.0;
     // Iterate over the piecewise intervals
-    for (size_t i = 0; i < Time.size() - 1; ++i)
+    size_t end = Time.size() - 1;
+    for (size_t i = 0; i < end; ++i)
     {
         // Check if the interval overlaps with the integration range [Time1, Time2]
         double t1 = std::max(Time1, Time[i]);      // Start of the integration interval

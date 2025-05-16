@@ -2,7 +2,7 @@
 
 #include <QLibrary/TreeBarrier.h>
 #include <QLibrary/TreeEuropean.h>
-
+#include <stdexcept>
 #include <algorithm>
 
 namespace QLibrary{

@@ -1,5 +1,7 @@
 // BlackScholesFormulas.cpp
 #include <QLibrary/BlackScholesFormulas.h>
+#include <cmath>
+#include <stdexcept>
 
 namespace QLibrary
 {
