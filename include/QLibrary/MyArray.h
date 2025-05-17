@@ -1,6 +1,7 @@
 // MyArray.h
 #pragma once
 #include <valarray>
+#include <stdexcept>
 
 namespace QLibrary{
 
