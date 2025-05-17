@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I../include -I/opt/homebrew/include -MMD -MP
+CXXFLAGS = -std=c++20 -Wall -I../include  -MMD -MP
 
 # Source files
 SRC = main.cpp $(wildcard ../src/QLibrary/*.cpp)

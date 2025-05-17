@@ -88,6 +88,8 @@ class RandomMLCG : public RandomBase
         const double Reciprocal;
 };
 
+double inverseCumulativeNormal(double p);
+
 }
 
 /* A static variable inside a class is a variable that is shared across all instances of the class. For example, the default
