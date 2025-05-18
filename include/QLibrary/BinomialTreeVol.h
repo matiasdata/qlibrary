@@ -38,10 +38,10 @@ private:
 
 };
 
-double InverseIntegralSquare(const Parameters& param, 
-                             double Time1,
+double InverseIntegralSquare(const Wrapper<Parameters>& param, 
                              double IntegralSquareValue,
+                             double Time1,
                              double TimeHigh, 
-                             double Tolerance = 1e-6) const;
+                             double Tolerance = 1e-6);
 
 }

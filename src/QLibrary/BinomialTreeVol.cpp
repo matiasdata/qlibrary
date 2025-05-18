@@ -3,7 +3,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <iostream>
-#include <Bisection.h>
+#include <QLibrary/Bisection.h>
 
 namespace QLibrary
 {
@@ -25,7 +25,7 @@ BinomialTreeVol::BinomialTreeVol(double Spot_,
     Times.resize(Steps+1);
     Times[0] = 0.0;
     Times[Steps] = Time;
-    VarianceByStep = Volatility.IntegralSquare(0.0,Time)/Steps;
+    VarianceByStep = Volatility->IntegralSquare(0.0,Time)/Steps;
     for(unsigned long i = 1; i < Steps; i++)
     {
         Times[i] = InverseIntegralSquare(Volatility,VarianceByStep,Times[i-1],Time);
@@ -76,7 +76,7 @@ double BinomialTreeVol::GetThePrice(const TreeProduct& TheProduct)
     for(unsigned long i = 1; i <= Steps; i++)
     {
         unsigned long index = Steps-i;
-        double ThisTime = (index*Time)/Steps;
+        double ThisTime = Times[i];
         
         for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
         {
@@ -88,15 +88,15 @@ double BinomialTreeVol::GetThePrice(const TreeProduct& TheProduct)
     return TheTree[0][0].second;
 }
 
-double InverseIntegralSquare(const Parameters& param, 
-                             double Time1,
+double InverseIntegralSquare(const Wrapper<Parameters>& param, 
                              double IntegralSquareValue,
+                             double Time1,
                              double TimeHigh, 
-                             double Tolerance = 1e-6) const
+                             double Tolerance)
 {
-    auto f = [&param, Time1](double Time2)
+    auto f = [param, Time1](double Time2)
     {
-        return param.IntegralSquare(Time1,Time2);
+        return param->IntegralSquare(Time1,Time2);
     };
 
     return Bisection(IntegralSquareValue,Time1, TimeHigh,Tolerance,f);
