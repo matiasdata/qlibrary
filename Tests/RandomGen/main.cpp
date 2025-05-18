@@ -1,4 +1,4 @@
-// TestRandomGen/main.cpp 
+// Test/RandomGen/main.cpp 
 #include <QLibrary/RandomGen.h>
 #include <QLibrary/MyArray.h>
 #include <iostream>

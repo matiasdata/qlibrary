@@ -1,4 +1,4 @@
-// TestTree/main.cpp
+// Tree/main.cpp
 
 #include <QLibrary/BinomialTree.h>
 #include <QLibrary/LightBinomialTree.h>

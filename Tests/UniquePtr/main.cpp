@@ -1,4 +1,4 @@
-// TestUniquePtr/main.cpp
+// Test/UniquePtr/main.cpp
 #include <QLibrary/UniquePtr.h>
 #include <iostream>
 

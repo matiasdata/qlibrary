@@ -1,4 +1,4 @@
-// TestBachelier/main.cpp
+// Test/Bachelier/main.cpp
 #include <QLibrary/PathDependentAsian.h>
 #include <QLibrary/ExoticBachelierEngine.h>
 #include <QLibrary/MCStatistics.h>
