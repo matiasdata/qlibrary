@@ -1,10 +1,25 @@
 // Parameters.cpp
 #include <QLibrary/Parameters.h>
+#include <QLibrary/Bisection.h>
 #include <stdexcept>
 #include <cstddef>
 
 // parametersConstant class
 namespace QLibrary{
+
+double Parameters::InverseIntegralSquare(double IntegralSquareValue,
+                             double Time1,
+                             double TimeHigh, 
+                             double Tolerance) const
+{
+    auto f = [this, Time1](double Time2)
+    {
+        return this->IntegralSquare(Time1,Time2);
+    };
+
+    return Bisection(IntegralSquareValue,Time1, TimeHigh,Tolerance,f);
+}
+
 
 parametersConstant::parametersConstant(double Constant_) : Constant{Constant_} {}
 // Constructor for parametersConstant class

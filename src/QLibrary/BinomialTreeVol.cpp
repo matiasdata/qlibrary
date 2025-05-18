@@ -3,7 +3,6 @@
 #include <cmath>
 #include <stdexcept>
 #include <iostream>
-#include <QLibrary/Bisection.h>
 
 namespace QLibrary
 {
@@ -28,7 +27,7 @@ BinomialTreeVol::BinomialTreeVol(double Spot_,
     VarianceByStep = Volatility->IntegralSquare(0.0,Time)/Steps;
     for(unsigned long i = 1; i < Steps; i++)
     {
-        Times[i] = InverseIntegralSquare(Volatility,VarianceByStep,Times[i-1],Time);
+        Times[i] = Volatility->InverseIntegralSquare(VarianceByStep,Times[i-1],Time);
     } 
 }
 
@@ -88,18 +87,18 @@ double BinomialTreeVol::GetThePrice(const TreeProduct& TheProduct)
     return TheTree[0][0].second;
 }
 
-double InverseIntegralSquare(const Wrapper<Parameters>& param, 
-                             double IntegralSquareValue,
-                             double Time1,
-                             double TimeHigh, 
-                             double Tolerance)
-{
-    auto f = [param, Time1](double Time2)
-    {
-        return param->IntegralSquare(Time1,Time2);
-    };
+// double BinomialTreeVol::InverseIntegralSquare(const Wrapper<Parameters>& param, 
+//                              double IntegralSquareValue,
+//                              double Time1,
+//                              double TimeHigh, 
+//                              double Tolerance)
+// {
+//     auto f = [param, Time1](double Time2)
+//     {
+//         return param->IntegralSquare(Time1,Time2);
+//     };
 
-    return Bisection(IntegralSquareValue,Time1, TimeHigh,Tolerance,f);
-}
+//     return Bisection(IntegralSquareValue,Time1, TimeHigh,Tolerance,f);
+// }
 
 }

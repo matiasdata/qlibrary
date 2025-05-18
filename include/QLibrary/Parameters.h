@@ -11,6 +11,10 @@ public:
     virtual Parameters* clone() const = 0; // pure virtual function for cloning.
     virtual double Integral(double Time1, double Time2) const = 0; // pure virtual function for integration.
     virtual double IntegralSquare(double Time1,double Time2) const = 0; // pure virtual function for integration parameter squared.
+    virtual double InverseIntegralSquare(double IntegralSquareValue,
+                                         double Time1,
+                                         double TimeHigh, 
+                                         double Tolerance = 1e-6) const;
     virtual ~Parameters(){};
 private:
 };

@@ -35,13 +35,6 @@ private:
     std::vector<std::vector<std::pair<double,double>>> TheTree; // one tree for the spot and the option values
     MyArray Discounts;
     double VarianceByStep;
-
 };
-
-double InverseIntegralSquare(const Wrapper<Parameters>& param, 
-                             double IntegralSquareValue,
-                             double Time1,
-                             double TimeHigh, 
-                             double Tolerance = 1e-6);
 
 }
