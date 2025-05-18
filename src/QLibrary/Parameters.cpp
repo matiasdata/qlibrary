@@ -7,7 +7,7 @@
 // parametersConstant class
 namespace QLibrary{
 
-double Parameters::InverseIntegralSquare(double IntegralSquareValue,
+double Parameters::InverseIntegralSquare(double Value,
                              double Time1,
                              double TimeHigh, 
                              double Tolerance) const
@@ -17,7 +17,7 @@ double Parameters::InverseIntegralSquare(double IntegralSquareValue,
         return this->IntegralSquare(Time1,Time2);
     };
 
-    return Bisection(IntegralSquareValue,Time1, TimeHigh,Tolerance,f);
+    return Bisection(Value,Time1, TimeHigh,Tolerance,f);
 }
 
 
