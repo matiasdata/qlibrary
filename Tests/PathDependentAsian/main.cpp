@@ -1,4 +1,4 @@
-// Test/PathDependentAsian/main.cpp
+// Tests/PathDependentAsian/main.cpp
 #include <QLibrary/PathDependentAsian.h>
 #include <QLibrary/ExoticBSEngine.h>
 #include <iostream>

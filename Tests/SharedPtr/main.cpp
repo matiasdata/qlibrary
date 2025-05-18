@@ -1,4 +1,4 @@
-// Test/SharedPtr/main.cpp
+// Tests/SharedPtr/main.cpp
 #include <QLibrary/SharedPtr.h>
 #include <iostream>
 

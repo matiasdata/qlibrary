@@ -1,4 +1,4 @@
-// Test/PathDependentBarrier/main.cpp
+// Tests/PathDependentBarrier/main.cpp
 #include <QLibrary/PathDependentBarrier.h>
 #include <QLibrary/ExoticBSEngine.h>
 #include <QLibrary/Vanilla.h>

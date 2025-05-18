@@ -1,4 +1,4 @@
-// Test/MyArray/main.cpp
+// Tests/MyArray/main.cpp
 #include <QLibrary/MyArray.h>
 #include <iostream>
 #include <vector>

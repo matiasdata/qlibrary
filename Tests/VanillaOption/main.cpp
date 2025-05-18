@@ -1,4 +1,4 @@
-// /Test/VanillaOption/main.cpp
+// Tests/VanillaOption/main.cpp
 #include <iostream>
 #include <QLibrary/SimpleMC.h>
 //#include <chrono>
