@@ -87,18 +87,4 @@ double BinomialTreeVol::GetThePrice(const TreeProduct& TheProduct)
     return TheTree[0][0].second;
 }
 
-// double BinomialTreeVol::InverseIntegralSquare(const Wrapper<Parameters>& param, 
-//                              double IntegralSquareValue,
-//                              double Time1,
-//                              double TimeHigh, 
-//                              double Tolerance)
-// {
-//     auto f = [param, Time1](double Time2)
-//     {
-//         return param->IntegralSquare(Time1,Time2);
-//     };
-
-//     return Bisection(IntegralSquareValue,Time1, TimeHigh,Tolerance,f);
-// }
-
 }
