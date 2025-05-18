@@ -20,7 +20,7 @@ double Bisection(double Target,
     double x = 0.5 * (Low + High);
     double y = TheFunction(x);
 
-    const int MAX_ITER = 1000;
+    static const int MAX_ITER = 1000;
     int iter = 0;
     do 
     {
