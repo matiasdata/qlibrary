@@ -82,10 +82,14 @@ int main()
 
 
     QLibrary::parametersPiecewise VolParam({0.0, 0.25, 0.5, 0.75, 1.0}, {0.4, 0.35, 0.3, 0.25, 0.2});
+    double realizedVariance = VolParam.IntegralSquare(0.0,1.0);
+    double volVar = std::sqrt(realizedVariance/Expiry);
     QLibrary::BinomialTreeVol theVariableVolTree(Spot,rParam,dParam,VolParam,Steps,Expiry);
     std::cout << "Created Binomial Tree with variable Volatility" << std::endl;
     double euroCallPriceVarVol = theVariableVolTree.GetThePrice(europeanCallOption);
     std::cout << "European Call Option Price on model with Variable Volatility: " << euroCallPriceVarVol << std::endl;
+    double bsCallPriceVarVol = QLibrary::BlackScholesCall(Spot,Strike,r,d,volVar,Expiry);
+    std::cout << "Black-Scholes formula Call price on model with Variable Volatility: " << bsCallPriceVarVol << std::endl;
 
     return 0;
 }
