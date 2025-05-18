@@ -4,4 +4,4 @@ Derivatives Pricing Library (sometimes loosely) following *C++ Design Patterns a
 
 - **Headers:** `include/QLibrary/`
 - **Source:** `src/QLibrary/`
-- **Namespace:** All classes reside in the `QLibrary` namespace.
+- **Namespace:** All classes are located in the `QLibrary` namespace.
