@@ -3,6 +3,7 @@
 #include <QLibrary/BinomialTree.h>
 #include <QLibrary/LightBinomialTree.h>
 #include <QLibrary/TrinomialTree.h>
+#include <QLibrary/BinomialTreeVol.h>
 #include <QLibrary/TreeAmerican.h>
 #include <QLibrary/TreeEuropean.h>
 #include <QLibrary/TreeBarrier.h>
@@ -78,6 +79,13 @@ int main()
     QLibrary::SimpleTrinomialTree theTrinomialTree(Spot,rParam,dParam,Vol,Steps,Expiry);
     double euroCallPriceTrinomial = theTrinomialTree.GetThePrice(europeanCallOption);
     std::cout << "European Call option price (Trinomial): " << euroCallPriceTrinomial << std::endl;
+
+
+    QLibrary::parametersPiecewise VolParam({0.0, 0.25, 0.5, 0.75, 1.0}, {0.4, 0.35, 0.3, 0.25, 0.2});
+    QLibrary::BinomialTreeVol theVariableVolTree(Spot,rParam,dParam,VolParam,Steps,Expiry);
+    std::cout << "Created Binomial Tree with variable Volatility" << std::endl;
+    double euroCallPriceVarVol = theVariableVolTree.GetThePrice(europeanCallOption);
+    std::cout << "European Call Option Price on model with Variable Volatility: " << euroCallPriceVarVol << std::endl;
 
     return 0;
 }
