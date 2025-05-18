@@ -12,7 +12,7 @@ double Parameters::InverseIntegralSquare(double Value,
                              double TimeHigh, 
                              double Tolerance) const
 {
-    auto f = [this, Time1](double Time2)
+    auto f = [this, Time1](double Time2) -> double
     {
         return this->IntegralSquare(Time1,Time2);
     };
