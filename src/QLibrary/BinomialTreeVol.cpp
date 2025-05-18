@@ -29,7 +29,7 @@ BinomialTreeVol::BinomialTreeVol(double Spot_,
     for(unsigned long i = 1; i < Steps; i++)
     {
         Times[i] = InverseIntegralSquare(Volatility,VarianceByStep,Times[i-1],Time);
-    }
+    } 
 }
 
 void BinomialTreeVol::BuildTree()
