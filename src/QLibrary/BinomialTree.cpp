@@ -48,7 +48,7 @@ void SimpleBinomialTree::BuildTree()
     }
 }
 
-double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct)
+double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct, bool Martingale)
 {
     if (!TreeBuilt) BuildTree();
 
@@ -61,6 +61,13 @@ double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct)
     {
         TheTree[Steps][k].second = TheProduct.FinalPayoff(TheTree[Steps][k].first);
     }
+    double dt = Time/Steps;
+    double q = Martingale? (std::exp(0.5 * Volatility * Volatility * dt + Volatility * std::sqrt(dt)) - 1)/(std::exp(2 * Volatility * std::sqrt(dt))-1):0.5;
+    
+    if (Martingale) 
+    {
+        std::cout << "q = " << q << std::endl;
+    }
 
     for(unsigned long i = 1; i <= Steps; i++)
     {
@@ -70,7 +77,7 @@ double SimpleBinomialTree::GetThePrice(const TreeProduct& TheProduct)
         for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
         {
             double Spot = TheTree[index][k].first;
-            double FutureDiscountedValue = 0.5*Discounts[index]*(TheTree[index+1][k].second + TheTree[index+1][k+1].second);
+            double FutureDiscountedValue = Discounts[index]*((1-q) * TheTree[index+1][k].second + q * TheTree[index+1][k+1].second);
             TheTree[index][k].second = TheProduct.PreFinalValue(Spot,ThisTime,FutureDiscountedValue);
         }
     }

@@ -22,7 +22,7 @@ int main()
     double r = 0.05;
     double d = 0.02;
     double Vol = 0.2;
-    unsigned long Steps = 1000;
+    unsigned long Steps = 100;
     QLibrary::parametersConstant rParam(r);
     QLibrary::parametersConstant dParam(d);
 
@@ -39,11 +39,13 @@ int main()
     QLibrary::SimpleBinomialTree theTree(Spot,rParam,dParam,Vol,Steps,Expiry);
     std::cout << "Created Binomial Tree" << std::endl;
     double euroCallPrice = theTree.GetThePrice(europeanCallOption);
+    double euroCallPriceMartingale = theTree.GetThePrice(europeanCallOption, true);
     double americanCallPrice = theTree.GetThePrice(americanCallOption);
     double euroPutPrice = theTree.GetThePrice(europeanPutOption);
     double americanPutPrice = theTree.GetThePrice(americanPutOption);
 
     std::cout << "European Call option price: " << euroCallPrice << std::endl;
+    std::cout << "European Call option price (Martingale): " << euroCallPriceMartingale << std::endl;
     std::cout << "American Call option price: " << americanCallPrice << std::endl;
     
     std::cout << "European Put option price: " << euroPutPrice << std::endl;

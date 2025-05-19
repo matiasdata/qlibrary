@@ -18,7 +18,7 @@ public:
                         double Volatility_,
                         unsigned long Steps_,
                         double Time_);   
-    double GetThePrice(const TreeProduct& TheProduct);
+    double GetThePrice(const TreeProduct& TheProduct, bool Martingale = false);
     ~SimpleBinomialTree(){};
 protected:
         void BuildTree(); // protected can be accessed by inherited classes
