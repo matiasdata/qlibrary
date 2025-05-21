@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I../include
+CXXFLAGS = -std=c++20 -Wall -I../../include
 
 # Source files
 SRC = main.cpp ../src/QLibrary/MyArray.cpp
