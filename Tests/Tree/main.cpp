@@ -4,6 +4,7 @@
 #include <QLibrary/LightBinomialTree.h>
 #include <QLibrary/TrinomialTree.h>
 #include <QLibrary/BinomialTreeVol.h>
+#include <QLibrary/KnockInBinomialTree.h>
 #include <QLibrary/TreeAmerican.h>
 #include <QLibrary/TreeEuropean.h>
 #include <QLibrary/TreeBarrier.h>
@@ -67,7 +68,7 @@ int main()
     std::cout << "actual forward price: " << actualForwardPrice << std::endl;
 
     double barrierLevel = 120.0;
-    QLibrary::TreeOutBarrier barrierUpCallOption(Expiry,ThePayoffCall,barrierLevel,QLibrary::BarrierType::Up);
+    QLibrary::TreeOutBarrier barrierUpCallOption(Expiry,ThePayoffCall,barrierLevel,QLibrary::TreeOutBarrier::BarrierType::Up);
     std::cout << "Created Up and Out Barrier option" << std::endl;
     double barrierUpOutCallPrice = theTree.GetThePrice(barrierUpCallOption);
     std::cout << "Barrier  Up and Out Call option price: " << barrierUpOutCallPrice << std::endl;
@@ -92,6 +93,11 @@ int main()
     std::cout << "European Call Option Price on model with Variable Volatility: " << euroCallPriceVarVol << std::endl;
     double bsCallPriceVarVol = QLibrary::BlackScholesCall(Spot,Strike,r,d,volVar,Expiry);
     std::cout << "Black-Scholes formula Call price on model with Variable Volatility: " << bsCallPriceVarVol << std::endl;
+
+    barrierLevel = 40.0;
+    QLibrary::KnockInBinomialTree theKnockInTree(Spot,rParam,dParam,Vol,Steps,Expiry,barrierLevel);
+    double americanKnockInPutPrice = theKnockInTree.GetThePrice(americanPutOption);
+    std::cout << "American Knock In Barrier Put Price: " << americanKnockInPutPrice << std::endl;
 
     return 0;
 }

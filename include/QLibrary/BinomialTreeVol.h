@@ -21,7 +21,7 @@ public:
     double GetThePrice(const TreeProduct& TheProduct);
     ~BinomialTreeVol(){};
 protected:
-        void BuildTree(); // protected can be accessed by inherited classes
+    void BuildTree(); // protected can be accessed by inherited classes
 
 private:
     double Spot;

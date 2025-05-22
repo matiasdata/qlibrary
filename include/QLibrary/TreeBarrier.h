@@ -7,11 +7,12 @@
 
 namespace QLibrary{
 
-enum class BarrierType {Up, Down};
+
 
 class TreeOutBarrier : public TreeProduct
 {
 public: 
+    enum class BarrierType {Up, Down};
     TreeOutBarrier(double FinalTime_,const Wrapper<Payoff>& ThePayoff_, double BarrierLevel_,
         BarrierType TheBarrierType_ = BarrierType::Up);
     virtual double FinalPayoff(double Spot) const override;
