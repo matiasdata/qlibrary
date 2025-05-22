@@ -94,7 +94,7 @@ int main()
     double bsCallPriceVarVol = QLibrary::BlackScholesCall(Spot,Strike,r,d,volVar,Expiry);
     std::cout << "Black-Scholes formula Call price on model with Variable Volatility: " << bsCallPriceVarVol << std::endl;
 
-    barrierLevel = 40.0;
+    barrierLevel = 80.0;
     QLibrary::KnockInBinomialTree theKnockInTree(Spot,rParam,dParam,Vol,Steps,Expiry,barrierLevel);
     double americanKnockInPutPrice = theKnockInTree.GetThePrice(americanPutOption);
     std::cout << "American Knock In Barrier Put Price: " << americanKnockInPutPrice << std::endl;
