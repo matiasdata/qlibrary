@@ -77,10 +77,10 @@ double KnockInBinomialTree::GetThePrice(const TreeProduct& TheProduct, bool Knoc
         for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
         {
             // case 1 : already KNOCKED_IN at index.
-            double Spot = TheTree[index][k][SPOT];
+            double thisSpot = TheTree[index][k][SPOT];
             double FutureDiscountedValue = Discounts[index]*((1-q) * TheTree[index+1][k][VALUE_KNOCKED_IN] 
                                                         + q * TheTree[index+1][k+1][VALUE_KNOCKED_IN]);
-            TheTree[index][k][VALUE_KNOCKED_IN] = TheProduct.PreFinalValue(Spot,ThisTime,FutureDiscountedValue);
+            TheTree[index][k][VALUE_KNOCKED_IN] = TheProduct.PreFinalValue(thisSpot,ThisTime,FutureDiscountedValue);
 
             // case 2: NOT_KNOCKED_IN at index.
             int knockedInUp = (TheTree[index+1][k+1][0] <= BarrierLevel)? VALUE_KNOCKED_IN : VALUE_NOT_KNOCKED_IN;
