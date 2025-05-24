@@ -42,10 +42,6 @@ private:
     bool TreeBuilt;
     std::vector<std::vector<Node>> TheTree; // one tree for the spot and the option values
     MyArray Discounts;
-    constexpr static int SPOT = 0;
-    constexpr static int VALUE_KNOCKED_IN = 1;
-    constexpr static int VALUE_NOT_KNOCKED_IN = 2;
-
 };
 
 }
