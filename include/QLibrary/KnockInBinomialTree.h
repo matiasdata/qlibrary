@@ -11,6 +11,13 @@ namespace QLibrary{
 
 class KnockInBinomialTree
 {
+struct Node
+{
+    double spot;
+    double valueKnockedIn;
+    double valueNotKnockedIn;
+};
+
 public:
     KnockInBinomialTree(double Spot_, 
                         const Wrapper<Parameters>& r_, 
@@ -33,7 +40,7 @@ private:
     double Time;
     double BarrierLevel;
     bool TreeBuilt;
-    std::vector<std::vector<std::vector<double>>> TheTree; // one tree for the spot and the option values
+    std::vector<std::vector<Node>> TheTree; // one tree for the spot and the option values
     MyArray Discounts;
     constexpr static int SPOT = 0;
     constexpr static int VALUE_KNOCKED_IN = 1;
