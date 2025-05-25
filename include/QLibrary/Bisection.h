@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <iostream> 
 
+namespace QLibrary{
+
 template <typename T>
 double Bisection(double Target,
                  double Low, 
@@ -40,3 +42,5 @@ double Bisection(double Target,
 
     return x;
 }
+
+} //namespace QLibrary
