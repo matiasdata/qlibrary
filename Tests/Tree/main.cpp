@@ -8,6 +8,7 @@
 #include <QLibrary/TreeAmerican.h>
 #include <QLibrary/TreeEuropean.h>
 #include <QLibrary/TreeBarrier.h>
+#include <QLibrary/TreeKnockIn.h>
 #include <QLibrary/Payoff.h>
 #include <QLibrary/PayoffForward.h>
 #include <QLibrary/Parameters.h>
@@ -95,8 +96,9 @@ int main()
     std::cout << "Black-Scholes formula Call price on model with Variable Volatility: " << bsCallPriceVarVol << std::endl;
 
     barrierLevel = 80.0;
-    QLibrary::KnockInBinomialTree theKnockInTree(Spot,rParam,dParam,Vol,Steps,Expiry,barrierLevel);
-    double americanKnockInPutPrice = theKnockInTree.GetThePrice(americanPutOption);
+    QLibrary::KnockInBinomialTree theKnockInTree(Spot,rParam,dParam,Vol,Steps,Expiry);
+    QLibrary::TreeKnockIn americanKnockInPutOption(Expiry,ThePayoffPut,barrierLevel,QLibrary::TreeKnockIn::BarrierType::Down);
+    double americanKnockInPutPrice = theKnockInTree.GetThePrice(americanKnockInPutOption);
     std::cout << "American Knock In Barrier Put Price: " << americanKnockInPutPrice << std::endl;
 
     return 0;

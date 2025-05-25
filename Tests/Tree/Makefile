@@ -12,6 +12,7 @@ SRC = main.cpp \
 	  ../../src/QLibrary/TrinomialTree.cpp \
 	  ../../src/QLibrary/BinomialTreeVol.cpp \
 	  ../../src/QLibrary/KnockInBinomialTree.cpp \
+	  ../../src/QLibrary/TreeKnockIn.cpp \
 	  ../../src/QLibrary/Parameters.cpp \
 	  ../../src/QLibrary/MyArray.cpp \
       ../../src/QLibrary/Payoff.cpp \

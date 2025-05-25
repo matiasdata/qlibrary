@@ -1,7 +1,7 @@
 // KnockInBinomialTree.h
 #pragma once
 
-#include <QLibrary/TreeProduct.h>
+#include <QLibrary/TreeKnockIn.h>
 #include <QLibrary/Parameters.h>
 #include <QLibrary/MyArray.h>
 #include <QLibrary/Wrapper.h>
@@ -24,9 +24,8 @@ public:
                         const Wrapper<Parameters>& d_, 
                         double Volatility_,
                         unsigned long Steps_,
-                        double Time_,
-                        double BarrierLevel_);   
-    double GetThePrice(const TreeProduct& TheProduct, bool KnockedIn = false);
+                        double Time_);   
+    double GetThePrice(const TreeKnockIn& TheProduct, bool KnockedIn = false);
     ~KnockInBinomialTree(){};
 protected:
     void BuildTree(); // protected can be accessed by inherited classes
@@ -38,7 +37,6 @@ private:
     double Volatility;
     unsigned long Steps;
     double Time;
-    double BarrierLevel;
     bool TreeBuilt;
     std::vector<std::vector<Node>> TheTree; // one tree for the spot and the option values
     MyArray Discounts;

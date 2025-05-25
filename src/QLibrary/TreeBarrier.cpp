@@ -20,9 +20,9 @@ double TreeOutBarrier::FinalPayoff(double Spot) const
     switch(TheBarrierType)
     {
         case BarrierType::Up:
-            return Spot < BarrierLevel? (*ThePayoff)(Spot) : 0.0;
+            return Spot <= BarrierLevel? (*ThePayoff)(Spot) : 0.0;
         case BarrierType::Down:
-            return Spot > BarrierLevel? (*ThePayoff)(Spot) : 0.0;
+            return Spot >= BarrierLevel? (*ThePayoff)(Spot) : 0.0;
         default:
             throw std::invalid_argument("Invalid barrier type");
     }
@@ -35,9 +35,9 @@ double TreeOutBarrier::PreFinalValue(double Spot,
     switch(TheBarrierType)
     {
         case BarrierType::Up:
-            return Spot < BarrierLevel? DiscountedFutureValue : 0.0;
+            return Spot <= BarrierLevel? DiscountedFutureValue : 0.0;
         case BarrierType::Down:
-            return Spot > BarrierLevel? DiscountedFutureValue : 0.0;
+            return Spot >= BarrierLevel? DiscountedFutureValue : 0.0;
         default:
             throw std::invalid_argument("Invalid barrier type");
     }

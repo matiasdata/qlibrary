@@ -12,14 +12,12 @@ KnockInBinomialTree::KnockInBinomialTree(double Spot_,
     const Wrapper<Parameters>& d_, 
     double Volatility_,
     unsigned long Steps_,
-    double Time_,
-    double BarrierLevel_) : Spot(Spot_),
+    double Time_) : Spot(Spot_),
                     r(r_),
                     d(d_),
                     Volatility(Volatility_),
                     Steps(Steps_),
                     Time(Time_),
-                    BarrierLevel(BarrierLevel_),
                     TreeBuilt(false),
                     Discounts(Steps) {}
 
@@ -52,7 +50,7 @@ void KnockInBinomialTree::BuildTree()
     }
 }
 
-double KnockInBinomialTree::GetThePrice(const TreeProduct& TheProduct, bool KnockedIn)
+double KnockInBinomialTree::GetThePrice(const TreeKnockIn& TheProduct, bool KnockedIn)
 {
     if (!TreeBuilt) BuildTree();
 
@@ -63,8 +61,8 @@ double KnockInBinomialTree::GetThePrice(const TreeProduct& TheProduct, bool Knoc
 
     for(long j = -static_cast<long>(Steps), k = 0; j <= static_cast<long>(Steps); j = j+2, k++)
     {
-        TheTree[Steps][k].valueKnockedIn = TheProduct.FinalPayoff(TheTree[Steps][k].spot);
-        TheTree[Steps][k].valueNotKnockedIn = 0.0;
+        TheTree[Steps][k].valueKnockedIn = TheProduct.FinalPayoff(TheTree[Steps][k].spot,true);
+        TheTree[Steps][k].valueNotKnockedIn = TheProduct.FinalPayoff(TheTree[Steps][k].spot,false);
     }
     double q = 0.5;
     
@@ -76,16 +74,19 @@ double KnockInBinomialTree::GetThePrice(const TreeProduct& TheProduct, bool Knoc
         for(long j = -static_cast<long>(index), k = 0; j <= static_cast<long>(index); j = j+2, k++)
         {
             // case 1 : already KNOCKED_IN at index.
+            Node& nodeUp = TheTree[index+1][k+1];
+            Node& nodeDown = TheTree[index+1][k];
             double thisSpot = TheTree[index][k].spot;
-            double FutureDiscountedValue = Discounts[index]*((1-q) * TheTree[index+1][k].valueKnockedIn 
-                                                        + q * TheTree[index+1][k+1].valueKnockedIn);
-            TheTree[index][k].valueKnockedIn = TheProduct.PreFinalValue(thisSpot,ThisTime,FutureDiscountedValue);
+            double FutureDiscountedValue = Discounts[index]*((1-q) * nodeDown.valueKnockedIn 
+                                                        + q * nodeUp.valueKnockedIn);
+            TheTree[index][k].valueKnockedIn = TheProduct.PreFinalValue(thisSpot,ThisTime,FutureDiscountedValue,true);
 
             // case 2: NOT_KNOCKED_IN at index.
-            double valueKnockedInUp = (TheTree[index+1][k+1].spot <= BarrierLevel)? TheTree[index+1][k+1].valueKnockedIn : TheTree[index+1][k+1].valueNotKnockedIn;
-            double valueKnockedInDown = (TheTree[index+1][k].spot <= BarrierLevel)? TheTree[index+1][k].valueKnockedIn : TheTree[index+1][k].valueNotKnockedIn;
-            FutureDiscountedValue = Discounts[index]*((1-q) * valueKnockedInUp + q * valueKnockedInDown);
-            TheTree[index][k].valueNotKnockedIn = FutureDiscountedValue; // if not knocked in there is no early exercise
+
+            double valueKnockedInUp = TheProduct.isKnockedIn(nodeUp.spot,false)? nodeUp.valueKnockedIn : nodeUp.valueNotKnockedIn;
+            double valueKnockedInDown = TheProduct.isKnockedIn(nodeDown.spot,false)? nodeDown.valueKnockedIn : nodeDown.valueNotKnockedIn;
+            FutureDiscountedValue = Discounts[index]*((1-q) * valueKnockedInDown + q * valueKnockedInUp);
+            TheTree[index][k].valueNotKnockedIn = TheProduct.PreFinalValue(thisSpot,ThisTime,FutureDiscountedValue,false);
         }
     }
     double result = KnockedIn? TheTree[0][0].valueKnockedIn : TheTree[0][0].valueNotKnockedIn;
