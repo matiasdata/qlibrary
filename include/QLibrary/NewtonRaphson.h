@@ -3,6 +3,8 @@
 #include <cmath>
 #include <stdexcept>
 
+namespace QLibrary{
+    
 template <typename T, double (T::*Value)(double) const, double (T::*Derivative)(double) const>
 double NewtonRaphson(double Target, double Start, double Tolerance, const T& TheObject)
 {
@@ -31,3 +33,5 @@ double NewtonRaphson(double Target, double Start, double Tolerance, const T& The
 
     return x;
 }
+
+} // namespace QLibrary

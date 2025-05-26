@@ -5,6 +5,7 @@ CXXFLAGS = -std=c++20 -Wall -I../../include
 # Source files
 SRC = main.cpp \
 	../../src/QLibrary/BSCallClass.cpp \
+	../../src/QLibrary/BSCallTwo.cpp \
 	../../src/QLibrary/BlackScholesFormulas.cpp 
 
 # Object files
