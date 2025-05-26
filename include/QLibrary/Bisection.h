@@ -38,8 +38,9 @@ double Bisection(double Target,
     }
 
     if (iter >= MAX_ITER)
+    {
         std::cerr << "Warning: Bisection reached max iterations (" << MAX_ITER << "). Result may not meet desired tolerance.\n";
-
+    }
     return x;
 }
 
