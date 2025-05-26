@@ -18,8 +18,17 @@ int main()
     double Tolerance = 1e-6;
     
     QLibrary::BSCall theCall(r,d,Expiry,Spot,Strike);
-    double Vol = QLibrary::Bisection(Price,low,high,Tolerance,theCall);
-    double PriceTwo = QLibrary::BlackScholesCall(Spot,Strike,r,d,Vol,Expiry);
-    std::cout << "Vol = " << Vol << "\nPriceTwo = " << PriceTwo << std::endl;
+    // Alternatively, use lambda functions.
+    auto theCallAlt = [r,d,Expiry,Spot,Strike](double vol) -> double
+    {
+        return QLibrary::BlackScholesCall(Spot,Strike,r,d,vol,Expiry);
+    };
+
+    double Vol1 = QLibrary::Bisection(Price,low,high,Tolerance,theCall);
+    double Vol2 = QLibrary::Bisection(Price,low,high,Tolerance,theCallAlt);
+    double Price1 = QLibrary::BlackScholesCall(Spot,Strike,r,d,Vol1,Expiry);
+    double Price2 = QLibrary::BlackScholesCall(Spot,Strike,r,d,Vol2,Expiry);
+    std::cout << "Vol1 = " << Vol1 << "\nPrice1 = " << Price1 << std::endl;
+    std::cout << "Vol2 = " << Vol2 << "\nPrice2 = " << Price2 << std::endl;
     return 0;
 }
