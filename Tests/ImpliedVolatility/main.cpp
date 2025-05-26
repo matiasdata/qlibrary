@@ -40,5 +40,15 @@ int main()
     double VolNR = QLibrary::NewtonRaphson<QLibrary::BSCallTwo, &QLibrary::BSCallTwo::Price, &QLibrary::BSCallTwo::Vega>(Price,guess,Tolerance,theCallTwo);
     double PriceNR = QLibrary::BlackScholesCall(Spot,Strike,r,d,VolNR,Expiry);
     std::cout << "VolNR = " << VolNR << "\nPriceNR = " << PriceNR << std::endl;
+
+    // Newton-Raphson with Lambda functions.
+    auto theVega = [r,d,Expiry,Spot,Strike](double vol) -> double
+    {
+        return QLibrary::BlackScholesCallVega(Spot,Strike,r,d,vol,Expiry);
+    };
+    double VolNR2 = QLibrary::NewtonRaphsonModern(Price,guess,Tolerance,theCallAlt,theVega);
+    double PriceNR2 = QLibrary::BlackScholesCall(Spot,Strike,r,d,VolNR,Expiry);
+    std::cout << "VolNR2 = " << VolNR2 << "\nPriceNR2 = " << PriceNR2 << std::endl;
+
     return 0;
 }
