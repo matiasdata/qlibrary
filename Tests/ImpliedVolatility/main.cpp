@@ -5,6 +5,7 @@
 #include <QLibrary/BSCallClass.h>
 #include <QLibrary/BSCallTwo.h>
 #include <QLibrary/BlackScholesFormulas.h>
+#include <QLibrary/NumericalIntegration.h>
 #include <iostream>
 
 int main()
@@ -49,6 +50,14 @@ int main()
     double VolNR2 = QLibrary::NewtonRaphsonModern(Price,guess,Tolerance,theCallAlt,theVega);
     double PriceNR2 = QLibrary::BlackScholesCall(Spot,Strike,r,d,VolNR,Expiry);
     std::cout << "VolNR2 = " << VolNR2 << "\nPriceNR2 = " << PriceNR2 << std::endl;
+
+    auto square = [](double x) -> double
+    {
+        return  x * x;
+    };
+
+    double Integral = QLibrary::TrapezoidalRule(0.0,1.0, 1000,square);
+    std::cout << "Numerical integral of x^2 from 0 to 1 is: " << Integral << std::endl;
 
     return 0;
 }
