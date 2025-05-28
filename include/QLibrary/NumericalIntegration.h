@@ -9,18 +9,15 @@ namespace QLibrary
 template <typename T>
 double TrapezoidalRule(double a, double b, unsigned long N, T TheFunction)
 {
-    double sum = 0;
     double h = (b-a)/static_cast<double>(N);
+    
+    double sum = 0.5 * (TheFunction(a) + TheFunction(b));
     double x = a;
-    sum += 0.5 * TheFunction(x);
     for(unsigned long i = 1; i < N; i++)
     {
         x += h;
         sum += TheFunction(x);
     }
-    x = b;
-    sum += 0.5 * TheFunction(x);
-
     return sum * h;
 }
 
