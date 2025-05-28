@@ -9,19 +9,19 @@ namespace QLibrary
 template <typename T>
 double TrapezoidalRule(double a, double b, unsigned long N, T TheFunction)
 {
-    double integral = 0;
+    double sum = 0;
     double h = (b-a)/static_cast<double>(N);
     double x = a;
-    integral += 0.5 * TheFunction(x);
+    sum += 0.5 * TheFunction(x);
     for(unsigned long i = 1; i < N; i++)
     {
         x += h;
-        integral += TheFunction(x);
+        sum += TheFunction(x);
     }
     x = b;
-    integral += 0.5 * TheFunction(x);
-    integral *= h;
-    return integral;
+    sum += 0.5 * TheFunction(x);
+
+    return sum * h;
 }
 
 template <typename T>
@@ -31,21 +31,18 @@ double SimpsonsRule(double a, double b, unsigned long N, T TheFunction)
     {
         throw std::invalid_argument("N must be even.");
     }
-    double integral = 0;
-    double h = (b-a)/static_cast<double>(N);
-    double x = a;
-    integral += TheFunction(x);
-    for(unsigned long i = 1; i < N/2; i++)
+    double h = (b - a) / N;
+    double sum = TheFunction(a) + TheFunction(b);
+
+    for (unsigned long i = 1; i < N; i++)
     {
-        x += 2 * h;
-        integral += 4 * TheFunction(x);
-        integral += 2 * TheFunction(x-h);
+        double x = a + i * h;
+        if (i % 2 == 0)
+            sum += 2 * TheFunction(x);
+        else
+            sum += 4 * TheFunction(x);
     }
-    x = b;
-    integral += TheFunction(x);
-    integral += 2 * TheFunction(x-h);
-    integral *= h/3;
-    return integral;
+    return sum * h / 3.0;
 }
 
 } // namespace QLibrary

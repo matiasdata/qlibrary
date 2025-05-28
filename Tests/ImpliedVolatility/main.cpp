@@ -56,9 +56,9 @@ int main()
         return  x * x;
     };
 
-    double IntegralTR = QLibrary::TrapezoidalRule(0.0,1.0, 1000, square);
+    double IntegralTR = QLibrary::TrapezoidalRule(0.0,1.0, 100, square);
     std::cout << "Numerical integral of x^2 from 0 to 1 using Trapezoidal Rule: " << IntegralTR << std::endl;
-    double IntegralSR = QLibrary::SimpsonsRule(0.0,1.0, 1000, square);
+    double IntegralSR = QLibrary::SimpsonsRule(0.0,1.0, 100, square);
     std::cout << "Numerical integral of x^2 from 0 to 1 using Simpson's Rule: " << IntegralSR << std::endl;
 
     return 0;
