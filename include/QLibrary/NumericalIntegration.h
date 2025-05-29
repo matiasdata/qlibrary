@@ -1,3 +1,4 @@
+// NumericalIntegration.h
 #pragma once
 
 #include <cmath>
