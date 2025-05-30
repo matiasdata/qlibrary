@@ -6,6 +6,7 @@ CXXFLAGS = -std=c++20 -Wall -I../../include
 SRC = main.cpp \
 	../../src/QLibrary/PayoffFactory.cpp \
 	../../src/QLibrary/Payoff.cpp \
+	../../src/QLibrary/PayoffForward.cpp \
 	../../src/QLibrary/PayoffRegistration.cpp 
 
 # Object files
