@@ -4,11 +4,7 @@
 
 namespace QLibrary{
 
-PayoffStraddle::PayoffStraddle(double Strike_)
-{
-    theCall = new PayoffCall(Strike_);
-    thePut = new PayoffPut(Strike_);
-}
+PayoffStraddle::PayoffStraddle(double Strike_) : theCall(new PayoffCall(Strike_)), thePut(new PayoffPut(Strike_)){}
 
 double PayoffStraddle::operator()(double Spot) const
 {
@@ -17,10 +13,5 @@ double PayoffStraddle::operator()(double Spot) const
 
 Payoff* PayoffStraddle::clone() const { return new PayoffStraddle(*this);}
 
-PayoffStraddle::~PayoffStraddle()
-{
-    delete theCall;
-    delete thePut;
-}
 
 } // namespace QLibrary    

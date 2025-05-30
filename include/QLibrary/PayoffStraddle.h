@@ -13,10 +13,10 @@ public:
     PayoffStraddle(double Strike_);
     virtual double operator()(double Spot) const;
     virtual Payoff* clone() const;
-    virtual ~PayoffStraddle();
+    virtual ~PayoffStraddle(){};
 private:
-    PayoffCall* theCall;
-    PayoffPut* thePut;
+    Wrapper<Payoff> theCall;
+    Wrapper<Payoff> thePut;
 };
 
 } // namespace QLibrary
