@@ -20,7 +20,7 @@ public:
 template <typename T>
 PayoffHelper<T>::PayoffHelper(std::string PayoffId)
 {
-    PayoffFactory& thePayoffFactory = PayoffFactory.Instance();
+    PayoffFactory& thePayoffFactory = PayoffFactory::Instance();
     thePayoffFactory.RegisterPayoff(PayoffId, PayoffHelper<T>::Create);
 }
 
