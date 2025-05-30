@@ -7,6 +7,7 @@ SRC = main.cpp \
 	../../src/QLibrary/PayoffFactory.cpp \
 	../../src/QLibrary/Payoff.cpp \
 	../../src/QLibrary/PayoffForward.cpp \
+	../../src/QLibrary/PayoffStraddle.cpp \
 	../../src/QLibrary/PayoffRegistration.cpp 
 
 # Object files

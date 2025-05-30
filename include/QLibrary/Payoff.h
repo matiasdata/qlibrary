@@ -47,4 +47,4 @@ private:
     double UpperLevel;
 };
 
-}
+} // namespace QLibrary
