@@ -17,6 +17,8 @@ PayoffHelper<PayoffForward> RegisterForward("forward");
 
 PayoffHelper<PayoffStraddle> RegisterStraddle("straddle");
 
+PayoffHelper<PayoffDoubleDigital> RegisterDoubleDigital("doubleDigital");
+
 }
 // variables are global but invisible, as they are defined in an unnamed namespace.
 

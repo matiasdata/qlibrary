@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 namespace QLibrary{
 
@@ -17,6 +18,7 @@ class PayoffCall : public Payoff
 {
 public:
     PayoffCall(double Strike_);
+    PayoffCall(const std::vector<double>& Parameters);
     virtual double operator()(double Spot) const;
     virtual Payoff* clone() const;
     virtual ~PayoffCall(){};
@@ -28,6 +30,7 @@ class PayoffPut : public Payoff
 {
 public:
     PayoffPut(double Strike_);
+    PayoffPut(const std::vector<double>& Parameters);
     virtual double operator()(double Spot) const;
     virtual Payoff* clone() const;
     virtual ~PayoffPut(){};
@@ -39,6 +42,7 @@ class PayoffDoubleDigital : public Payoff
 {
 public:
     PayoffDoubleDigital(double LowerLevel_, double UpperLevel_);
+    PayoffDoubleDigital(const std::vector<double>& Parameters);
     virtual double operator()(double Spot) const;
     virtual Payoff* clone() const;
     virtual ~PayoffDoubleDigital(){};

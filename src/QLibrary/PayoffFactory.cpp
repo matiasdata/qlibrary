@@ -11,7 +11,7 @@ void PayoffFactory::RegisterPayoff(std::string PayoffId, CreatePayoffFunction Cr
     TheCreatorFunctions.insert(std::pair<std::string, CreatePayoffFunction>(PayoffId, CreatorFunction));
 }
 
-Payoff* PayoffFactory::CreatePayoff(std::string PayoffId, double Strike)
+Payoff* PayoffFactory::CreatePayoff(std::string PayoffId, const std::vector<double>& Parameters)
 {
     std::map<std::string,CreatePayoffFunction>::const_iterator i = TheCreatorFunctions.find(PayoffId); 
     // can use auto for readability later, but in this case we declare the iterator explicitely.
@@ -20,7 +20,7 @@ Payoff* PayoffFactory::CreatePayoff(std::string PayoffId, double Strike)
         std::cout << PayoffId << " is an unknown payoff." << std::endl;
         return nullptr;
     }
-    return (i->second)(Strike);
+    return (i->second)(Parameters);
 }
 
 PayoffFactory& PayoffFactory::Instance()

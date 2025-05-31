@@ -6,6 +6,7 @@
 #include <QLibrary/PayoffFactory.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace QLibrary{
 
@@ -14,7 +15,7 @@ class PayoffHelper
 {
 public:
     PayoffHelper(std::string);
-    static Payoff* Create(double);
+    static Payoff* Create(const std::vector<double>& Parameters);
 };
 
 template <typename T>
@@ -25,9 +26,9 @@ PayoffHelper<T>::PayoffHelper(std::string PayoffId)
 }
 
 template <typename T>
-Payoff* PayoffHelper<T>::Create(double Strike)
+Payoff* PayoffHelper<T>::Create(const std::vector<double>& Parameters)
 {
-    return new T(Strike);
+    return new T(Parameters);
 }
 
 } // namespace QLibrary
