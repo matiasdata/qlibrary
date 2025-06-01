@@ -42,10 +42,9 @@ int main()
         std::cin >> Vol_;
         std::cout << "Enter the risk free rate:" << std::endl;
         std::cin >> r_;
+        
         QLibrary::parametersConstant Vol{Vol_};
         QLibrary::parametersConstant r{r_};
-
-        
         QLibrary::RandomMLCG rg(1,0);
         QLibrary::MCStatisticsMean gatherer_call;
         QLibrary::VanillaOption callOption(*PayoffPtr,Expiry);
