@@ -8,6 +8,12 @@ SRC = main.cpp \
 	../../src/QLibrary/Payoff.cpp \
 	../../src/QLibrary/PayoffForward.cpp \
 	../../src/QLibrary/PayoffStraddle.cpp \
+	../../src/QLibrary/RandomGen.cpp \
+	../../src/QLibrary/MCStatistics.cpp \
+	../../src/QLibrary/SimpleMC.cpp \
+	../../src/QLibrary/Vanilla.cpp \
+	../../src/QLibrary/Parameters.cpp \
+	../../src/QLibrary/MyArray.cpp \
 	../../src/QLibrary/PayoffRegistration.cpp 
 
 # Object files
