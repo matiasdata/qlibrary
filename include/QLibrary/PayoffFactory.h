@@ -14,7 +14,7 @@ class PayoffFactory
 public:
     typedef Payoff* (*CreatePayoffFunction)(const std::vector<double>&);
     static PayoffFactory& Instance();
-    void RegisterPayoff(std::string, CreatePayoffFunction);
+    void RegisterPayoff(std::string PayoffId, CreatePayoffFunction CreatorFunction);
     Payoff* CreatePayoff(std::string PayoffId, const std::vector<double>& Parameters);
     ~PayoffFactory(){};
 private:
