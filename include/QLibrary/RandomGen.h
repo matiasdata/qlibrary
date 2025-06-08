@@ -39,9 +39,9 @@ to create and to destroy.
 class MLCG{
 public:
     
-    static constexpr std::uint64_t default_m = 4294967296;      // 2^32
-    static constexpr std::uint64_t default_a = 1664525;
-    static constexpr std::uint64_t default_c = 1013904223;
+    static inline constexpr std::uint64_t default_m = 4294967296;      // 2^32
+    static inline constexpr std::uint64_t default_a = 1664525;
+    static inline constexpr std::uint64_t default_c = 1013904223;
 
     explicit MLCG(std::uint64_t seed_ = 0,
                   std::uint64_t m_ = default_m,
