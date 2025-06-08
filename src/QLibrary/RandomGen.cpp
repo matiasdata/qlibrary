@@ -2,7 +2,7 @@
 #include <QLibrary/RandomGen.h>
 
 #include <stdexcept>
-
+#include <algorithm>
 
 namespace QLibrary{
 
