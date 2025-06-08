@@ -93,4 +93,11 @@ double inverseCumulativeNormal(double p);
 }
 
 /* A static variable inside a class is a variable that is shared across all instances of the class. For example, the default
- values for m, a and c of our MLCG are shared across al instances.*/
+ values for m, a and c of our MLCG are shared across al instances.
+ 
+ The constexpr makes it a compile-time constant.
+
+ The inline tells the compiler: this variable can have multiple definitions across translation units, 
+ but they all refer to the same object.
+ 
+ */
