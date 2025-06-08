@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 
+
 namespace QLibrary{
 
 
@@ -12,11 +13,7 @@ void RandomBase::getGaussians(MyArray& variates)
 
     getUniforms(variates); // Supposed to overwrite everything
 
-    for(unsigned long i = 0; i < variates.size(); i++)
-    {
-        double x = variates[i];
-        variates[i] = inverseCumulativeNormal(x);
-    }
+    std::transform(variates.begin(), variates.end(), variates.begin(),inverseCumulativeNormal);
 }
 
 void RandomBase::resetDimensionality(unsigned long newDimensionality)

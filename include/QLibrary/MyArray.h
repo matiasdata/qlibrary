@@ -30,6 +30,10 @@ public:
     double sum() const;
     double min() const;
     double max() const;
+    double* begin() {return ValuesPtr;}
+    double* end() {return EndPtr;}
+    const double* begin() const {return ValuesPtr;}
+    const double* end() const {return EndPtr;}
 private:
     double* ValuesPtr;
     double* EndPtr;
