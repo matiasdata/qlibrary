@@ -1,7 +1,7 @@
 // Tests/VanillaOption/main.cpp
 #include <iostream>
 #include <QLibrary/SimpleMC.h>
-//#include <chrono>
+#include <chrono>
 
 int main()
 {
@@ -24,11 +24,11 @@ int main()
     QLibrary::MCStatisticsMean gatherer_call, gatherer_put, gatherer_doubleDigital;
     QLibrary::ConvergenceTable gatherer_call_cv(gatherer_call);
     QLibrary::RandomMLCG rg(1,0);
-    //auto start = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     QLibrary::SimpleMonteCarlo(callOption, Spot, Vol2, r2, NumberOfPaths,gatherer_call,rg);
-    //auto end = std::chrono::high_resolution_clock::now();
-    //std::chrono::duration<double> diff = end-start;
-    //std::cout << "Elapsed time: " << diff.count() << " seconds\n";
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end-start;
+    std::cout << "Elapsed time: " << diff.count() << " seconds\n";
     QLibrary::SimpleMonteCarlo(putOption, Spot, Vol2, r2, NumberOfPaths,gatherer_put,rg);
     QLibrary::SimpleMonteCarlo(doubleDigitalOption, Spot, Vol2, r2, NumberOfPaths, gatherer_doubleDigital,rg);
     // Print MC simulation results

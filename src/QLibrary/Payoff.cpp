@@ -28,10 +28,6 @@ PayoffCall::PayoffCall(const std::vector<double>& Parameters)
     }
 }
 
-double PayoffCall::operator()(double Spot) const
-{
-    return std::max(Spot - Strike,0.0);
-}
 
 Payoff* PayoffCall::clone() const { return new PayoffCall(*this);}
 
@@ -59,10 +55,6 @@ PayoffPut::PayoffPut(const std::vector<double>& Parameters)
     }
 }
 
-double PayoffPut::operator()(double Spot) const
-{
-    return std::max(Strike - Spot,0.0);
-}
 
 Payoff* PayoffPut::clone() const { return new PayoffPut(*this);}
 
@@ -91,10 +83,6 @@ PayoffDoubleDigital::PayoffDoubleDigital(const std::vector<double>& Parameters)
     }
     LowerLevel = Parameters[0];
     UpperLevel = Parameters[1];
-    if (Parameters[0] > Parameters[1])
-    {
-        throw std::invalid_argument("First argument must be smaller than the second one.");
-    }
     
     if (LowerLevel < 0 || UpperLevel < 0)
     {
@@ -105,12 +93,6 @@ PayoffDoubleDigital::PayoffDoubleDigital(const std::vector<double>& Parameters)
         throw std::invalid_argument("First argument must be smaller than the second one.");
     }
 
-}
-
-double PayoffDoubleDigital::operator()(double Spot) const
-{
-    double result = ((Spot < LowerLevel or Spot > UpperLevel)? 0.0 : 1.0);
-    return result;
 }
 
 Payoff* PayoffDoubleDigital::clone() const { return new PayoffDoubleDigital(*this);}

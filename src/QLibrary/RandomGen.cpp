@@ -6,7 +6,7 @@
 
 namespace QLibrary{
 
-constexpr double EPS = std::numeric_limits<double>::epsilon(); // ~2.22e-16
+//constexpr double EPS = std::numeric_limits<double>::epsilon(); // ~2.22e-16
 
 
 // double inverseCumulativeNormal(double p) {
@@ -70,9 +70,9 @@ void RandomMLCG::getUniforms(MyArray& variates) {
     
     for (unsigned long i = 0; i < getDimensionality(); ++i) {
         // Normalize to [0,1) by dividing by modulus
-        double u = static_cast<double>(InnerGenerator.getInteger() + 1) * Reciprocal;
+        double u = (static_cast<double>(InnerGenerator.getInteger()) + 0.5) * Reciprocal;
         // Clamp
-        u = std::clamp(u, EPS, 1.0 - EPS);
+        //u = std::clamp(u, EPS, 1.0 - EPS);
         variates[i] = u;
     }
 }

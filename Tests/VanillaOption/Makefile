@@ -1,9 +1,10 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I../../include -MMD -MP
+CXXFLAGS = -std=c++20 -Wall -I../../include -MMD -MP -O3 -march=native -flto
+LDFLAGS = -O3 -march=native -flto  # Link-time optimization flags
 
 # Source files
-SRC = main.cpp $(wildcard ../src/QLibrary/*.cpp)
+SRC = main.cpp $(wildcard ../../src/QLibrary/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
 BIN = main
