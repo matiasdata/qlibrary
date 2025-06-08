@@ -1,18 +1,10 @@
 // RandomGen.cpp
 #include <QLibrary/RandomGen.h>
-//#include <boost/math/distributions/normal.hpp>
-#include <limits>
+
 #include <stdexcept>
 
 namespace QLibrary{
 
-//constexpr double EPS = std::numeric_limits<double>::epsilon(); // ~2.22e-16
-
-
-// double inverseCumulativeNormal(double p) {
-//     boost::math::normal dist(0.0, 1.0); // standard normal distribution
-//     return quantile(dist, p); // returns x such that P(X ≤ x) = p
-// }
 
 void RandomBase::getGaussians(MyArray& variates)
 {
@@ -69,10 +61,8 @@ RandomBase* RandomMLCG::clone() const {
 void RandomMLCG::getUniforms(MyArray& variates) {
     
     for (unsigned long i = 0; i < getDimensionality(); ++i) {
-        // Normalize to [0,1) by dividing by modulus
+        // Normalize to [0,1)
         double u = (static_cast<double>(InnerGenerator.getInteger()) + 0.5) * Reciprocal;
-        // Clamp
-        //u = std::clamp(u, EPS, 1.0 - EPS);
         variates[i] = u;
     }
 }
