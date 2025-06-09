@@ -31,7 +31,6 @@ void SimpleMonteCarlo(const VanillaOption& theOption,
         double thisPayoff = theOption.OptionPayoff(thisSpot);
         gatherer.addSample(thisPayoff * discounting);
     }
-    return;
 }
 
 }
