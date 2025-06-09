@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -I../../include -MMD -MP -O3 -march=native -flto
+CXXFLAGS = -std=c++20 -Wall -g -I../../include -MMD -MP -O3 -march=native -flto
 LDFLAGS = -O3 -march=native -flto  # Link-time optimization flags
 
 # Source files
