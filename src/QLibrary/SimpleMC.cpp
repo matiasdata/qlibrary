@@ -1,7 +1,7 @@
 // SimpleMC.cpp
 #include <QLibrary/SimpleMC.h>
 #include <cmath>
-#include <iostream>
+
 
 namespace QLibrary{
 

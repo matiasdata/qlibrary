@@ -9,8 +9,6 @@ namespace QLibrary{
 
 void RandomBase::getGaussians(MyArray& variates)
 {
-
-
     getUniforms(variates); // Supposed to overwrite everything
 
     std::transform(variates.begin(), variates.end(), variates.begin(),inverseCumulativeNormal);
@@ -56,6 +54,7 @@ RandomBase* RandomMLCG::clone() const {
 }
 
 void RandomMLCG::getUniforms(MyArray& variates) {
+    
     for (unsigned long i = 0; i < getDimensionality(); ++i) {
         // Normalize to [0,1)
         double u = (static_cast<double>(InnerGenerator.getInteger()) + 0.5) * Reciprocal;
