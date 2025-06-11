@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -std=c++20 -Wall -I../../include  -MMD -MP
 
 # Source files
-SRC = main.cpp $(wildcard ../src/QLibrary/*.cpp)
+SRC = main.cpp $(wildcard ../../src/QLibrary/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
 BIN = main

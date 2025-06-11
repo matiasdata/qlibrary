@@ -43,10 +43,12 @@ Wrapper<T>& Wrapper<T>::operator=(const Wrapper<T>& other)
 {
     if (this != &other) // self-assignment check
     {
-        delete inner; // delete the current inner object
-        if (other.inner != nullptr) // check if the other inner is null
+        T* newInner = other.inner != nullptr? other.inner->clone() : nullptr;
+        
+        if (newInner != nullptr) // check if the other inner is null
         {
-            inner = other.inner->clone(); // clone the new inner object
+            delete inner; // delete the current inner object
+            inner = newInner; // clone the new inner object
         }
         else
         {
