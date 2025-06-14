@@ -20,15 +20,15 @@ ExoticBSEngine::ExoticBSEngine(const Wrapper<PathDependent>& TheProduct_,
 
     double Variance = Vol_->IntegralSquare(0.0,Times[0]);
     Drifts[0] = R_->Integral(0.0,Times[0]) - D_->Integral(0.0,Times[0]) - 0.5 * Variance;
-    StandardDeviations[0] = sqrt(Variance);
+    StandardDeviations[0] = std::sqrt(Variance);
 
     for(unsigned long j = 1; j < NumberOfTimes; ++j)
     {
         double ThisVariance = Vol_->IntegralSquare(Times[j-1],Times[j]);
         Drifts[j] = R_->Integral(Times[j-1],Times[j]) - D_->Integral(Times[j-1],Times[j]) - 0.5 * ThisVariance;
-        StandardDeviations[j] = sqrt(ThisVariance);
+        StandardDeviations[j] = std::sqrt(ThisVariance);
     }
-    LogSpot = log(Spot_);
+    LogSpot = std::log(Spot_);
     Variates.resize(NumberOfTimes);
 }
 
@@ -40,7 +40,7 @@ void ExoticBSEngine::GetOnePath(MyArray& SpotValues)
     {
         CurrentLogSpot += Drifts[j];
         CurrentLogSpot += StandardDeviations[j] * Variates[j];
-        SpotValues[j] = exp(CurrentLogSpot);
+        SpotValues[j] = std::exp(CurrentLogSpot);
     }
     return;
 }
