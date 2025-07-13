@@ -1,3 +1,4 @@
+// Vanilla.h
 #pragma once
 #include <QLibrary/Wrapper.h>
 #include <QLibrary/Payoff.h>
@@ -14,11 +15,10 @@ public:
 private:
     double Expiry;
     Wrapper<Payoff> ThePayoff;
-    
 };
 
 }
 
 /* Super simple VanillaOption class, no need to write copy constructors, assigment operators or destructors
-as these are taken care by the PayoffBridge. 
+as these are taken care by the Wrapper<Payoff>. 
 */

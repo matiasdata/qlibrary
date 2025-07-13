@@ -1,3 +1,4 @@
+// Payoff.cpp
 #include <QLibrary/Payoff.h>
 #include <algorithm>
 #include <stdexcept>

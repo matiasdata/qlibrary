@@ -1,3 +1,4 @@
+// Vanilla.cpp
 #include <QLibrary/Vanilla.h>
 
 namespace QLibrary{
